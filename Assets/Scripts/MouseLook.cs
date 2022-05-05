@@ -16,12 +16,16 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private float maxVerticalAngleFromHorizon;
     [SerializeField] private RotationDirection rotationDirections;
     private Vector2 rotation;
-    
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     private Vector2 GetInput() 
     {
         Vector2 input = new Vector2(
-            Input.GetAxis("Mouse X"), 
-            Input.GetAxis("Mouse Y")
+            Input.GetAxisRaw("Mouse X"), 
+            Input.GetAxisRaw("Mouse Y")
         );
         return input;
     }

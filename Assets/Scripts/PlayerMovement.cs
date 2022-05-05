@@ -4,40 +4,61 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
+    [Header("Movement")]    
+    public float moveSpeed = 5f;    
+    public float airMultiplier = 0.4f;
+    float verticalMovement;
+    float horizontalMovement;
+    Rigidbody rb;
+    Vector3 moveDirection;    
 
-    public float speed = 12f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 3f;
-    float x = 0f;
-    float z = 0f;
+    [Header("Drag")]
+    public float groundDrag;
+    public float airDrag;
 
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
+    [Header("Jump")]
+    public float jumpForce;      
+    public bool isGrounded;   
 
-    Vector3 velocity;
-    bool isGrounded;
-    void Update()
+    private void Start()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if (isGrounded && velocity.y < 0) 
-        {
-            velocity.y = -4f;
-        }
+        rb = GetComponent<Rigidbody>();
+    }
+    private void Update()
+    {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1 + 0.1f);
+        playerInput();
+        controlDrag();        
+        if (Input.GetButtonDown("Jump") && isGrounded)
+            Jump();
+    }
+    void Jump() 
+    {
+        Debug.Log("Jump");       
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    void playerInput() 
+    {
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
+        verticalMovement = Input.GetAxisRaw("Vertical");
+        moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;       
+    }
+    void controlDrag()
+    {
         if (isGrounded)
-        {           
-            x = Input.GetAxis("Horizontal");
-            z = Input.GetAxis("Vertical");
-        }        
-        Vector3 move = transform.right * (x) + transform.forward * (z);
-        controller.Move(move * speed * Time.deltaTime);
-        if (Input.GetButtonDown("Jump") && isGrounded) 
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
+            rb.drag = groundDrag;
+        else 
+            rb.drag = airDrag;
+    }
+    private void FixedUpdate()
+    {
+        movePlayer();
+    }
+    void movePlayer() 
+    {
+        if (isGrounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Acceleration);
+        else
+            rb.AddForce(moveDirection.normalized * moveSpeed * airMultiplier, ForceMode.Acceleration);
     }
 }
