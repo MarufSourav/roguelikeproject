@@ -33,8 +33,7 @@ public class PlayerMovement : MonoBehaviour
             Jump();
     }
     void Jump() 
-    {
-        Debug.Log("Jump");       
+    {               
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
     void playerInput() 
