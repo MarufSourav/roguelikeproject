@@ -22,7 +22,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        Physics.gravity = new Vector3(0f, -30f, 0f);
         rb = GetComponent<Rigidbody>();
+        
     }
     private void Update()
     {
