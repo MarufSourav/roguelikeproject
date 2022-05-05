@@ -1162,10 +1162,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 150
-  airMultiplier: 0.02
+  airMultiplier: 0.05
   groundDrag: 17
   airDrag: 0.001
-  jumpForce: 8
+  jumpForce: 16
   isGrounded: 0
 --- !u!23 &1979113164
 MeshRenderer:
