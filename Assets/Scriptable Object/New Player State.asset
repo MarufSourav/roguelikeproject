@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6116547e5f0064588b4a8c83ec5727, type: 3}
   m_Name: New Player State
   m_EditorClassIdentifier: 
-  playername: 
-  gunID: 0
-  health: 0
-  speed: 0
-  deathcounter: 0
+  playername: Abe
+  gunID: 3
+  health: 2
+  speed: 3
+  deathcounter: 4
