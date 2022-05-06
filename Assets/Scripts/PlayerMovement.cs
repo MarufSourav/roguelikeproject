@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump")]
     public float jumpForce;      
     public bool isGrounded;   
-
+    
     private void Start()
     {
         Physics.gravity = new Vector3(0f, -30f, 0f);
