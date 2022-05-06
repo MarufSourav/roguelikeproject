@@ -6,9 +6,5 @@ using UnityEngine.UI;
 [CreateAssetMenu]
 public class PlayerState : ScriptableObject
 {
-    public string playername;
-    public int gunID;
-    public int health;
-    public int speed;
-    public int deathcounter;    
+    public int gunID;  
 }
