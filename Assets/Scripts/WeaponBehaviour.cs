@@ -8,7 +8,7 @@ public class WeaponBehaviour : MonoBehaviour
     private float hitForce = 1f;    
     public bool Reloding = false;
 
-    public PlayerState ps;
+    public PlayerState ps;    
 
     [Header("Animators")]
     public Animator SHOOT;
@@ -17,6 +17,7 @@ public class WeaponBehaviour : MonoBehaviour
     
     public GameObject crosshair;
     public GameObject gunMuzzle;
+    public GameObject hitmarker;
 
     [Header("Weapons")]
     public GameObject gunPistol;
@@ -187,17 +188,17 @@ public class WeaponBehaviour : MonoBehaviour
         {
             if (ps.magAmmo - 1 == 0)
                 AmmoCounterSniper.color = Color.red;
-        }
-
-       
+        }       
               
         RaycastHit hit;
         if (Physics.Raycast(gunMuzzle.transform.position, gunMuzzle.transform.forward, out hit))
         {
-            Debug.Log(hit.transform.name);
+            Debug.Log(hit.transform.name);            
             EnemyMisc target = hit.transform.GetComponent<EnemyMisc>();
             if (target != null)
             {
+                hitmarker.gameObject.SetActive(true);
+                Invoke("hitmarkerActive", .2f);
                 target.TakeDamage(ps.damage);
             }
             if (hit.rigidbody != null)
@@ -205,6 +206,10 @@ public class WeaponBehaviour : MonoBehaviour
                 hit.rigidbody.AddForce(-hit.normal * hitForce, ForceMode.Impulse);
             }
         }               
+    }
+    private void hitmarkerActive()
+    {
+        hitmarker.gameObject.SetActive(false);
     }
     private void Reload() 
     {
