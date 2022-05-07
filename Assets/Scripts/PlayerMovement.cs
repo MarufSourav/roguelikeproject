@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public PlayerState ps;
     [Header("Movement")]    
     public float moveSpeed = 5f;    
     public float airMultiplier = 0.4f;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Start()
     {
+        ps.gunType = " ";
         Physics.gravity = new Vector3(0f, -30f, 0f);
         rb = GetComponent<Rigidbody>();        
     }

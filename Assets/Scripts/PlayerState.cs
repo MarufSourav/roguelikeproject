@@ -6,5 +6,9 @@ using UnityEngine.UI;
 [CreateAssetMenu]
 public class PlayerState : ScriptableObject
 {
-    public int gunID;  
+    public string gunType;
+    public int magAmmo;
+    public float fireRate;
+    public float reloadTime;
+    public float damage;    
 }
