@@ -50,7 +50,7 @@ public class WeaponBehaviour : MonoBehaviour
             }
 
             //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>
-            if (Input.GetButton("Fire2"))
+            if (Input.GetButton("Fire2") && Reloding == false)
             {
                 ADS.SetBool("isMouse1", true);
                 crosshair.SetActive(false);
