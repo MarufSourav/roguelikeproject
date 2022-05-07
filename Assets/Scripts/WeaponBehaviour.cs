@@ -23,6 +23,12 @@ public class WeaponBehaviour : MonoBehaviour
     public GameObject gunRifle;
     public GameObject gunSniper;
 
+    [Header("WeaponSpawn")]
+    public GameObject gunPistolWorld;
+    public GameObject gunRifleWorld;
+    public GameObject gunSniperWorld;
+
+    [Header("WeaponAmmoCounter")]
     public TextMeshProUGUI AmmoCounterPistol;
     public TextMeshProUGUI AmmoCounterRifle;
     public TextMeshProUGUI AmmoCounterSniper;
@@ -77,6 +83,13 @@ public class WeaponBehaviour : MonoBehaviour
                     ReloadMagazine.SetBool("isButtonR", false);
                 }
             }
+
+            if (Input.GetButtonDown("Drop")) 
+            {
+                crosshair.SetActive(false);
+                ps.gunType = " ";
+                Instantiate(gunPistolWorld, gunMuzzle.transform.position, gunPistolWorld.transform.rotation);
+            }
         }
         else if (ps.gunType == "Rifle") //Rifle ---------------------------------------------------------------- //
         {
@@ -106,7 +119,13 @@ public class WeaponBehaviour : MonoBehaviour
             {
                 Reloding = true;                
                 Invoke("Reload", ps.reloadTime);
-            }            
+            }
+            
+            if (Input.GetButtonDown("Drop"))
+            {
+                crosshair.SetActive(false);
+                ps.gunType = " ";
+            }
         }
         else if (ps.gunType == "Sniper") //Sniper ---------------------------------------------------------------- //
         {
@@ -137,7 +156,11 @@ public class WeaponBehaviour : MonoBehaviour
             {
                 Reloding = true;                
                 Invoke("Reload", ps.reloadTime);
-            }            
+            }
+            if (Input.GetButtonDown("Drop"))
+            {
+                ps.gunType = " ";                
+            }
         }
         else
         {

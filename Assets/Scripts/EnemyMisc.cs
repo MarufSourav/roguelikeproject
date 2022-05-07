@@ -7,7 +7,7 @@ public class EnemyMisc : MonoBehaviour
 
     public float health = 100f;
     public Image healthBar;
-    public Rigidbody rb;    
+    //public Rigidbody rb;
     public void TakeDamage (float damage)
     {        
         health -= damage;
@@ -19,7 +19,9 @@ public class EnemyMisc : MonoBehaviour
     }
     private void Die() 
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.None;        
+        health = 100f;
+        healthBar.fillAmount = 1f;
+        //Rigidbody rb = GetComponent<Rigidbody>();
+        //rb.constraints = RigidbodyConstraints.None;        
     }   
 }

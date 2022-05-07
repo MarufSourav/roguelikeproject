@@ -9,15 +9,15 @@ public class OnPickUp : MonoBehaviour
     {
         if (other.name == "Player") 
         {
-            if (gameObject.name == "PistolW") 
+            if (gameObject.name == "PistolW (1)") 
             {
                 ps.gunType = "Pistol";
                 ps.magAmmo = 8;
-                ps.fireRate = 1.8f;
+                ps.fireRate = 3f;
                 ps.reloadTime = 2.1f;
                 ps.damage = 26f;                
             }                
-            else if (gameObject.name == "RifleW")
+            else if (gameObject.name == "RifleW (1)")
             {
                 ps.gunType = "Rifle";
                 ps.magAmmo = 20;
@@ -25,14 +25,16 @@ public class OnPickUp : MonoBehaviour
                 ps.reloadTime = 1.7f;
                 ps.damage = 14f;
             }
-            else if (gameObject.name == "SniperW")
+            else if (gameObject.name == "SniperW (1)")
             {
                 ps.gunType = "Sniper";
                 ps.magAmmo = 4;
                 ps.fireRate = 0.8f;
                 ps.reloadTime = 2.6f;
                 ps.damage = 70f;
-            }           
-        }        
+            }
+            Destroy(gameObject);
+        }
+        
     }
 }
