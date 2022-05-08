@@ -9,12 +9,13 @@ public class WeaponBehaviour : MonoBehaviour
     public bool Reloding = false;
     public bool WeaponEquip = false;
 
-    public PlayerState ps;
+    public PlayerState ps;    
 
     [Header("Animators")]
     public Animator SHOOT;
     public Animator ADS;
     public Animator ReloadMagazine;
+    public Animator CamShake;
 
     public GameObject crosshair;
     public GameObject gunMuzzle;
@@ -37,7 +38,7 @@ public class WeaponBehaviour : MonoBehaviour
     {
         if (other.tag == "Pistol" && WeaponEquip == false)
         {
-            Debug.Log("Pistol Collision");
+            Debug.Log("Pistol Collision");            
             gunPistol.SetActive(true);
             gunRifle.SetActive(false);
             gunSniper.SetActive(false);
@@ -93,6 +94,7 @@ public class WeaponBehaviour : MonoBehaviour
             else
             {
                 SHOOT.SetBool("isMouse0", false);
+                CamShake.SetBool("isMouse0", false);
             }
             //Pistol Fire>>>>>>>>>>>>>>>>>>>>>>>
             //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>>
@@ -126,7 +128,7 @@ public class WeaponBehaviour : MonoBehaviour
             //Pistol Reload>>>>>>>>>>>>>>>>>>>>>  
 
             if (Input.GetButtonDown("Drop"))
-            {
+            {                
                 crosshair.SetActive(false);
                 WeaponEquip = false;
                 Instantiate(gunPistol, gunDropSpawn.transform.position, gunPistol.transform.rotation);
@@ -208,6 +210,7 @@ public class WeaponBehaviour : MonoBehaviour
         if (ps.gunType == "Pistol")
         {
             SHOOT.SetBool("isMouse0", true);
+            CamShake.SetBool("isMouse0", true);
             if (ps.magAmmo - 3 == 0)
                 AmmoCounterPistol.color = Color.red;
         }
