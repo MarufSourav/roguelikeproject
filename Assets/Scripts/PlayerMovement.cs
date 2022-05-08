@@ -59,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
     void movePlayer() 
     {
         if (isGrounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Acceleration);
+            rb.AddForce(moveDirection.normalized * moveSpeed);
         else
-            rb.AddForce(moveDirection.normalized * moveSpeed * airMultiplier, ForceMode.Acceleration);
+            rb.AddForce(moveDirection.normalized * moveSpeed * airMultiplier);
     }
 }

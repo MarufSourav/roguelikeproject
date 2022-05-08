@@ -204,7 +204,6 @@ public class WeaponBehaviour : MonoBehaviour
     }
     private void gunShot()
     {
-
         ps.magAmmo--;
         if (ps.gunType == "Pistol")
         {

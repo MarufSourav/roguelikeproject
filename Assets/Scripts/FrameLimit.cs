@@ -7,6 +7,6 @@ public class FrameLimit : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        Application.targetFrameRate = 360;
+        Application.targetFrameRate = 240;
     }
 }
