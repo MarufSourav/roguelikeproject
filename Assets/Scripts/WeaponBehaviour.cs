@@ -33,7 +33,7 @@ public class WeaponBehaviour : MonoBehaviour
     public TextMeshProUGUI AmmoCounterSniper;
 
     private float nextTimeToFire = 0f;
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Pistol" && WeaponEquip == false)
