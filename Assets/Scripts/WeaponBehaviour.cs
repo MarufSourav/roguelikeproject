@@ -5,29 +5,26 @@ using TMPro;
 
 public class WeaponBehaviour : MonoBehaviour
 {
-    private float hitForce = 1f;    
+    private float hitForce = 1f;
     public bool Reloding = false;
+    public bool WeaponEquip = false;
 
-    public PlayerState ps;    
+    public PlayerState ps;
 
     [Header("Animators")]
     public Animator SHOOT;
-    public Animator ADS;    
+    public Animator ADS;
     public Animator ReloadMagazine;
-    
+
     public GameObject crosshair;
     public GameObject gunMuzzle;
+    public GameObject gunDropSpawn;
     public GameObject hitmarker;
 
     [Header("Weapons")]
     public GameObject gunPistol;
     public GameObject gunRifle;
-    public GameObject gunSniper;
-
-    [Header("WeaponSpawn")]
-    public GameObject gunPistolWorld;
-    public GameObject gunRifleWorld;
-    public GameObject gunSniperWorld;
+    public GameObject gunSniper;    
 
     [Header("WeaponAmmoCounter")]
     public TextMeshProUGUI AmmoCounterPistol;
@@ -36,16 +33,58 @@ public class WeaponBehaviour : MonoBehaviour
 
     private float nextTimeToFire = 0f;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Pistol" && WeaponEquip == false)
+        {
+            Debug.Log("Pistol Collision");
+            gunPistol.SetActive(true);
+            gunRifle.SetActive(false);
+            gunSniper.SetActive(false);
+            WeaponEquip = true;
+            ps.gunType = "Pistol";
+            ps.magAmmo = 8;
+            ps.fireRate = 3f;
+            ps.reloadTime = 2.1f;
+            ps.damage = 26f;
+            Destroy(other.gameObject);
+        }
+        else if (other.tag == "Rifle" && WeaponEquip == false)
+        {
+            AmmoCounterRifle.text = ps.magAmmo.ToString(); ;
+            gunPistol.SetActive(false);
+            gunRifle.SetActive(true);
+            gunSniper.SetActive(false);
+            WeaponEquip = true;
+            ps.gunType = "Rifle";
+            ps.magAmmo = 20;
+            ps.fireRate = 7f;
+            ps.reloadTime = 1.7f;
+            ps.damage = 14f;
+            Destroy(other.gameObject);
+        }
+        else if (other.tag == "Sniper" && WeaponEquip == false)
+        {
+            AmmoCounterSniper.text = ps.magAmmo.ToString();
+            crosshair.SetActive(false);
+            gunPistol.SetActive(false);
+            gunRifle.SetActive(false);
+            gunSniper.SetActive(true);
+            WeaponEquip = true;
+            ps.gunType = "Sniper";
+            ps.magAmmo = 4;
+            ps.fireRate = 0.8f;
+            ps.reloadTime = 2.6f;
+            ps.damage = 70f;
+            Destroy(other.gameObject);
+        }
+    }
     void Update()
     {
         if (ps.gunType == "Pistol")//Pistol ---------------------------------------------------------------- //
         {
             AmmoCounterPistol.text = ps.magAmmo.ToString();
-            gunPistol.SetActive(true);
-            gunRifle.SetActive(false);
-            gunSniper.SetActive(false);
-            //Pistol Fire>>>>>>>>>>>>>>>>>>>>>>>            
-                      
+            //Pistol Fire>>>>>>>>>>>>>>>>>>>>>>>                      
             if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && ps.magAmmo != 0 && Reloding == false)
             {
                 nextTimeToFire = Time.time + 1f / ps.fireRate;
@@ -55,8 +94,8 @@ public class WeaponBehaviour : MonoBehaviour
             {
                 SHOOT.SetBool("isMouse0", false);
             }
-
-            //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>
+            //Pistol Fire>>>>>>>>>>>>>>>>>>>>>>>
+            //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>>
             if (Input.GetButton("Fire2") && Reloding == false)
             {
                 ADS.SetBool("isMouse1", true);
@@ -67,8 +106,8 @@ public class WeaponBehaviour : MonoBehaviour
                 ADS.SetBool("isMouse1", false);
                 crosshair.SetActive(true);
             }
-
-            //Pistol Reload>>>>>>>>>>>>>>>>>>>>>>>            
+            //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>>
+            //Pistol Reload>>>>>>>>>>>>>>>>>>>>>            
             if (Input.GetButtonDown("Fire3") && ps.magAmmo < 8 && Reloding == false)
             {
                 Reloding = true;
@@ -84,26 +123,24 @@ public class WeaponBehaviour : MonoBehaviour
                     ReloadMagazine.SetBool("isButtonR", false);
                 }
             }
+            //Pistol Reload>>>>>>>>>>>>>>>>>>>>>  
 
-            if (Input.GetButtonDown("Drop")) 
+            if (Input.GetButtonDown("Drop"))
             {
                 crosshair.SetActive(false);
+                WeaponEquip = false;
+                Instantiate(gunPistol, gunDropSpawn.transform.position, gunPistol.transform.rotation);
                 ps.gunType = " ";
-                Instantiate(gunPistolWorld, gunMuzzle.transform.position, gunPistolWorld.transform.rotation);
             }
         }
         else if (ps.gunType == "Rifle") //Rifle ---------------------------------------------------------------- //
         {
-            AmmoCounterRifle.text = ps.magAmmo.ToString(); ;
-            gunPistol.SetActive(false);
-            gunRifle.SetActive(true);
-            gunSniper.SetActive(false);
             //Rifle Fire>>>>>>>>>>>>>>>>>>>>>>>            
             if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && ps.magAmmo != 0 && Reloding == false)
             {
                 nextTimeToFire = Time.time + 1f / ps.fireRate;
                 gunShot();
-            }            
+            }
 
             //Rifle ADS>>>>>>>>>>>>>>>>>>>>>>>
             if (Input.GetButton("Fire2"))
@@ -111,17 +148,17 @@ public class WeaponBehaviour : MonoBehaviour
                 crosshair.SetActive(false);
             }
             else
-            {                
+            {
                 crosshair.SetActive(true);
             }
 
             //Rifle Reload>>>>>>>>>>>>>>>>>>>>>>>
             if (Input.GetButtonDown("Fire3") && ps.magAmmo < 20 && Reloding == false)
             {
-                Reloding = true;                
+                Reloding = true;
                 Invoke("Reload", ps.reloadTime);
             }
-            
+
             if (Input.GetButtonDown("Drop"))
             {
                 crosshair.SetActive(false);
@@ -130,11 +167,6 @@ public class WeaponBehaviour : MonoBehaviour
         }
         else if (ps.gunType == "Sniper") //Sniper ---------------------------------------------------------------- //
         {
-            AmmoCounterSniper.text = ps.magAmmo.ToString();
-            crosshair.SetActive(false);
-            gunPistol.SetActive(false);
-            gunRifle.SetActive(false);
-            gunSniper.SetActive(true);            
             //Sniper Fire>>>>>>>>>>>>>>>>>>>>>>>            
             if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && ps.magAmmo != 0 && Reloding == false)
             {
@@ -155,12 +187,12 @@ public class WeaponBehaviour : MonoBehaviour
             //Sniper Reload>>>>>>>>>>>>>>>>>>>>>>>            
             if (Input.GetButtonDown("Fire3") && ps.magAmmo < 4 && Reloding == false)
             {
-                Reloding = true;                
+                Reloding = true;
                 Invoke("Reload", ps.reloadTime);
             }
             if (Input.GetButtonDown("Drop"))
             {
-                ps.gunType = " ";                
+                ps.gunType = " ";
             }
         }
         else
@@ -170,8 +202,9 @@ public class WeaponBehaviour : MonoBehaviour
             gunSniper.SetActive(false);
         }
     }
-    private void gunShot() 
+    private void gunShot()
     {
+
         ps.magAmmo--;
         if (ps.gunType == "Pistol")
         {
@@ -184,16 +217,16 @@ public class WeaponBehaviour : MonoBehaviour
             if (ps.magAmmo - 5 == 0)
                 AmmoCounterRifle.color = Color.red;
         }
-        else 
+        else
         {
             if (ps.magAmmo - 1 == 0)
                 AmmoCounterSniper.color = Color.red;
-        }       
-              
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(gunMuzzle.transform.position, gunMuzzle.transform.forward, out hit))
         {
-            Debug.Log(hit.transform.name);            
+            Debug.Log(hit.transform.name);
             EnemyMisc target = hit.transform.GetComponent<EnemyMisc>();
             if (target != null)
             {
@@ -205,13 +238,13 @@ public class WeaponBehaviour : MonoBehaviour
             {
                 hit.rigidbody.AddForce(-hit.normal * hitForce, ForceMode.Impulse);
             }
-        }               
+        }
     }
     private void hitmarkerActive()
     {
         hitmarker.gameObject.SetActive(false);
     }
-    private void Reload() 
+    private void Reload()
     {
         if (ps.gunType == "Pistol")
             ps.magAmmo = 8;
