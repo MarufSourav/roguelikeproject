@@ -38,7 +38,6 @@ public class WeaponBehaviour : MonoBehaviour
     {
         if (other.tag == "Pistol" && WeaponEquip == false)
         {
-            Debug.Log("Pistol Collision");            
             gunPistol.SetActive(true);
             gunRifle.SetActive(false);
             gunSniper.SetActive(false);
@@ -112,6 +111,7 @@ public class WeaponBehaviour : MonoBehaviour
             //Pistol Reload>>>>>>>>>>>>>>>>>>>>>            
             if (Input.GetButtonDown("Fire3") && ps.magAmmo < 8 && Reloding == false)
             {
+                FindObjectOfType<AudioManager>().Play("PistolReloadSound");
                 Reloding = true;
                 SHOOT.SetBool("isButtonR", true);
                 ReloadMagazine.SetBool("isButtonR", true);
@@ -207,6 +207,7 @@ public class WeaponBehaviour : MonoBehaviour
     private void gunShot()
     {
         ps.magAmmo--;
+        FindObjectOfType<AudioManager>().Play("PistolGunSound");
         if (ps.gunType == "Pistol")
         {
             SHOOT.SetBool("isMouse0", true);
@@ -228,7 +229,6 @@ public class WeaponBehaviour : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(gunMuzzle.transform.position, gunMuzzle.transform.forward, out hit))
         {
-            Debug.Log(hit.transform.name);
             EnemyDamageZone target = hit.transform.GetComponent<EnemyDamageZone>();
             if (hit.transform.name == "Head")
             {
@@ -260,8 +260,8 @@ public class WeaponBehaviour : MonoBehaviour
     }
     private void Reload()
     {
-        if (ps.gunType == "Pistol")
-            ps.magAmmo = 8;
+        if (ps.gunType == "Pistol")            
+            ps.magAmmo = 8;                    
         else if (ps.gunType == "Rifle")
             ps.magAmmo = 20;
         else if (ps.gunType == "Sniper")

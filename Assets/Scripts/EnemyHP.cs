@@ -8,8 +8,8 @@ public class EnemyHP : MonoBehaviour
     public Image healthBar;    
     public void HP(float damage)
     {
-        Debug.Log(damage);
         health -= damage;
+        FindObjectOfType<AudioManager>().Play("HitMarkerSound");
         healthBar.fillAmount = health / 100f;
         if (health <= 0f)
         {
@@ -17,9 +17,9 @@ public class EnemyHP : MonoBehaviour
         }
     }
     private void Die()
-    {
-        Debug.Log("Dead");
+    {        
         Invoke("Regen", 2f);
+        FindObjectOfType<AudioManager>().Play("FragSoundEffect");
     }
     private void Regen() 
     {

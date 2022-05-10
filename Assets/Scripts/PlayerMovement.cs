@@ -5,58 +5,58 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerState ps;
-    [Header("Movement")]    
-    public float moveSpeed = 5f;    
+    [Header("Movement")]
+    public float moveSpeed = 5f;
     public float airMultiplier = 0.4f;
     float verticalMovement;
     float horizontalMovement;
     Rigidbody rb;
-    Vector3 moveDirection;    
+    Vector3 moveDirection;
 
     [Header("Drag")]
     public float groundDrag;
     public float airDrag;
 
     [Header("Jump")]
-    public float jumpForce;      
-    public bool isGrounded;   
-    
+    public float jumpForce;
+    public bool isGrounded;
+
     private void Start()
     {
         ps.gunType = " ";
         Physics.gravity = new Vector3(0f, -30f, 0f);
-        rb = GetComponent<Rigidbody>();        
+        rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1 + 0.1f);
         playerInput();
-        controlDrag();        
+        controlDrag();
         if (Input.GetButtonDown("Jump") && isGrounded)
             Jump();
     }
-    void Jump() 
-    {               
+    void Jump()
+    {
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
-    void playerInput() 
+    void playerInput()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
-        moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;       
+        moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
     }
     void controlDrag()
     {
         if (isGrounded)
             rb.drag = groundDrag;
-        else 
+        else
             rb.drag = airDrag;
     }
     private void FixedUpdate()
     {
         movePlayer();
     }
-    void movePlayer() 
+    void movePlayer()
     {
         if (isGrounded)
             rb.AddForce(moveDirection.normalized * moveSpeed);

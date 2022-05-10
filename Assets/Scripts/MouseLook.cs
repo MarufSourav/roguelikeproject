@@ -6,7 +6,7 @@ using System;
 public class MouseLook : MonoBehaviour
 {
     [Flags]
-    public enum RotationDirection 
+    public enum RotationDirection
     {
         None,
         Horizontal = (1 << 0),
@@ -21,26 +21,26 @@ public class MouseLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    private Vector2 GetInput() 
+    private Vector2 GetInput()
     {
         Vector2 input = new Vector2(
-            Input.GetAxisRaw("Mouse X"), 
+            Input.GetAxisRaw("Mouse X"),
             Input.GetAxisRaw("Mouse Y")
         );
         return input;
     }
-    private float ClampVerticalAngle(float angle) 
+    private float ClampVerticalAngle(float angle)
     {
         return Mathf.Clamp(angle, -maxVerticalAngleFromHorizon, maxVerticalAngleFromHorizon);
     }
     private void Update()
     {
         Vector2 wantedVelocity = GetInput() * sensitivity;
-        if ((rotationDirections & RotationDirection.Horizontal) == 0) 
+        if ((rotationDirections & RotationDirection.Horizontal) == 0)
         {
             wantedVelocity.x = 0;
         }
-        if ((rotationDirections & RotationDirection.Vertical) == 0) 
+        if ((rotationDirections & RotationDirection.Vertical) == 0)
         {
             wantedVelocity.y = 0;
         }

@@ -5,19 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    public GameObject panel1;
-    public GameObject panel2;   
-    public GameObject panel3;
-    public GameObject panel4;
-    void Start()
+    private void Update()
     {
-        panel1.SetActive(true);
-        panel2.SetActive(false);
-        panel3.SetActive(false);
-        panel4.SetActive(false);
-    }
-    public void newGame() 
-    {
-        SceneManager.LoadScene(1);
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            Application.Quit();
+        }
     }
 }
