@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6723634374043963378}
   - component: {fileID: 6723634374043963380}
   - component: {fileID: 6723634374043963379}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AmmoPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 6723634374157957619}
   - component: {fileID: 6723634374157957622}
   - component: {fileID: 6723634374157957621}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 6723634374258033003}
   - component: {fileID: 6723634374258033006}
   - component: {fileID: 6723634374258033005}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6723634374260073386}
   - component: {fileID: 6723634374260073387}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PistolPShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6723634374386987034}
   - component: {fileID: 6723634374386987035}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PistolPAim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 6723634374426562187}
   - component: {fileID: 6723634374426562190}
   - component: {fileID: 6723634374426562189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 6723634374564961271}
   - component: {fileID: 6723634374564961258}
   - component: {fileID: 6723634374564961257}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 6723634374644121438}
   - component: {fileID: 6723634374644121425}
   - component: {fileID: 6723634374644121424}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 6723634374677959658}
   - component: {fileID: 6723634374677959661}
   - component: {fileID: 6723634374677959660}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 6723634374764381020}
   - component: {fileID: 6723634374764381023}
   - component: {fileID: 6723634374764381022}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +822,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6723634374833909981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IronSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 6723634374872499829}
   - component: {fileID: 6723634374872499816}
   - component: {fileID: 6723634374872499831}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -940,7 +940,7 @@ GameObject:
   - component: {fileID: 6723634374891386357}
   - component: {fileID: 6723634374891386344}
   - component: {fileID: 6723634374891386359}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1021,7 +1021,7 @@ GameObject:
   - component: {fileID: 6723634374936247277}
   - component: {fileID: 6723634374936247264}
   - component: {fileID: 6723634374936247279}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1102,7 +1102,7 @@ GameObject:
   - component: {fileID: 6723634375234916488}
   - component: {fileID: 6723634375234916491}
   - component: {fileID: 6723634375234916490}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1183,7 +1183,7 @@ GameObject:
   - component: {fileID: 6723634375309967544}
   - component: {fileID: 6723634375309967547}
   - component: {fileID: 6723634375309967546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1262,7 +1262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6723634375312563521}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RedDot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1298,7 +1298,7 @@ GameObject:
   - component: {fileID: 6723634375429514846}
   - component: {fileID: 6723634375429514833}
   - component: {fileID: 6723634375429514832}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1379,7 +1379,7 @@ GameObject:
   - component: {fileID: 6723634375448565116}
   - component: {fileID: 6723634375448565119}
   - component: {fileID: 6723634375448565118}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1460,7 +1460,7 @@ GameObject:
   - component: {fileID: 6723634375577113434}
   - component: {fileID: 6723634375577113437}
   - component: {fileID: 6723634375577113436}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1541,7 +1541,7 @@ GameObject:
   - component: {fileID: 6723634375644690622}
   - component: {fileID: 6723634375644690608}
   - component: {fileID: 6723634375644690623}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AmmoCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1616,7 +1616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6723634375654165786}
   - component: {fileID: 6723634375654165787}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pistol
   m_TagString: Pistol
   m_Icon: {fileID: 0}
@@ -1663,7 +1663,7 @@ GameObject:
   - component: {fileID: 6723634375757169795}
   - component: {fileID: 6723634375757169794}
   - component: {fileID: 6723634375757169796}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1763,7 +1763,7 @@ GameObject:
   - component: {fileID: 6723634375784889938}
   - component: {fileID: 6723634375784889941}
   - component: {fileID: 6723634375784889940}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

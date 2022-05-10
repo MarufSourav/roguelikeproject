@@ -21,43 +21,34 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public bool isGrounded;
 
-    private void Start()
-    {
+    private void Start(){
         ps.gunType = " ";
         Physics.gravity = new Vector3(0f, -30f, 0f);
         rb = GetComponent<Rigidbody>();
     }
-    private void Update()
-    {
+    private void Update(){
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1 + 0.1f);
         playerInput();
         controlDrag();
         if (Input.GetButtonDown("Jump") && isGrounded)
             Jump();
     }
-    void Jump()
-    {
+    void Jump(){
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
-    void playerInput()
-    {
+    void playerInput(){
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
         moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
     }
-    void controlDrag()
-    {
+    void controlDrag(){
         if (isGrounded)
             rb.drag = groundDrag;
         else
             rb.drag = airDrag;
     }
-    private void FixedUpdate()
-    {
-        movePlayer();
-    }
-    void movePlayer()
-    {
+    private void FixedUpdate(){movePlayer();}
+    void movePlayer(){
         if (isGrounded)
             rb.AddForce(moveDirection.normalized * moveSpeed);
         else

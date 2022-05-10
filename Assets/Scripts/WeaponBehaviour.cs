@@ -5,11 +5,15 @@ using TMPro;
 
 public class WeaponBehaviour : MonoBehaviour
 {
-    private float hitForce = 1f;
     public bool Reloding = false;
     public bool WeaponEquip = false;
+    public bool infiniteAmmo = false;
 
-    public PlayerState ps;    
+    public PlayerState ps;
+
+    [Header("Scripts")]
+    public TrainingBots StartEndTraining;
+    public EffectOnHit Effect;
 
     [Header("Animators")]
     public Animator SHOOT;
@@ -17,10 +21,8 @@ public class WeaponBehaviour : MonoBehaviour
     public Animator ReloadMagazine;
     public Animator CamShake;
 
-    public GameObject crosshair;
-    public GameObject gunMuzzle;
-    public GameObject gunDropSpawn;
-    public GameObject hitmarker;
+    public GameObject crosshair;    
+    public GameObject gunDropSpawn;    
 
     [Header("Weapons")]
     public GameObject gunPistol;
@@ -206,10 +208,12 @@ public class WeaponBehaviour : MonoBehaviour
     }
     private void gunShot()
     {
-        ps.magAmmo--;
-        FindObjectOfType<AudioManager>().Play("PistolGunSound");
+        if (!infiniteAmmo)
+            ps.magAmmo--;
+        
         if (ps.gunType == "Pistol")
         {
+            FindObjectOfType<AudioManager>().Play("PistolGunSound");
             SHOOT.SetBool("isMouse0", true);
             CamShake.SetBool("isMouse0", true);
             if (ps.magAmmo - 3 == 0)
@@ -220,43 +224,12 @@ public class WeaponBehaviour : MonoBehaviour
             if (ps.magAmmo - 5 == 0)
                 AmmoCounterRifle.color = Color.red;
         }
-        else
+        else if (ps.gunType == "Sniper")
         {
             if (ps.magAmmo - 1 == 0)
                 AmmoCounterSniper.color = Color.red;
         }
-
-        RaycastHit hit;
-        if (Physics.Raycast(gunMuzzle.transform.position, gunMuzzle.transform.forward, out hit))
-        {
-            EnemyDamageZone target = hit.transform.GetComponent<EnemyDamageZone>();
-            if (hit.transform.name == "Head")
-            {
-                hitmarker.gameObject.SetActive(true);
-                Invoke("hitmarkerActive", .2f);
-                target.TakeDamage(ps.damage * 4);
-            }
-            else if (hit.transform.name == "Body")
-            {
-                hitmarker.gameObject.SetActive(true);
-                Invoke("hitmarkerActive", .2f);
-                target.TakeDamage(ps.damage);
-            }
-            else if (hit.transform.name == "LegRight" || hit.transform.name == "LegLeft") 
-            {
-                hitmarker.gameObject.SetActive(true);
-                Invoke("hitmarkerActive", .2f);
-                target.TakeDamage(ps.damage * 0.5f);
-            }
-            if (hit.rigidbody != null) 
-            {
-                hit.rigidbody.AddForce(-hit.normal * hitForce, ForceMode.Impulse);
-            }
-        }
-    }
-    private void hitmarkerActive()
-    {
-        hitmarker.gameObject.SetActive(false);
+        Effect.Effect();
     }
     private void Reload()
     {
