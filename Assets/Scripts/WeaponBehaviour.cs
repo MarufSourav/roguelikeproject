@@ -47,7 +47,7 @@ public class WeaponBehaviour : MonoBehaviour
             ps.magAmmo = 8;
             ps.fireRate = 3f;
             ps.reloadTime = 2.1f;
-            ps.damage = 26f;
+            ps.damage = 30f;
             Destroy(other.gameObject);
         }
         else if (other.tag == "Rifle" && WeaponEquip == false)
@@ -229,14 +229,26 @@ public class WeaponBehaviour : MonoBehaviour
         if (Physics.Raycast(gunMuzzle.transform.position, gunMuzzle.transform.forward, out hit))
         {
             Debug.Log(hit.transform.name);
-            EnemyMisc target = hit.transform.GetComponent<EnemyMisc>();
-            if (target != null)
+            EnemyDamageZone target = hit.transform.GetComponent<EnemyDamageZone>();
+            if (hit.transform.name == "Head")
+            {
+                hitmarker.gameObject.SetActive(true);
+                Invoke("hitmarkerActive", .2f);
+                target.TakeDamage(ps.damage * 4);
+            }
+            else if (hit.transform.name == "Body")
             {
                 hitmarker.gameObject.SetActive(true);
                 Invoke("hitmarkerActive", .2f);
                 target.TakeDamage(ps.damage);
             }
-            if (hit.rigidbody != null)
+            else if (hit.transform.name == "LegRight" || hit.transform.name == "LegLeft") 
+            {
+                hitmarker.gameObject.SetActive(true);
+                Invoke("hitmarkerActive", .2f);
+                target.TakeDamage(ps.damage * 0.5f);
+            }
+            if (hit.rigidbody != null) 
             {
                 hit.rigidbody.AddForce(-hit.normal * hitForce, ForceMode.Impulse);
             }
