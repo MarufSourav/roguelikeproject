@@ -16,7 +16,7 @@ public class TrainingBots : MonoBehaviour
     public bool Started = false;
     int randomVal;
     string randomValS;
-    float ct = 2f;    
+    float ct = 60f;    
     public void StartEndTraining()
     {
         if (!Started) 
@@ -55,7 +55,7 @@ public class TrainingBots : MonoBehaviour
         {            
             Destroy(GameObject.FindWithTag("BotTR"));
             botActive = false;
-            ct = 2f;            
+            ct = 60f;            
         }            
         countdowntext.text = ct.ToString("0");
         if (ct <= 0f) 

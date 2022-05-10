@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class MouseLook : MonoBehaviour
 {
+    public Slider sliderValue;
     [Flags]
     public enum RotationDirection
     {
@@ -19,7 +21,7 @@ public class MouseLook : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.visible = false;        
     }
     private Vector2 GetInput()
     {
@@ -35,6 +37,7 @@ public class MouseLook : MonoBehaviour
     }
     private void Update()
     {
+        sliderValue.value = sensitivity.x * 0.1f;
         Vector2 wantedVelocity = GetInput() * sensitivity;
         if ((rotationDirections & RotationDirection.Horizontal) == 0)
         {
@@ -47,5 +50,9 @@ public class MouseLook : MonoBehaviour
         rotation += wantedVelocity * Time.deltaTime;
         rotation.y = ClampVerticalAngle(rotation.y);
         transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
+    }
+    public void mouseSens(float sens){        
+        sensitivity.x = sens * 10;
+        sensitivity.y = -sens * 10;        
     }
 }
