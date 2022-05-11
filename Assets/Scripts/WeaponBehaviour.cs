@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
 public class WeaponBehaviour : MonoBehaviour
 {
     public bool Reloding = false;
@@ -25,14 +24,10 @@ public class WeaponBehaviour : MonoBehaviour
     public GameObject gunDropSpawn;    
 
     [Header("Weapons")]
-    public GameObject gunPistol;
-    public GameObject gunRifle;
-    public GameObject gunSniper;    
+    public GameObject gunPistol;      
 
     [Header("WeaponAmmoCounter")]
-    public TextMeshProUGUI AmmoCounterPistol;
-    public TextMeshProUGUI AmmoCounterRifle;
-    public TextMeshProUGUI AmmoCounterSniper;
+    public TextMeshProUGUI AmmoCounterPistol;    
 
     private float nextTimeToFire = 0f;
     
@@ -40,9 +35,7 @@ public class WeaponBehaviour : MonoBehaviour
     {
         if (other.tag == "Pistol" && WeaponEquip == false)
         {
-            gunPistol.SetActive(true);
-            gunRifle.SetActive(false);
-            gunSniper.SetActive(false);
+            gunPistol.SetActive(true);            
             WeaponEquip = true;
             ps.gunType = "Pistol";
             ps.magAmmo = 8;
@@ -50,36 +43,7 @@ public class WeaponBehaviour : MonoBehaviour
             ps.reloadTime = 2.1f;
             ps.damage = 30f;
             Destroy(other.gameObject);
-        }
-        else if (other.tag == "Rifle" && WeaponEquip == false)
-        {
-            AmmoCounterRifle.text = ps.magAmmo.ToString(); ;
-            gunPistol.SetActive(false);
-            gunRifle.SetActive(true);
-            gunSniper.SetActive(false);
-            WeaponEquip = true;
-            ps.gunType = "Rifle";
-            ps.magAmmo = 20;
-            ps.fireRate = 7f;
-            ps.reloadTime = 1.7f;
-            ps.damage = 14f;
-            Destroy(other.gameObject);
-        }
-        else if (other.tag == "Sniper" && WeaponEquip == false)
-        {
-            AmmoCounterSniper.text = ps.magAmmo.ToString();
-            crosshair.SetActive(false);
-            gunPistol.SetActive(false);
-            gunRifle.SetActive(false);
-            gunSniper.SetActive(true);
-            WeaponEquip = true;
-            ps.gunType = "Sniper";
-            ps.magAmmo = 4;
-            ps.fireRate = 0.8f;
-            ps.reloadTime = 2.6f;
-            ps.damage = 70f;
-            Destroy(other.gameObject);
-        }
+        }       
     }
     void Update()
     {
@@ -136,75 +100,9 @@ public class WeaponBehaviour : MonoBehaviour
                 Instantiate(gunPistol, gunDropSpawn.transform.position, gunPistol.transform.rotation);
                 ps.gunType = " ";
             }
-        }
-        else if (ps.gunType == "Rifle") //Rifle ---------------------------------------------------------------- //
-        {
-            //Rifle Fire>>>>>>>>>>>>>>>>>>>>>>>            
-            if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && ps.magAmmo != 0 && Reloding == false)
-            {
-                nextTimeToFire = Time.time + 1f / ps.fireRate;
-                gunShot();
-            }
-
-            //Rifle ADS>>>>>>>>>>>>>>>>>>>>>>>
-            if (Input.GetButton("Fire2"))
-            {
-                crosshair.SetActive(false);
-            }
-            else
-            {
-                crosshair.SetActive(true);
-            }
-
-            //Rifle Reload>>>>>>>>>>>>>>>>>>>>>>>
-            if (Input.GetButtonDown("Fire3") && ps.magAmmo < 20 && Reloding == false)
-            {
-                Reloding = true;
-                Invoke("Reload", ps.reloadTime);
-            }
-
-            if (Input.GetButtonDown("Drop"))
-            {
-                crosshair.SetActive(false);
-                ps.gunType = " ";
-            }
-        }
-        else if (ps.gunType == "Sniper") //Sniper ---------------------------------------------------------------- //
-        {
-            //Sniper Fire>>>>>>>>>>>>>>>>>>>>>>>            
-            if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && ps.magAmmo != 0 && Reloding == false)
-            {
-                nextTimeToFire = Time.time + 1f / ps.fireRate;
-                gunShot();
-            }
-
-            /*Sniper ADS>>>>>>>>>>>>>>>>>>>>>>>
-            if (Input.GetButton("Fire2"))
-            {
-                
-            }
-            else
-            {
-               
-            }*/
-
-            //Sniper Reload>>>>>>>>>>>>>>>>>>>>>>>            
-            if (Input.GetButtonDown("Fire3") && ps.magAmmo < 4 && Reloding == false)
-            {
-                Reloding = true;
-                Invoke("Reload", ps.reloadTime);
-            }
-            if (Input.GetButtonDown("Drop"))
-            {
-                ps.gunType = " ";
-            }
-        }
+        }        
         else
-        {
             gunPistol.SetActive(false);
-            gunRifle.SetActive(false);
-            gunSniper.SetActive(false);
-        }
     }
     private void gunShot()
     {
@@ -218,31 +116,15 @@ public class WeaponBehaviour : MonoBehaviour
             CamShake.SetBool("isMouse0", true);
             if (ps.magAmmo - 3 == 0)
                 AmmoCounterPistol.color = Color.red;
-        }
-        else if (ps.gunType == "Rifle")
-        {
-            if (ps.magAmmo - 5 == 0)
-                AmmoCounterRifle.color = Color.red;
-        }
-        else if (ps.gunType == "Sniper")
-        {
-            if (ps.magAmmo - 1 == 0)
-                AmmoCounterSniper.color = Color.red;
-        }
+        }       
         Effect.Effect();
     }
     private void Reload()
     {
-        if (ps.gunType == "Pistol")            
+        if (ps.gunType == "Pistol")           
             ps.magAmmo = 8;                    
-        else if (ps.gunType == "Rifle")
-            ps.magAmmo = 20;
-        else if (ps.gunType == "Sniper")
-            ps.magAmmo = 4;
-
-        AmmoCounterPistol.color = Color.white;
-        AmmoCounterRifle.color = Color.white;
-        AmmoCounterSniper.color = Color.white;
+        
+        AmmoCounterPistol.color = Color.white;        
         Reloding = false;
     }
 }

@@ -36,8 +36,7 @@ public class TrainingBots : MonoBehaviour
     void SpawnBots() 
     {
         randomVal = UnityEngine.Random.Range(0, 19);
-        randomValS = randomVal.ToString();  
-        Debug.Log("Random Value: " + randomValS);
+        randomValS = randomVal.ToString();
         spawnlocation = GameObject.Find(randomValS);
         Instantiate(botPrefab, spawnlocation.transform.position, spawnlocation.transform.rotation);
         botActive = true;
@@ -59,7 +58,6 @@ public class TrainingBots : MonoBehaviour
         }            
         countdowntext.text = ct.ToString("0");
         if (ct <= 0f) 
-            StartEndTraining(); 
-            
+            StartEndTraining();            
     }
 }
