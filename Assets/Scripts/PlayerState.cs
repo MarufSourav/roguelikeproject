@@ -10,5 +10,6 @@ public class PlayerState : ScriptableObject
     public int magAmmo;
     public float fireRate;
     public float reloadTime;
-    public float damage;    
+    public float damage;
+    public float spreadFactor;
 }

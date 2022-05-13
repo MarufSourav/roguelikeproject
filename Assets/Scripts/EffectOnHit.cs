@@ -8,13 +8,14 @@ public class EffectOnHit : MonoBehaviour{
     public GameObject hitmarker;
     public PlayerState ps;
     public TrainingBots StartEndTraining;
-    public WeaponBehaviour IA;
-    
+    public WeaponBehaviour IA;    
     public void Effect() 
     {
         RaycastHit hit;
-        if (Physics.Raycast(gunMuzzle.transform.position, gunMuzzle.transform.forward, out hit))        {
-            
+        Vector3 shootDirection = gunMuzzle.transform.forward;
+        shootDirection.x += Random.Range(-ps.spreadFactor, ps.spreadFactor);
+        shootDirection.y += Random.Range(-ps.spreadFactor, ps.spreadFactor);
+        if (Physics.Raycast(gunMuzzle.transform.position, shootDirection, out hit)){            
             EnemyDamageZone target = hit.transform.GetComponent<EnemyDamageZone>();
             if (hit.transform.name == "Head")
             {

@@ -6,11 +6,16 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public Text inputValue;
+    public Text FPSText;
+    float pollingTime = 1f;
+    float time;
+    int frameCount;
     public Slider sliderValue;
     public GameObject mainMenu;
     public GameObject Player;
     public GameObject Camera;
     bool menuActive = false;
+    
     private void Start()
     {
         Player.GetComponent<MouseLook>().enabled = true;
@@ -24,6 +29,16 @@ public class MainMenu : MonoBehaviour
     }
     private void Update()
     {
+        time += Time.deltaTime;
+        frameCount++;
+        if (time >= pollingTime) 
+        {
+            int frameRate = Mathf.RoundToInt(frameCount / time);
+            FPSText.text = frameCount.ToString() + " FPS";
+            time -= pollingTime;
+            frameCount = 0;
+        }
+
         inputValue.text = sliderValue.value.ToString();
         if (Input.GetKeyDown(KeyCode.Escape))
         {

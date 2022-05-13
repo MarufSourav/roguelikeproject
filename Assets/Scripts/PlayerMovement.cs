@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     void controlDrag(){
         if (isGrounded)
             rb.drag = groundDrag;
-        else
+        else 
             rb.drag = airDrag;
     }
     private void FixedUpdate(){movePlayer();}
