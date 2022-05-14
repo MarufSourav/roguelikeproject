@@ -1,4 +1,4 @@
-# roguelikeproject
+# Rogue-Like FPS
 The game is still in the early stage!
 
 <!-- INSTALLATION -->
