@@ -6316,7 +6316,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979113162}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 6e16dabd277da8944b075029a53708a7, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -6341,11 +6341,10 @@ MonoBehaviour:
   ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
   StartEndTraining: {fileID: 1100292762}
   Effect: {fileID: 1979113171}
-  PistolCamShake: {fileID: 573767232}
+  CamShake: {fileID: 573767232}
   PistolADS: {fileID: 711763457}
   PistolSHOOT: {fileID: 922716982}
   PistolReloadMagazine: {fileID: 1641058819}
-  RifleCamShake: {fileID: 573767232}
   RifleADS: {fileID: 1128906410}
   RifleSHOOT: {fileID: 247818288}
   gunPistol: {fileID: 208259874}

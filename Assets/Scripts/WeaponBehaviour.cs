@@ -13,15 +13,14 @@ public class WeaponBehaviour : MonoBehaviour
     [Header("Scripts")]
     public TrainingBots StartEndTraining;
     public EffectOnHit Effect;
-    
-    [Header("PistolAnimators")]
-    public Animator PistolCamShake;
+
+    public Animator CamShake;
+    [Header("PistolAnimators")]    
     public Animator PistolADS;
     public Animator PistolSHOOT;    
     public Animator PistolReloadMagazine;
 
-    [Header("RifleAnimators")]
-    public Animator RifleCamShake;    
+    [Header("RifleAnimators")]        
     public Animator RifleADS;
     public Animator RifleSHOOT;
     //public Animator RifleReloadMagazine;
@@ -93,7 +92,7 @@ public class WeaponBehaviour : MonoBehaviour
             else
             {
                 PistolSHOOT.SetBool("isMouse0", false);
-                PistolCamShake.SetBool("isMouse0", false);
+                CamShake.SetBool("PistolisMouse0", false);
             }
             //Pistol Fire>>>>>>>>>>>>>>>>>>>>>>>
             //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>>
@@ -161,7 +160,7 @@ public class WeaponBehaviour : MonoBehaviour
             else
             {
                 RifleSHOOT.SetBool("isMouse0", false);             
-                RifleCamShake.SetBool("isMouse0", false);
+                CamShake.SetBool("RifleisMouse0", false);
             }
             //Rifle Fire>>>>>>>>>>>>>>>>>>>>>>>
             //Rifle ADS>>>>>>>>>>>>>>>>>>>>>>>>
@@ -221,7 +220,7 @@ public class WeaponBehaviour : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("PistolGunSound");
             PistolSHOOT.SetBool("isMouse0", true);
-            PistolCamShake.SetBool("isMouse0", true);
+            CamShake.SetBool("PistolisMouse0", true);
             if (ps.magAmmo - 3 == 0)
                 AmmoCounterPistol.color = Color.red;
         }
@@ -229,7 +228,7 @@ public class WeaponBehaviour : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("RifleGunSound");
             RifleSHOOT.SetBool("isMouse0", true);
-            RifleCamShake.SetBool("isMouse0", true);
+            CamShake.SetBool("RifleisMouse0", true);
             if (ps.magAmmo - 5 == 0)
                 AmmoCounterRifle.color = Color.red;
         }
