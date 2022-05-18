@@ -7,14 +7,13 @@ public class WeaponBehaviour : MonoBehaviour
     public bool Reloding = false;
     public bool WeaponEquip = false;
     public bool infiniteAmmo = false;
-
     public PlayerState ps;
 
     [Header("Scripts")]
     public TrainingBots StartEndTraining;
     public EffectOnHit Effect;
 
-    public Animator CamShake;
+    public Animator CamShake;    
     [Header("PistolAnimators")]    
     public Animator PistolADS;
     public Animator PistolSHOOT;    
@@ -35,17 +34,19 @@ public class WeaponBehaviour : MonoBehaviour
     public TextMeshProUGUI AmmoCounterPistol;
     public TextMeshProUGUI AmmoCounterRifle;
 
-    private float nextTimeToFire = 0f;
-    
+    private float nextTimeToFire = 0f;   
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Pistol" && !WeaponEquip)
-        {
+        {            
             gunPistol.SetActive(true);
             gunRifle.SetActive(false);
+            if (ps.magAmmo - 3 == 0)
+                AmmoCounterPistol.color = Color.red;
             WeaponEquip = true;
+            ps.magAmmo = gunPistol.GetComponent<WeaponState>().currentWeaponAmmo;
             ps.gunType = "Pistol";
-            ps.magAmmo = 8;
             ps.fireRate = 3f;
             ps.reloadTime = 2.1f;
             ps.damage = 30f;
@@ -56,9 +57,11 @@ public class WeaponBehaviour : MonoBehaviour
         {
             gunPistol.SetActive(false);
             gunRifle.SetActive(true);
+            if (ps.magAmmo - 5 == 0)
+                AmmoCounterPistol.color = Color.red;
             WeaponEquip = true;
-            ps.gunType = "Rifle";
-            ps.magAmmo = 20;
+            ps.magAmmo = gunRifle.GetComponent<WeaponState>().currentWeaponAmmo;
+            ps.gunType = "Rifle";            
             ps.fireRate = 7f;
             ps.reloadTime = 2.1f;
             ps.damage = 20f;
@@ -87,7 +90,6 @@ public class WeaponBehaviour : MonoBehaviour
                     nextTimeToFire = Time.time + 1f / ps.fireRate;
                     gunShot();
                 }
-
             }
             else
             {
@@ -98,15 +100,18 @@ public class WeaponBehaviour : MonoBehaviour
             //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>>
             if (Input.GetButton("Fire2") && Reloding == false)
             {
-                PistolADS.SetBool("isMouse1", true);
+                //gunPistol.transform.position = startPosition;
+                PistolADS.SetBool("isMouse1", true);                
                 crosshair.SetActive(false);
                 ps.spreadFactor = 0.0f;
+                ps.moveSpeed = 80f;
             }
             else
-            {
-                PistolADS.SetBool("isMouse1", false);
+            {                
+                PistolADS.SetBool("isMouse1", false);                
                 crosshair.SetActive(true);
                 ps.spreadFactor = 0.05f;
+                ps.moveSpeed = 150f;
             }
             //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>>
             //Pistol Reload>>>>>>>>>>>>>>>>>>>>>            
@@ -132,6 +137,8 @@ public class WeaponBehaviour : MonoBehaviour
             {
                 crosshair.SetActive(false);
                 WeaponEquip = false;
+                Reloding = false;
+                gunPistol.GetComponent<WeaponState>().currentWeaponAmmo = ps.magAmmo;
                 Instantiate(gunPistol, gunDropSpawn.transform.position, gunPistol.transform.rotation);
                 ps.gunType = " ";
             }
@@ -169,11 +176,13 @@ public class WeaponBehaviour : MonoBehaviour
                 RifleADS.SetBool("isMouse1", true);
                 crosshair.SetActive(false);
                 ps.spreadFactor = 0.0f;
+                ps.moveSpeed = 50f;
             }
             else
             {
                 RifleADS.SetBool("isMouse1", false);
                 crosshair.SetActive(true);
+                ps.moveSpeed = 150f;
                 ps.spreadFactor = 0.01f;
             }
             //Rifle ADS>>>>>>>>>>>>>>>>>>>>>>>>
@@ -200,6 +209,8 @@ public class WeaponBehaviour : MonoBehaviour
             {
                 crosshair.SetActive(false);
                 WeaponEquip = false;
+                Reloding = false;
+                gunRifle.GetComponent<WeaponState>().currentWeaponAmmo = ps.magAmmo;
                 Instantiate(gunRifle, gunDropSpawn.transform.position, gunRifle.transform.rotation);
                 ps.gunType = " ";
             }
@@ -218,6 +229,7 @@ public class WeaponBehaviour : MonoBehaviour
         
         if (ps.gunType == "Pistol")
         {
+            gunPistol.GetComponent<WeaponState>().currentWeaponAmmo = ps.magAmmo;
             FindObjectOfType<AudioManager>().Play("PistolGunSound");
             PistolSHOOT.SetBool("isMouse0", true);
             CamShake.SetBool("PistolisMouse0", true);
@@ -226,6 +238,7 @@ public class WeaponBehaviour : MonoBehaviour
         }
         else if (ps.gunType == "Rifle")
         {
+            gunRifle.GetComponent<WeaponState>().currentWeaponAmmo = ps.magAmmo;
             FindObjectOfType<AudioManager>().Play("RifleGunSound");
             RifleSHOOT.SetBool("isMouse0", true);
             CamShake.SetBool("RifleisMouse0", true);

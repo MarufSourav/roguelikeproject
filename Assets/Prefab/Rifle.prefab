@@ -78,7 +78,6 @@ GameObject:
   - component: {fileID: 1784639068334668473}
   - component: {fileID: 5999845928432730226}
   - component: {fileID: 7912348604600498896}
-  - component: {fileID: 2461358318267320702}
   m_Layer: 7
   m_Name: Muzzle
   m_TagString: Untagged
@@ -149,20 +148,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2461358318267320702
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443375132494311328}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.50000036
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.00000005960467, y: 0, z: -0.00000008940701}
 --- !u!1 &1477174967001605106
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,6 +2120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6723634375654165786}
   - component: {fileID: 6723634375654165787}
+  - component: {fileID: 2643382971172985145}
   m_Layer: 7
   m_Name: Rifle
   m_TagString: Rifle
@@ -2170,6 +2156,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.057419293, y: 0.19945298, z: 0.52221596}
   m_Center: {x: 0.00029035285, y: -0.0525463, z: -0.055862367}
+--- !u!114 &2643382971172985145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6723634375654165785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138b26921b7a5a44baa38fd06012e601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
+  currentWeaponAmmo: 20
 --- !u!1 &6723634375757169807
 GameObject:
   m_ObjectHideFlags: 0

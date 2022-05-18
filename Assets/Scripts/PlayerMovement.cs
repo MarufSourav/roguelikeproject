@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
-{
+{    
     public PlayerState ps;
+    public int nOj;
     [Header("Movement")]
-    public float moveSpeed = 5f;
     public float airMultiplier = 0.4f;
     float verticalMovement;
     float horizontalMovement;
@@ -15,27 +15,40 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Drag")]
     public float groundDrag;
-    public float airDrag;
 
-    [Header("Jump")]
-    public float jumpForce;
-    public bool isGrounded;
+    [Header("Jump")]    
+    public bool isGrounded;    
 
     private void Start(){
         ps.gunType = " ";
+        ps.moveSpeed = 150f;
+        ps.jumpForce = 10f;
+        ps.numOfJump = 0;
+        nOj = ps.numOfJump;
         Physics.gravity = new Vector3(0f, -30f, 0f);
         rb = GetComponent<Rigidbody>();
     }
-    private void Update(){
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1 + 0.1f);
+    private void Update()
+    {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1f);
         playerInput();
         controlDrag();
-        if (Input.GetButtonDown("Jump") && isGrounded)
-            Jump();
+        if (Input.GetButtonDown("Jump")) 
+        {
+            if (nOj < 1) 
+            {
+                if(isGrounded)
+                    Jump();
+            }
+            else
+                if(nOj != 0)
+                    Jump();
+        }                     
     }
     void Jump(){
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
+        nOj--;
+        rb.AddForce(transform.up * ps.jumpForce, ForceMode.Impulse);        
+    }    
     void playerInput(){
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
@@ -44,14 +57,18 @@ public class PlayerMovement : MonoBehaviour
     void controlDrag(){
         if (isGrounded)
             rb.drag = groundDrag;
-        else 
-            rb.drag = airDrag;
+        else
+            rb.drag = 0f;
     }
     private void FixedUpdate(){movePlayer();}
-    void movePlayer(){
-        if (isGrounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed);
-        else
-            rb.AddForce(moveDirection.normalized * moveSpeed * airMultiplier);
+    void movePlayer()
+    {
+        if (isGrounded) 
+        {
+            rb.AddForce(moveDirection.normalized * ps.moveSpeed);
+            nOj = ps.numOfJump;
+        }            
+        else            
+            rb.AddForce(moveDirection.normalized * ps.moveSpeed * airMultiplier);            
     }
 }
