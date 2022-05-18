@@ -12,6 +12,8 @@ public class WeaponBehaviour : MonoBehaviour
     [Header("Scripts")]
     public TrainingBots StartEndTraining;
     public EffectOnHit Effect;
+    public MouseLook mlsCamera;
+    public MouseLook mlsPlayer;
 
     public Animator CamShake;    
     [Header("PistolAnimators")]    
@@ -29,6 +31,10 @@ public class WeaponBehaviour : MonoBehaviour
     public GameObject gunRifle;
     public GameObject crosshair;
     public GameObject gunDropSpawn;
+
+    [Header("Recoil")]    
+    public float timePressed;
+
 
     [Header("WeaponAmmoCounter")]
     public TextMeshProUGUI AmmoCounterPistol;
@@ -50,7 +56,7 @@ public class WeaponBehaviour : MonoBehaviour
             ps.fireRate = 3f;
             ps.reloadTime = 2.1f;
             ps.damage = 30f;
-            ps.spreadFactor = 0.05f;
+            ps.spreadFactor = 0.02f;
             Destroy(other.gameObject);
         }
         else if (other.tag == "Rifle" && !WeaponEquip) 
@@ -110,7 +116,7 @@ public class WeaponBehaviour : MonoBehaviour
             {                
                 PistolADS.SetBool("isMouse1", false);                
                 crosshair.SetActive(true);
-                ps.spreadFactor = 0.05f;
+                ps.spreadFactor = 0.02f;
                 ps.moveSpeed = 150f;
             }
             //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>>
@@ -159,27 +165,29 @@ public class WeaponBehaviour : MonoBehaviour
                     Invoke("Reload", ps.reloadTime);
                 }
                 else
-                {
+                {                   
                     nextTimeToFire = Time.time + 1f / ps.fireRate;
-                    gunShot();
+                    gunShot();                    
                 }
             }
             else
             {
-                RifleSHOOT.SetBool("isMouse0", false);             
-                CamShake.SetBool("RifleisMouse0", false);
+                if(!Input.GetButton("Fire1"))
+                    timePressed = 1f;
+                RifleSHOOT.SetBool("isMouse0", false);                
+                CamShake.SetBool("RifleisMouse0", false);                
             }
             //Rifle Fire>>>>>>>>>>>>>>>>>>>>>>>
             //Rifle ADS>>>>>>>>>>>>>>>>>>>>>>>>
             if (Input.GetButton("Fire2") && Reloding == false)
-            {
+            {                
                 RifleADS.SetBool("isMouse1", true);
                 crosshair.SetActive(false);
                 ps.spreadFactor = 0.0f;
                 ps.moveSpeed = 50f;
             }
             else
-            {
+            {                
                 RifleADS.SetBool("isMouse1", false);
                 crosshair.SetActive(true);
                 ps.moveSpeed = 150f;
@@ -190,9 +198,9 @@ public class WeaponBehaviour : MonoBehaviour
             if (Input.GetButtonDown("Fire3") && ps.magAmmo < 20 && Reloding == false)
             {
                 //FindObjectOfType<AudioManager>().Play("RifleReloadSound");
-                Reloding = true;
                 //RifleSHOOT.SetBool("isButtonR", true);
                 //RifleReloadMagazine.SetBool("isButtonR", true);
+                Reloding = true;
                 Invoke("Reload", ps.reloadTime);
             }
             else
@@ -221,9 +229,16 @@ public class WeaponBehaviour : MonoBehaviour
             gunPistol.SetActive(false);
             gunRifle.SetActive(false);
         }            
+    }    
+    public void SpreadMath() 
+    {       
+        if (timePressed >= 7f)
+            timePressed = 7f;
+        ps.spreadFactor *= timePressed;
     }
     private void gunShot()
     {
+        Debug.Log(ps.spreadFactor);
         if (!infiniteAmmo)
             ps.magAmmo--;
         
@@ -236,8 +251,9 @@ public class WeaponBehaviour : MonoBehaviour
             if (ps.magAmmo - 3 == 0)
                 AmmoCounterPistol.color = Color.red;
         }
-        else if (ps.gunType == "Rifle")
-        {
+        else if (ps.gunType == "Rifle"){
+            timePressed += 1f + Time.deltaTime;           
+            SpreadMath();
             gunRifle.GetComponent<WeaponState>().currentWeaponAmmo = ps.magAmmo;
             FindObjectOfType<AudioManager>().Play("RifleGunSound");
             RifleSHOOT.SetBool("isMouse0", true);

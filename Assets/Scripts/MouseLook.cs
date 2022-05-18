@@ -7,6 +7,7 @@ using System;
 public class MouseLook : MonoBehaviour
 {
     public Slider sliderValue;
+    
     [Flags]
     public enum RotationDirection
     {
@@ -21,7 +22,7 @@ public class MouseLook : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;        
+        Cursor.visible = false;
     }
     private Vector2 GetInput()
     {
@@ -40,19 +41,16 @@ public class MouseLook : MonoBehaviour
         sliderValue.value = sensitivity.x * 0.1f;
         Vector2 wantedVelocity = GetInput() * sensitivity;
         if ((rotationDirections & RotationDirection.Horizontal) == 0)
-        {
             wantedVelocity.x = 0;
-        }
         if ((rotationDirections & RotationDirection.Vertical) == 0)
-        {
             wantedVelocity.y = 0;
-        }
         rotation += wantedVelocity * Time.deltaTime;
         rotation.y = ClampVerticalAngle(rotation.y);
         transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
     }
-    public void mouseSens(float sens){        
+    public void mouseSens(float sens)
+    {
         sensitivity.x = sens * 10;
-        sensitivity.y = -sens * 10;        
+        sensitivity.y = -sens * 10;
     }
 }

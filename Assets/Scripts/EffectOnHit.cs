@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class EffectOnHit : MonoBehaviour{
     public Transform gunMuzzle;
-    public Transform BulletSpawnPoint;    
-    public ParticleSystem ImpactParticleSystem;
+    public Transform PBSP;
+    public Transform RBSP;
+    Transform BulletSpawnPoint;    
     public TrailRenderer BulletTrail;
     public GameObject hitmarker;
     public PlayerState ps;
@@ -22,12 +23,15 @@ public class EffectOnHit : MonoBehaviour{
             time += Time.deltaTime / Trail.time;
             yield return null;
         }
-        Trail.transform.position = hit.point;
-        Instantiate(ImpactParticleSystem, hit.point, Quaternion.LookRotation(hit.normal));
+        Trail.transform.position = hit.point;        
         Destroy(Trail.gameObject, Trail.time);
     }
     public void Effect() 
     {
+        if (ps.gunType == "Pistol")
+            BulletSpawnPoint = PBSP;
+        else if (ps.gunType == "Rifle")
+            BulletSpawnPoint = RBSP;
         RaycastHit hit;
         Vector3 shootDirection = gunMuzzle.transform.forward;
         shootDirection.x += Random.Range(-ps.spreadFactor, ps.spreadFactor);
