@@ -6,7 +6,9 @@ using TMPro;
 public class EnemyHP : MonoBehaviour
 {
     public float health = 100f;
-    public Image healthBar;   
+    public ParticleSystem deathEffect;
+    public Image healthBar;
+    public GameObject botGO;
     public void HP(float damage)
     {
         health -= damage;
@@ -17,12 +19,13 @@ public class EnemyHP : MonoBehaviour
     }
     void Die()
     {
+        botGO.SetActive(false);
         FindObjectOfType<AudioManager>().Play("FragSoundEffect");
         if (FindObjectOfType<TrainingBots>() != null) 
         {
             FindObjectOfType<TrainingBots>().frags++;
             FindObjectOfType<TrainingBots>().botActive = false;
         }        
-        Destroy(gameObject);
+        deathEffect.Play();        
     }   
 }

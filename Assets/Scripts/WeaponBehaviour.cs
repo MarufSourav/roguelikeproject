@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class WeaponBehaviour : MonoBehaviour
 {
+    public bool shooting = false;
     public bool Reloding = false;
     public bool WeaponEquip = false;
     public bool infiniteAmmo = false;
@@ -24,7 +25,7 @@ public class WeaponBehaviour : MonoBehaviour
     [Header("RifleAnimators")]        
     public Animator RifleADS;
     public Animator RifleSHOOT;
-    //public Animator RifleReloadMagazine;
+    public Animator RifleReloadMagazine;
 
     [Header("Weapons")]
     public GameObject gunPistol;      
@@ -56,7 +57,8 @@ public class WeaponBehaviour : MonoBehaviour
             ps.fireRate = 3f;
             ps.reloadTime = 2.1f;
             ps.damage = 30f;
-            ps.spreadFactor = 0.02f;
+            ps.spreadFactor = 0.05f;
+            ps.moveSpeed = 140f;
             Destroy(other.gameObject);
         }
         else if (other.tag == "Rifle" && !WeaponEquip) 
@@ -72,6 +74,7 @@ public class WeaponBehaviour : MonoBehaviour
             ps.reloadTime = 2.1f;
             ps.damage = 20f;
             ps.spreadFactor = 0.01f;
+            ps.moveSpeed = 110f;
             Destroy(other.gameObject);
         }
     }
@@ -83,6 +86,7 @@ public class WeaponBehaviour : MonoBehaviour
             //Pistol Fire>>>>>>>>>>>>>>>>>>>>>>>                      
             if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && Reloding == false)
             {
+                shooting = true;
                 if (ps.magAmmo == 0)
                 {
                     FindObjectOfType<AudioManager>().Play("PistolReloadSound");
@@ -99,6 +103,8 @@ public class WeaponBehaviour : MonoBehaviour
             }
             else
             {
+                if(!Input.GetButtonDown("Fire1"))
+                    shooting = false;
                 PistolSHOOT.SetBool("isMouse0", false);
                 CamShake.SetBool("PistolisMouse0", false);
             }
@@ -116,12 +122,12 @@ public class WeaponBehaviour : MonoBehaviour
             {                
                 PistolADS.SetBool("isMouse1", false);                
                 crosshair.SetActive(true);
-                ps.spreadFactor = 0.02f;
-                ps.moveSpeed = 150f;
+                ps.spreadFactor = 0.05f;
+                ps.moveSpeed = 140f;
             }
             //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>>
             //Pistol Reload>>>>>>>>>>>>>>>>>>>>>            
-            if (Input.GetButtonDown("Fire3") && ps.magAmmo < 8 && Reloding == false)
+            if (Input.GetButtonDown("Fire3") && ps.magAmmo < 8 && Reloding == false && shooting == false)
             {
                 FindObjectOfType<AudioManager>().Play("PistolReloadSound");
                 Reloding = true;
@@ -153,53 +159,60 @@ public class WeaponBehaviour : MonoBehaviour
         else if (ps.gunType == "Rifle")//Rifle ---------------------------------------------------------------- // 
         {
             AmmoCounterRifle.text = ps.magAmmo.ToString();
+            
             //Rifle Fire>>>>>>>>>>>>>>>>>>>>>>>                      
             if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && Reloding == false)
             {
+                shooting = true;
                 if (ps.magAmmo == 0)
                 {
                     FindObjectOfType<AudioManager>().Play("RifleReloadSound");
                     Reloding = true;
-                    //RifleSHOOT.SetBool("isButtonR", true);
-                    //RifleReloadMagazine.SetBool("isButtonR", true);
+                    RifleSHOOT.SetBool("isButtonR", true);
+                    RifleReloadMagazine.SetBool("isButtonR", true);
                     Invoke("Reload", ps.reloadTime);
                 }
                 else
                 {                   
-                    nextTimeToFire = Time.time + 1f / ps.fireRate;
+                    nextTimeToFire = Time.time + 1f / ps.fireRate;                    
                     gunShot();                    
                 }
             }
             else
             {
-                if(!Input.GetButton("Fire1"))
+
+                if (!Input.GetButton("Fire1")) 
+                {
+                    shooting = false;
                     timePressed = 1f;
+                }
+                    
                 RifleSHOOT.SetBool("isMouse0", false);                
                 CamShake.SetBool("RifleisMouse0", false);                
             }
             //Rifle Fire>>>>>>>>>>>>>>>>>>>>>>>
             //Rifle ADS>>>>>>>>>>>>>>>>>>>>>>>>
             if (Input.GetButton("Fire2") && Reloding == false)
-            {                
+            {
                 RifleADS.SetBool("isMouse1", true);
                 crosshair.SetActive(false);
-                ps.spreadFactor = 0.0f;
+                ps.spreadFactor = 0f;
                 ps.moveSpeed = 50f;
             }
             else
-            {                
+            {
                 RifleADS.SetBool("isMouse1", false);
                 crosshair.SetActive(true);
-                ps.moveSpeed = 150f;
                 ps.spreadFactor = 0.01f;
+                ps.moveSpeed = 110f;
             }
             //Rifle ADS>>>>>>>>>>>>>>>>>>>>>>>>
             //Rifle Reload>>>>>>>>>>>>>>>>>>>>>            
-            if (Input.GetButtonDown("Fire3") && ps.magAmmo < 20 && Reloding == false)
+            if (Input.GetButtonDown("Fire3") && ps.magAmmo < 20 && Reloding == false && shooting == false)
             {
-                //FindObjectOfType<AudioManager>().Play("RifleReloadSound");
-                //RifleSHOOT.SetBool("isButtonR", true);
-                //RifleReloadMagazine.SetBool("isButtonR", true);
+                FindObjectOfType<AudioManager>().Play("RifleReloadSound");
+                RifleSHOOT.SetBool("isButtonR", true);
+                RifleReloadMagazine.SetBool("isButtonR", true);
                 Reloding = true;
                 Invoke("Reload", ps.reloadTime);
             }
@@ -207,8 +220,8 @@ public class WeaponBehaviour : MonoBehaviour
             {
                 if (Reloding == false)
                 {
-                    //RifleSHOOT.SetBool("isButtonR", false);
-                    //RifleReloadMagazine.SetBool("isButtonR", false);
+                    RifleSHOOT.SetBool("isButtonR", false);
+                    RifleReloadMagazine.SetBool("isButtonR", false);
                 }
             }
             //Rifle Reload>>>>>>>>>>>>>>>>>>>>>  
@@ -220,7 +233,7 @@ public class WeaponBehaviour : MonoBehaviour
                 Reloding = false;
                 gunRifle.GetComponent<WeaponState>().currentWeaponAmmo = ps.magAmmo;
                 Instantiate(gunRifle, gunDropSpawn.transform.position, gunRifle.transform.rotation);
-                ps.gunType = " ";
+                ps.gunType = " ";                
             }
             //Rifle Drop>>>>>>>>>>>>>>>>>>>>>>>
         }
@@ -228,17 +241,22 @@ public class WeaponBehaviour : MonoBehaviour
         {
             gunPistol.SetActive(false);
             gunRifle.SetActive(false);
+            ps.moveSpeed = 150f;
         }            
     }    
     public void SpreadMath() 
     {       
         if (timePressed >= 7f)
             timePressed = 7f;
-        ps.spreadFactor *= timePressed;
+        if (timePressed > 3f) 
+        {
+            ps.spreadFactor *= timePressed;
+            Debug.Log(ps.spreadFactor);
+        }            
     }
     private void gunShot()
     {
-        Debug.Log(ps.spreadFactor);
+        
         if (!infiniteAmmo)
             ps.magAmmo--;
         

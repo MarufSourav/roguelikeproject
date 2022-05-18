@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5911842976705704571}
+  - component: {fileID: 1240092330917392788}
   m_Layer: 7
   m_Name: RifleMagazine
   m_TagString: Untagged
@@ -30,8 +31,27 @@ Transform:
   - {fileID: 1736898701461623420}
   - {fileID: 6723634375757169792}
   m_Father: {fileID: 6723634374260073386}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1240092330917392788
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124863054610125903}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 331c1ef60887c8a48b28b4548e38127a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1394042276183814925
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,9 +933,9 @@ Transform:
   - {fileID: 1784639068334668473}
   - {fileID: 3235153498594676576}
   - {fileID: 6723634375644690622}
+  - {fileID: 5911842976705704571}
   - {fileID: 6723634375234916488}
   - {fileID: 6723634374891386357}
-  - {fileID: 5911842976705704571}
   - {fileID: 8356859886614967166}
   - {fileID: 6723634375312563521}
   - {fileID: 6723634374833909981}
@@ -1544,7 +1564,7 @@ Transform:
   m_LocalScale: {x: 0.029, y: 0.03, z: 0.09}
   m_Children: []
   m_Father: {fileID: 6723634374260073386}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -65.89, y: -0.071, z: -0.058}
 --- !u!33 &6723634374891386344
 MeshFilter:
@@ -1706,7 +1726,7 @@ Transform:
   m_LocalScale: {x: 0.034, y: 0.05, z: 0.39}
   m_Children: []
   m_Father: {fileID: 6723634374260073386}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6723634375234916491
 MeshFilter:

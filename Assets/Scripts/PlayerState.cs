@@ -8,7 +8,7 @@ public class PlayerState : ScriptableObject
 {
     public string gunType;
     public int magAmmo;
-    public int numOfJump = 1;
+    public int numOfJump;
     public float jumpForce;
     public float moveSpeed;
     public float fireRate;
