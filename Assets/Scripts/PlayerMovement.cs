@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1f);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1 + 0.1f);
         playerInput();
         controlDrag();
         if (Input.GetButtonDown("Jump")) 
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
             rb.drag = groundDrag;
         else
-            rb.drag = 0f;
+            rb.drag = 0.01f;
     }
     private void FixedUpdate(){movePlayer();}
     void movePlayer()

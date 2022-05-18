@@ -103,7 +103,7 @@ public class WeaponBehaviour : MonoBehaviour
             }
             else
             {
-                if(!Input.GetButtonDown("Fire1"))
+                if(!Input.GetButton("Fire1"))
                     shooting = false;
                 PistolSHOOT.SetBool("isMouse0", false);
                 CamShake.SetBool("PistolisMouse0", false);
@@ -232,7 +232,7 @@ public class WeaponBehaviour : MonoBehaviour
                 WeaponEquip = false;
                 Reloding = false;
                 gunRifle.GetComponent<WeaponState>().currentWeaponAmmo = ps.magAmmo;
-                Instantiate(gunRifle, gunDropSpawn.transform.position, gunRifle.transform.rotation);
+                Instantiate(gunRifle, gunDropSpawn.transform.position, gunDropSpawn.transform.rotation);
                 ps.gunType = " ";                
             }
             //Rifle Drop>>>>>>>>>>>>>>>>>>>>>>>
@@ -249,10 +249,7 @@ public class WeaponBehaviour : MonoBehaviour
         if (timePressed >= 7f)
             timePressed = 7f;
         if (timePressed > 3f) 
-        {
             ps.spreadFactor *= timePressed;
-            Debug.Log(ps.spreadFactor);
-        }            
     }
     private void gunShot()
     {
