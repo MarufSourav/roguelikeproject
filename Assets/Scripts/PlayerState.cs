@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [CreateAssetMenu]
 public class PlayerState : ScriptableObject
 {
+    public int AmountToFrag;
     public string gunType;
     public int magAmmo;
     public int numOfJump;

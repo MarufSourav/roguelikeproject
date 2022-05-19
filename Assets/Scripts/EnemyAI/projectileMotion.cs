@@ -14,7 +14,7 @@ public class projectileMotion : MonoBehaviour
             Debug.Log("Hit Player");
             destroyProjectile();
         }
-        else if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Ground")
+        else if (other.gameObject.tag == "Wall"|| other.gameObject.tag == "Ground")
         {
             Debug.Log("Hit Obsticle");
             destroyProjectile();

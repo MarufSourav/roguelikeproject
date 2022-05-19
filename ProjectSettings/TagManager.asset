@@ -7,9 +7,9 @@ TagManager:
   - Pistol
   - Rifle
   - Sniper
-  - BotTR
   - Wall
   - Ground
+  - BotTR
   layers:
   - Default
   - TransparentFX

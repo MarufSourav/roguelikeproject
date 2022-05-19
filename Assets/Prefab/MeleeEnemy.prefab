@@ -728,6 +728,7 @@ MonoBehaviour:
   deathEffect: {fileID: 2317432463914681450}
   healthBar: {fileID: 6842855080797263179}
   botGO: {fileID: 3598544738488213687}
+  ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
 --- !u!198 &2317432463914681450
 ParticleSystem:
   m_ObjectHideFlags: 0

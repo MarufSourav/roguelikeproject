@@ -9,6 +9,7 @@ public class EnemyHP : MonoBehaviour
     public ParticleSystem deathEffect;
     public Image healthBar;
     public GameObject botGO;
+    public PlayerState ps;
     public void HP(float damage)
     {
         health -= damage;
@@ -19,6 +20,7 @@ public class EnemyHP : MonoBehaviour
     }
     void Die()
     {
+        ps.AmountToFrag--;
         botGO.SetActive(false);
         FindObjectOfType<AudioManager>().Play("FragSoundEffect");
         if (FindObjectOfType<TrainingBots>() != null) 

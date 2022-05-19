@@ -12,7 +12,7 @@ public class TrainingBots : MonoBehaviour
     public TextMeshProUGUI PlayerPoints;
     public GameObject botPrefab;
     GameObject spawnlocation;    
-    public Image seButton;    
+    public Image seButton;
     public bool Started = false;
     int randomVal;
     string randomValS;

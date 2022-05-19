@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 999767047514247805}
   - component: {fileID: 999767047514247806}
   - component: {fileID: 999767047514247804}
+  - component: {fileID: 5693651893152306143}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -584,6 +585,23 @@ MonoBehaviour:
   mainMenu: {fileID: 999767046838228749}
   Player: {fileID: 0}
   Camera: {fileID: 0}
+--- !u!114 &5693651893152306143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999767047514247807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37128d14bbcecfd4aab710e727bc742d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountOfSpawn: 1
+  amountToSpawn: 1
+  ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
+  rangeEnemy: {fileID: 6952829946862012975, guid: 45a216bf02967624f9467596184b4d96, type: 3}
+  meleeEnemy: {fileID: 6952829946862012975, guid: ede7cab6f1aeee2408dd57a05ec3fd4a, type: 3}
 --- !u!1 &999767047595128996
 GameObject:
   m_ObjectHideFlags: 0
