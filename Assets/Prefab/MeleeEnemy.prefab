@@ -40,7 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4887288733165776161}
   - component: {fileID: 3503177568031050596}
-  - component: {fileID: 2705490376346812636}
   m_Layer: 0
   m_Name: LegRight
   m_TagString: Untagged
@@ -77,19 +76,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.61737955, y: 0.05320039, z: 0.05090809}
   m_Center: {x: 5.6306557e-19, y: -0.000040423125, z: 0.00039577484}
---- !u!114 &2705490376346812636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 912381074794161557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59799c08132f5914d824247cccf83373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EHP: {fileID: 7336920208668507497}
 --- !u!1 &1860017026750595563
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +135,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6efc20579bc9c154b8eed590b99faaa3, type: 2}
+  - {fileID: 2100000, guid: 199a454ad2857da4c86343111b352a53, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -305,7 +291,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6efc20579bc9c154b8eed590b99faaa3, type: 2}
+  - {fileID: 2100000, guid: 199a454ad2857da4c86343111b352a53, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -374,7 +360,6 @@ GameObject:
   - component: {fileID: 2898683037777189853}
   - component: {fileID: 1859664944922431546}
   - component: {fileID: 7105685516007489257}
-  - component: {fileID: 2646191750358639885}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -458,19 +443,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2646191750358639885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4429882512286436140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59799c08132f5914d824247cccf83373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EHP: {fileID: 7336920208668507497}
 --- !u!1 &5916974891183126243
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +625,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6403965099072954057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.21000004}
+  m_LocalPosition: {x: 0, y: 0, z: 0.21}
   m_LocalScale: {x: 0.005, y: 0.005, z: 1}
   m_Children:
   - {fileID: 3056721105500186101}
@@ -715,11 +687,11 @@ GameObject:
   - component: {fileID: 4003155299080357037}
   - component: {fileID: 7336920208668507497}
   - component: {fileID: 2317432463914681450}
+  - component: {fileID: 7841096148367307215}
   - component: {fileID: 6942608750321240274}
   - component: {fileID: 1922097329622708701}
-  - component: {fileID: 7841096148367307215}
   m_Layer: 0
-  m_Name: Bot
+  m_Name: MeleeEnemy
   m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -733,7 +705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6952829946862012975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.52, z: 6.59}
+  m_LocalPosition: {x: 0, y: 3.06, z: 6.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 550898990640443908}
@@ -5462,6 +5434,28 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!195 &7841096148367307215
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6952829946862012975}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1
+  m_Speed: 16
+  m_Acceleration: 7
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1.74
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!199 &6942608750321240274
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5548,36 +5542,15 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
-  walkPoint: {x: 5, y: 5, z: 5}
-  walkPointRange: 8
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 2
   timeBetweenAttacks: 2
-  projectile: {fileID: 0}
-  sightRange: 6.64
-  attackRange: 3.28
+  projectile: {fileID: 8911107336887320514, guid: 69c714e0ea720dc4d853505230cb79f1, type: 3}
+  sightRange: 12
+  attackRange: 1
   playerInSightRange: 0
   playerInAttackRange: 0
---- !u!195 &7841096148367307215
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6952829946862012975}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.00001
-  m_Speed: 11
-  m_Acceleration: 12
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.00002
-  m_BaseOffset: 0.00001
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  enemyShot: 0
 --- !u!1 &7452243721179420428
 GameObject:
   m_ObjectHideFlags: 0
@@ -5669,7 +5642,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8379150699477280185}
   - component: {fileID: 6211640897416726721}
-  - component: {fileID: 8926250288727882096}
   m_Layer: 0
   m_Name: LegLeft
   m_TagString: Untagged
@@ -5706,19 +5678,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.61737955, y: 0.05320039, z: 0.05090809}
   m_Center: {x: 5.6306557e-19, y: -0.000040423125, z: 0.00039577484}
---- !u!114 &8926250288727882096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7805701257458199727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59799c08132f5914d824247cccf83373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EHP: {fileID: 7336920208668507497}
 --- !u!1 &8508947282617927333
 GameObject:
   m_ObjectHideFlags: 0
@@ -5731,7 +5690,6 @@ GameObject:
   - component: {fileID: 8325570350252571749}
   - component: {fileID: 6988689026922283227}
   - component: {fileID: 5621707885873331000}
-  - component: {fileID: 502861076383175712}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -5780,7 +5738,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aa9490e2c4e168543a0ddba79b2ce2cb, type: 2}
+  - {fileID: 2100000, guid: 199a454ad2857da4c86343111b352a53, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5815,19 +5773,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &502861076383175712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8508947282617927333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59799c08132f5914d824247cccf83373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EHP: {fileID: 7336920208668507497}
 --- !u!1 &8778649365093783343
 GameObject:
   m_ObjectHideFlags: 0

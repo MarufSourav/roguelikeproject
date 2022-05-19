@@ -21,20 +21,27 @@ public class EnemyAi : MonoBehaviour
 
     //States
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public bool playerInSightRange, playerInAttackRange, enemyShot;
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("Player").transform;        
         agent = GetComponent<NavMeshAgent>();
+        enemyShot = false;
     }
     private void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        if(!playerInSightRange && !playerInAttackRange) Patroling();
-        if(playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (enemyShot)
+        {
+            ChasePlayer();
+            if (playerInAttackRange) AttackPlayer();
+            Invoke("EnemyAggresion", 7f);
+        }            
     }
     void Patroling() 
     {
@@ -42,7 +49,6 @@ public class EnemyAi : MonoBehaviour
             SearchWalkPoint();
         else if (walkPointSet)
             agent.SetDestination(walkPoint);
-
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         if(distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
@@ -58,29 +64,31 @@ public class EnemyAi : MonoBehaviour
     void ChasePlayer() 
     {
         agent.SetDestination(player.position);
+        transform.LookAt(player);
     }
     void AttackPlayer()
     {
-        Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-        rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-        agent.SetDestination(transform.position);
         transform.LookAt(player);
         if (!alreadyAttacked) 
         {
+            Instantiate(projectile, transform.position, Quaternion.identity);
             alreadyAttacked = true;
             Invoke("ResetAttack", timeBetweenAttacks);
-        }
+        }        
+        agent.SetDestination(transform.position);              
     }
     void ResetAttack() 
     {
         alreadyAttacked = false;
     }
+    void EnemyAggresion() { enemyShot = false; }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, walkPoint);
     }
 }

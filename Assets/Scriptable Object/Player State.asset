@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Player State
   m_EditorClassIdentifier: 
   gunType: Pistol
-  magAmmo: 7
+  magAmmo: 8
+  numOfJump: 2
+  jumpForce: 10
+  moveSpeed: 140
   fireRate: 3
   reloadTime: 2.1
-  damage: 26
+  damage: 30
+  spreadFactor: 0.05

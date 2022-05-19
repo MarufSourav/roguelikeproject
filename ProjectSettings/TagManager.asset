@@ -8,6 +8,8 @@ TagManager:
   - Rifle
   - Sniper
   - BotTR
+  - Wall
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Rifle
   - Sniper
   - Player
-  - 
+  - Wall
   - 
   - 
   - 

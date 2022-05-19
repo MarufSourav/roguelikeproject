@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundDrag;
 
     [Header("Jump")]    
-    public bool isGrounded;    
+    public bool isGrounded;
 
     private void Start(){
         ps.gunType = " ";

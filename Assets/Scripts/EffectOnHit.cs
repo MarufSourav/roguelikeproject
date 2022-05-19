@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class EffectOnHit : MonoBehaviour{
     public Transform gunMuzzle;
     public Transform PBSP;
@@ -12,7 +12,7 @@ public class EffectOnHit : MonoBehaviour{
     public GameObject hitmarker;
     public PlayerState ps;
     public TrainingBots StartEndTraining;
-    public WeaponBehaviour IA;
+    public WeaponBehaviour IA;    
     private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit hit) 
     {
         float time = 0f;
@@ -39,24 +39,28 @@ public class EffectOnHit : MonoBehaviour{
         if (Physics.Raycast(gunMuzzle.transform.position, shootDirection, out hit)){
             TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, Quaternion.identity);
             StartCoroutine(SpawnTrail(trail, hit));
-            EnemyDamageZone target = hit.transform.GetComponent<EnemyDamageZone>();
+            EnemyHP target = hit.transform.GetComponentInParent<EnemyHP>();
+            EnemyAi EAI = hit.transform.GetComponentInParent<EnemyAi>();
             if (hit.transform.name == "Head")
             {
                 hitmarker.gameObject.SetActive(true);
                 Invoke("hitmarkerActive", .2f);
-                target.TakeDamage(ps.damage * 4);
+                target.HP(ps.damage * 4);
+                EAI.enemyShot = true;
             }
             else if (hit.transform.name == "Body")
             {
                 hitmarker.gameObject.SetActive(true);
                 Invoke("hitmarkerActive", .2f);
-                target.TakeDamage(ps.damage);
+                target.HP(ps.damage);
+                EAI.enemyShot = true;
             }
             else if (hit.transform.name == "LegRight" || hit.transform.name == "LegLeft")
             {
                 hitmarker.gameObject.SetActive(true);
                 Invoke("hitmarkerActive", .2f);
-                target.TakeDamage(ps.damage * 0.5f);
+                target.HP(ps.damage * 0.5f);
+                EAI.enemyShot = true;
             }
             else if (hit.transform.name == "Start/End Button")
                 StartEndTraining.StartEndTraining();
@@ -64,11 +68,15 @@ public class EffectOnHit : MonoBehaviour{
             {
                 IA.infiniteAmmo = !IA.infiniteAmmo;
                 Image IAI = hit.transform.GetComponent<Image>();
-                if (IA.infiniteAmmo) 
+                if (IA.infiniteAmmo)
                     IAI.color = Color.black;
                 else
-                    IAI.color = Color.white;                
-            }                
+                    IAI.color = Color.white;
+            }
+            else if (hit.transform.name == "StartGame Button") 
+            {
+                SceneManager.LoadScene(1);
+            }
         }
     }
     void hitmarkerActive() 
