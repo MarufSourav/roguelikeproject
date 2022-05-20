@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {    
     public PlayerState ps;    
-    public int nOj;
+    public int nOj, nOd;
+
     [Header("Movement")]
     public float airMultiplier = 0.4f;
     float verticalMovement;
@@ -13,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     Vector3 moveDirection;
     bool readyToMove = true;
-    bool readyToDash = true;
 
     [Header("Drag")]
     public float groundDrag;
@@ -27,10 +27,12 @@ public class PlayerMovement : MonoBehaviour
         ps.gunType = " ";
         ps.moveSpeed = 150f;
         ps.jumpForce = 10f;
-        ps.numOfJump = 0;
         ps.dashSpeed = 90f;
         ps.dashCoolDown = 2f;
+        ps.numOfJump = 0;
+        ps.numOfDash = 1;
         nOj = ps.numOfJump;
+        nOd = ps.numOfDash;
         Physics.gravity = new Vector3(0f, -30f, 0f);
         rb = GetComponent<Rigidbody>();
     }
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1 + 0.1f);
         playerInput();
         controlDrag();
+        
         if (Input.GetButtonDown("Jump")) 
         {
             if (nOj < 1) 
@@ -50,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
                 if(nOj != 0)
                     Jump();
         }
-        if ((Mathf.Abs(horizontalMovement) > 0.2 || Mathf.Abs(verticalMovement) > 0.2) && Input.GetKeyDown(KeyCode.LeftShift) && readyToDash)
+        if ((Mathf.Abs(horizontalMovement) > 0.2 || Mathf.Abs(verticalMovement) > 0.2) && (Input.GetKeyDown(KeyCode.Mouse4) || Input.GetKeyDown(KeyCode.LeftShift)) && nOd > 0)
             Dash();
     }
     void Jump(){
@@ -63,7 +66,6 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
         Debug.Log(Mathf.Abs(horizontalMovement));
         Debug.Log(Mathf.Abs(verticalMovement));
-        
     }
     void controlDrag(){
         if (readyToMove) {
@@ -71,14 +73,13 @@ public class PlayerMovement : MonoBehaviour
                 rb.drag = groundDrag;
             else
                 rb.drag = airDrag;
-        }
-        
+        }        
     }
     private void FixedUpdate(){if(readyToMove)movePlayer();}
     void Dash() 
-    {        
-        Invoke("ResetDash", ps.dashCoolDown);
-        readyToDash = false;
+    {
+        nOd--;
+        Invoke("ResetDash", ps.dashCoolDown);        
         if (!isGrounded) 
         {
             readyToMove = false;
@@ -88,7 +89,8 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("DashSound");
         rb.AddForce(moveDirection.normalized * (ps.dashSpeed), ForceMode.Impulse);
     }
-    void ResetDash() { readyToDash = true; }
+    void ResetDash() { nOd++; }
+    void ReCalibrateDash() { nOd = ps.numOfDash; }
     void ResetMove() { rb.drag = airDrag; readyToMove = true; }
     void movePlayer()
     {        

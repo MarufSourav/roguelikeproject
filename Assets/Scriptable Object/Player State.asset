@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Player State
   m_EditorClassIdentifier: 
   AmountToFrag: 0
-  gunType: ' '
+  gunType: Rifle
   magAmmo: 20
   numOfJump: 0
+  numOfDash: 1
   dashCoolDown: 2
-  dashSpeed: 110
+  dashSpeed: 90
   jumpForce: 10
-  moveSpeed: 150
+  moveSpeed: 110
   fireRate: 7
   reloadTime: 2.1
   damage: 20
