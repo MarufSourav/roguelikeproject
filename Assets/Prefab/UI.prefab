@@ -2080,7 +2080,6 @@ GameObject:
   - component: {fileID: 1753315329725089481}
   - component: {fileID: 1753315329725089486}
   - component: {fileID: 1753315329725089480}
-  - component: {fileID: 1753315329725089487}
   m_Layer: 0
   m_Name: Start/End Button
   m_TagString: Untagged
@@ -2158,26 +2157,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 100, y: 100, z: 0.07}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1753315329725089487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753315329725089485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7583d2ff530520444866cfe2ae2a7afa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frags: 0
-  botActive: 0
-  countdowntext: {fileID: 1753315328791305608}
-  StartEndText: {fileID: 1753315328779848089}
-  PlayerPoints: {fileID: 1753315329591568345}
-  botPrefab: {fileID: 6952829946862012975, guid: ede7cab6f1aeee2408dd57a05ec3fd4a, type: 3}
-  seButton: {fileID: 1753315329725089486}
-  Started: 0
 --- !u!1 &1753315329748165219
 GameObject:
   m_ObjectHideFlags: 0

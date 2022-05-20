@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelLogic : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class LevelLogic : MonoBehaviour
     public GameObject meleeEnemy;
     GameObject spawnLocation;
     EnemyTypeSpawn enemyType;
-    public  Light spotLight;
+    public Light spotLight;
+    public Collider end;
     void SpawnBots()
     {        
         if (enemyType.meleeEnemy)
@@ -29,6 +31,7 @@ public class LevelLogic : MonoBehaviour
     }
     private void Start()
     {
+        end.isTrigger = false;
         spotLight.enabled = false;
         ps.AmountToFrag = amountToSpawn;
         for (int i = 1; i <= amountToSpawn; i++){
@@ -45,6 +48,7 @@ public class LevelLogic : MonoBehaviour
     {
         if (ps.AmountToFrag == 0) 
         {
+            end.isTrigger = true;
             spotLight.enabled = true;
             Debug.Log("You Finished The Level");
         }

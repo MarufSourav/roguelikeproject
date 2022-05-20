@@ -36,48 +36,12 @@ public class WeaponBehaviour : MonoBehaviour
     [Header("Recoil")]    
     public float timePressed;
 
-
     [Header("WeaponAmmoCounter")]
     public TextMeshProUGUI AmmoCounterPistol;
     public TextMeshProUGUI AmmoCounterRifle;
 
-    private float nextTimeToFire = 0f;   
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Pistol" && !WeaponEquip)
-        {            
-            gunPistol.SetActive(true);
-            gunRifle.SetActive(false);
-            if (ps.magAmmo - 3 == 0)
-                AmmoCounterPistol.color = Color.red;
-            WeaponEquip = true;
-            ps.magAmmo = gunPistol.GetComponent<WeaponState>().currentWeaponAmmo;
-            ps.gunType = "Pistol";
-            ps.fireRate = 3f;
-            ps.reloadTime = 2.1f;
-            ps.damage = 30f;
-            ps.spreadFactor = 0.05f;
-            ps.moveSpeed = 140f;
-            Destroy(other.gameObject);
-        }
-        else if (other.tag == "Rifle" && !WeaponEquip) 
-        {
-            gunPistol.SetActive(false);
-            gunRifle.SetActive(true);
-            if (ps.magAmmo - 5 == 0)
-                AmmoCounterPistol.color = Color.red;
-            WeaponEquip = true;
-            ps.magAmmo = gunRifle.GetComponent<WeaponState>().currentWeaponAmmo;
-            ps.gunType = "Rifle";            
-            ps.fireRate = 7f;
-            ps.reloadTime = 2.1f;
-            ps.damage = 20f;
-            ps.spreadFactor = 0.01f;
-            ps.moveSpeed = 110f;
-            Destroy(other.gameObject);
-        }
-    }
+    private float nextTimeToFire = 0f;
+    
     void Update()
     {
         if (ps.gunType == "Pistol")//Pistol ---------------------------------------------------------------- //
