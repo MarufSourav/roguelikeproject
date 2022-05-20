@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {    
     public PlayerState ps;    
     public int nOj, nOd;
+    public bool dashing;
 
     [Header("Movement")]
     public float airMultiplier = 0.4f;
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if ((Mathf.Abs(horizontalMovement) > 0.2 || Mathf.Abs(verticalMovement) > 0.2) && (Input.GetKeyDown(KeyCode.Mouse4) || Input.GetKeyDown(KeyCode.LeftShift)) && nOd > 0)
             Dash();
+        if (dashing && !isGrounded) { rb.drag = groundDrag; }
     }
     void Jump(){
         nOj--;
@@ -78,12 +80,13 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate(){if(readyToMove)movePlayer();}
     void Dash() 
     {
+        dashing = true;
         nOd--;
-        Invoke("ResetDash", ps.dashCoolDown);        
+        Invoke("ResetDash", ps.dashCoolDown);
+        readyToMove = false;
+        Invoke("ResetMove", 0.2f);
         if (!isGrounded) 
-        {
-            readyToMove = false;
-            Invoke("ResetMove", 0.2f);
+        {            
             rb.drag = groundDrag;
         }
         FindObjectOfType<AudioManager>().Play("DashSound");
@@ -91,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void ResetDash() { nOd++; }
     void ReCalibrateDash() { nOd = ps.numOfDash; }
-    void ResetMove() { rb.drag = airDrag; readyToMove = true; }
+    void ResetMove() { rb.drag = airDrag; readyToMove = true; dashing = false; }
     void movePlayer()
     {        
         if (isGrounded) 

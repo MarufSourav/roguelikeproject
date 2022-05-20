@@ -74,9 +74,14 @@ public class EnemyAi : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("EnemyRange");
             Instantiate(projectile, transform.position, Quaternion.identity);
             alreadyAttacked = true;
+            Invoke("DelayedHit", timeBetweenAttacks);
             Invoke("ResetAttack", timeBetweenAttacks);
         }        
         agent.SetDestination(transform.position);              
+    }
+    void DelayedHit() {
+        FindObjectOfType<AudioManager>().Play("EnemyMelee");
+        Instantiate(projectile, transform.position, Quaternion.identity);
     }
     void ResetAttack() 
     {
