@@ -5547,8 +5547,8 @@ MonoBehaviour:
   walkPointRange: 2
   timeBetweenAttacks: 2
   projectile: {fileID: 8911107336887320514, guid: 69c714e0ea720dc4d853505230cb79f1, type: 3}
-  sightRange: 12
-  attackRange: 1
+  sightRange: 10
+  attackRange: 0.75
   playerInSightRange: 0
   playerInAttackRange: 0
   enemyShot: 0

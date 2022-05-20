@@ -71,6 +71,7 @@ public class EnemyAi : MonoBehaviour
         transform.LookAt(player);
         if (!alreadyAttacked) 
         {
+            FindObjectOfType<AudioManager>().Play("EnemyRange");
             Instantiate(projectile, transform.position, Quaternion.identity);
             alreadyAttacked = true;
             Invoke("ResetAttack", timeBetweenAttacks);
