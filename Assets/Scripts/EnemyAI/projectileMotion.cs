@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class projectileMotion : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class projectileMotion : MonoBehaviour
         {
             Debug.Log("Hit Player");
             destroyProjectile();
+            SceneManager.LoadScene(0);
         }
         else if (other.gameObject.tag == "Wall"|| other.gameObject.tag == "Ground")
         {

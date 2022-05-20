@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5870362116403794641}
   - component: {fileID: 5870362116403794640}
   - component: {fileID: 5870362116403794605}
+  - component: {fileID: 1409014667352018645}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -47,7 +48,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 0}
+  m_BackGroundColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -68,7 +69,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 3647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -119,6 +120,66 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5870362116403794604}
   m_Enabled: 1
+--- !u!114 &1409014667352018645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870362116403794604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 5870362116403794607}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &5870362116590250525
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,19 +952,9 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2608146317612708839, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
   m_PrefabInstance: {fileID: 5870362117640789631}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &7073695056938956752 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3701227801323235759, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
-  m_PrefabInstance: {fileID: 5870362117640789631}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5310862132533568710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1784639068334668473, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
-  m_PrefabInstance: {fileID: 5870362117640789631}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &4630270349666676715 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1240092330917392788, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
   m_PrefabInstance: {fileID: 5870362117640789631}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &880615257995514252 stripped
@@ -917,3 +968,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &4630270349666676715 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1240092330917392788, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+  m_PrefabInstance: {fileID: 5870362117640789631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7073695056938956752 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3701227801323235759, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+  m_PrefabInstance: {fileID: 5870362117640789631}
+  m_PrefabAsset: {fileID: 0}

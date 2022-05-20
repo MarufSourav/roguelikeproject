@@ -11,28 +11,24 @@ public class LevelLogic : MonoBehaviour
     public GameObject rangeEnemy;
     public GameObject meleeEnemy;
     GameObject spawnLocation;
-    EnemyTypeSpawn enemyType;
-    public Light spotLight;
-    public Collider end;
+    EnemyTypeSpawn enemyType;    
+    public GameObject end;
     void SpawnBots()
     {        
         if (enemyType.meleeEnemy)
         {
-            Debug.Log("Spawned Enemy Type Melee");
             Instantiate(meleeEnemy, spawnLocation.transform.position, spawnLocation.transform.rotation);
             enemyType.botActive = true;
         }
         else 
         {
-            Debug.Log("Spawned Enemy Type Range");
             Instantiate(rangeEnemy, spawnLocation.transform.position, spawnLocation.transform.rotation);
             enemyType.botActive = true;
         }                    
     }
     private void Start()
     {
-        end.isTrigger = false;
-        spotLight.enabled = false;
+        end.SetActive(false);        
         ps.AmountToFrag = amountToSpawn;
         for (int i = 1; i <= amountToSpawn; i++){
             spawnLocation = GameObject.Find(Random.Range(1, amountOfSpawn).ToString());
@@ -48,8 +44,7 @@ public class LevelLogic : MonoBehaviour
     {
         if (ps.AmountToFrag == 0) 
         {
-            end.isTrigger = true;
-            spotLight.enabled = true;
+            end.SetActive(true);            
             Debug.Log("You Finished The Level");
         }
     }

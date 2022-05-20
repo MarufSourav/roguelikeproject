@@ -35,7 +35,7 @@ public class TrainingBots : MonoBehaviour
     }
     void SpawnBots() 
     {
-        randomVal = UnityEngine.Random.Range(0, 19);
+        randomVal = Random.Range(0, 19);
         randomValS = randomVal.ToString();
         spawnlocation = GameObject.Find(randomValS);
         Instantiate(botPrefab, spawnlocation.transform.position, spawnlocation.transform.rotation);
