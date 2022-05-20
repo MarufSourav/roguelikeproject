@@ -10,6 +10,8 @@ public class PlayerState : ScriptableObject
     public string gunType;
     public int magAmmo;
     public int numOfJump;
+    public float dashCoolDown;
+    public float dashSpeed;
     public float jumpForce;
     public float moveSpeed;
     public float fireRate;

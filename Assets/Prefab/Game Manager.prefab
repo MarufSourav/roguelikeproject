@@ -570,8 +570,14 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: EnemyRange
     clip: {fileID: 8300000, guid: c5ca37bb3328a3d4ea075d8b9ebaead2, type: 3}
-    volume: 0.255
-    pitch: 0.54
+    volume: 0.151
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DashSound
+    clip: {fileID: 8300000, guid: 5eb016da4aad4c648a6c31fb836ff0c2, type: 3}
+    volume: 0.3
+    pitch: 1
     loop: 0
     source: {fileID: 0}
 --- !u!114 &999767047514247804

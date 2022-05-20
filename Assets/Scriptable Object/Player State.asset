@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6116547e5f0064588b4a8c83ec5727, type: 3}
   m_Name: Player State
   m_EditorClassIdentifier: 
-  gunType: Pistol
-  magAmmo: 8
-  numOfJump: 2
+  AmountToFrag: 0
+  gunType: ' '
+  magAmmo: 20
+  numOfJump: 0
+  dashCoolDown: 2
+  dashSpeed: 110
   jumpForce: 10
-  moveSpeed: 140
-  fireRate: 3
+  moveSpeed: 150
+  fireRate: 7
   reloadTime: 2.1
-  damage: 30
-  spreadFactor: 0.05
+  damage: 20
+  spreadFactor: 0.01
