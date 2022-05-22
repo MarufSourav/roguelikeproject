@@ -32,9 +32,14 @@ public class PlayerMovement : MonoBehaviour
         ps.dashSpeed = 120f;
         ps.dashCoolDown = 2f;
         ps.numOfJump = 0;
-        ps.numOfDash = 1;
+        ps.numOfDash = 2;
         nOj = ps.numOfJump;
         nOd = ps.numOfDash;
+        ps.parry = false;
+        ps.readyToParry = true;
+        ps.parryCoolDown = 1.2f;
+        ps.parryWindow = 0.1f;
+        GetComponent<BoxCollider>().enabled = false;
         Physics.gravity = new Vector3(0f, -30f, 0f);
         rb = GetComponent<Rigidbody>();
     }
@@ -42,8 +47,17 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1 + 0.1f);
         playerInput();
-        controlDrag();
-        
+        controlDrag();        
+        if (Input.GetKeyDown(KeyCode.F) && ps.readyToParry)
+            Parry();
+        if (ps.parriedProjectile && nOd != ps.numOfDash){
+            CancelInvoke("ResetDash");
+            ReCalibrateDash();
+        }
+        else
+            ps.parriedProjectile = false;
+        if (nOd > ps.numOfDash)
+            ReCalibrateDash();
         if (Input.GetButtonDown("Jump")) 
         {
             if (nOj < 1) 
@@ -72,9 +86,18 @@ public class PlayerMovement : MonoBehaviour
                 FindObjectOfType<AudioManager>().Stop("WalkingSound");
             moving=false;
         }
-            
         if (dashing && !isGrounded) { rb.drag = groundDrag; }
     }
+    void Parry() 
+    {
+        ps.readyToParry = false;
+        ps.parry = true;
+        GetComponent<BoxCollider>().enabled = true;
+        Invoke("ParryEnd", ps.parryWindow);
+        Invoke("ParryReady", ps.parryCoolDown);
+    }
+    void ParryEnd(){GetComponent<BoxCollider>().enabled = false; ps.parry = false; }
+    void ParryReady() { ps.readyToParry = true; }
     void Jump(){
         nOj--;
         rb.AddForce(transform.up * ps.jumpForce, ForceMode.Impulse);        
@@ -95,6 +118,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate(){if(readyToMove)movePlayer();}
     void Dash() 
     {
+        if (ps.dashIsParry)
+            Parry();
         FindObjectOfType<AudioManager>().Stop("WalkingSound");
         dashing = true;
         nOd--;

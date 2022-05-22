@@ -558,8 +558,8 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: EnemyRange
     clip: {fileID: 8300000, guid: c5ca37bb3328a3d4ea075d8b9ebaead2, type: 3}
-    volume: 0.151
-    pitch: 1
+    volume: 0.113
+    pitch: 0.4
     loop: 0
     source: {fileID: 0}
   - name: DashSound
@@ -604,12 +604,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37128d14bbcecfd4aab710e727bc742d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfSpawn: 1
+  amountOfSpawn: 7
   enemyAmount: 0
   ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
   rangeEnemy: {fileID: 6952829946862012975, guid: 45a216bf02967624f9467596184b4d96, type: 3}
   meleeEnemy: {fileID: 6952829946862012975, guid: 8e4a1b01336e1b445a0ff851c8c55a66, type: 3}
-  end: {fileID: 5899633739183586796, guid: 94272a89350355c4f9b278ae54d1429d, type: 3}
+  end: {fileID: 0}
+  rotateSpeed: 4
 --- !u!114 &8965087437531603057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +631,7 @@ MonoBehaviour:
   botPrefab: {fileID: 6952829946862012975, guid: ede7cab6f1aeee2408dd57a05ec3fd4a, type: 3}
   seButton: {fileID: 0}
   Started: 0
+  rotateSpeed: 8
 --- !u!1 &999767047595128996
 GameObject:
   m_ObjectHideFlags: 0

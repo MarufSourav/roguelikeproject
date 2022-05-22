@@ -13,6 +13,7 @@ public class LevelLogic : MonoBehaviour
     GameObject spawnLocation;
     EnemyTypeSpawn enemyType;    
     public GameObject end;
+    public float rotateSpeed;
     void SpawnBots()
     {        
         if (enemyType.meleeEnemy)
@@ -42,6 +43,7 @@ public class LevelLogic : MonoBehaviour
     }
     private void Update()
     {
+        RenderSettings.skybox.SetFloat("_Rotation", Time.time * rotateSpeed);
         if (ps.AmountToFrag == 0) 
         {
             end.SetActive(true);

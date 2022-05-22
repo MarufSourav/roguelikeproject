@@ -25,7 +25,7 @@ public class EnemyAi : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange, enemyShot, playerInSight;
 
     private void Awake()
-    {
+    {        
         player = GameObject.Find("Player").transform;        
         agent = GetComponent<NavMeshAgent>();
         enemyShot = false;
@@ -73,7 +73,7 @@ public class EnemyAi : MonoBehaviour
         if (!alreadyAttacked) 
         {
             alreadyAttacked = false;
-            var ray = new Ray(this.transform.position, this.transform.forward);
+            var ray = new Ray(head.transform.position, head.transform.forward);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100f)) 
             {

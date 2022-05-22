@@ -18,7 +18,7 @@ public class EnemyHP : MonoBehaviour
         if (health <= 0f)
             Die();        
     }
-    void Die()
+    public void Die()
     {
         ps.AmountToFrag--;
         botGO.SetActive(false);

@@ -16,7 +16,8 @@ public class TrainingBots : MonoBehaviour
     public bool Started = false;
     int randomVal;
     string randomValS;
-    float ct = 60f;    
+    float ct = 60f;
+    public float rotateSpeed;
     public void StartEndTraining()
     {
         if (!Started) 
@@ -43,6 +44,7 @@ public class TrainingBots : MonoBehaviour
     }
     private void Update()
     {
+        RenderSettings.skybox.SetFloat("_Rotation", Time.time * rotateSpeed);
         if (Started)
         {
             if (!botActive)

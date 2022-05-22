@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 563227987287588578}
   m_Layer: 3
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3503177568031050596}
   m_Layer: 0
   m_Name: LegRight
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4461053924087025632}
   m_Layer: 0
   m_Name: LegL
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 6842855080797263179}
   m_Layer: 0
   m_Name: HP
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 6362376182910943306}
   m_Layer: 0
   m_Name: LegR
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 550898990640443908}
   m_Layer: 0
   m_Name: BotGameObjects
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 7105685516007489257}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 6771964505306801937}
   m_Layer: 0
   m_Name: Image (1)
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 9075461295031568763}
   m_Layer: 0
   m_Name: LegLG
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 362919788794298217}
   m_Layer: 0
   m_Name: HealthBar
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5544,15 +5544,19 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 2
-  projectile: {fileID: 8911107336887320514, guid: 69c714e0ea720dc4d853505230cb79f1, type: 3}
+  timeBetweenAttacks: 0.2
+  projectile: {fileID: 8911107336887320514, guid: 63027c8bc98d35f4daba48a7167c08f2, type: 3}
   sightRange: 50
-  attackRange: 1
+  attackRange: 0.7
   playerInSightRange: 0
   playerInAttackRange: 0
   enemyShot: 0
+  playerInSight: 0
 --- !u!1 &7452243721179420428
 GameObject:
   m_ObjectHideFlags: 0
@@ -5566,7 +5570,7 @@ GameObject:
   - component: {fileID: 1483201874396331736}
   m_Layer: 0
   m_Name: LegRG
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5646,7 +5650,7 @@ GameObject:
   - component: {fileID: 6211640897416726721}
   m_Layer: 0
   m_Name: LegLeft
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5694,7 +5698,7 @@ GameObject:
   - component: {fileID: 5621707885873331000}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5786,7 +5790,7 @@ GameObject:
   - component: {fileID: 4943863830680448210}
   m_Layer: 0
   m_Name: Legs
-  m_TagString: Untagged
+  m_TagString: BotTR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

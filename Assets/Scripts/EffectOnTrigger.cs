@@ -51,11 +51,15 @@ public class EffectOnTrigger : MonoBehaviour
             ps.gunType = "Rifle";
             ps.adsSpeed = 15f;
             ps.fireRate = 7f;
-            ps.reloadTime = 2f;
+            ps.reloadTime = 1.5f;
             ps.damage = 20f;
             ps.spreadFactor = 0.02f;
             ps.moveSpeed = 110f;
             Destroy(other.gameObject);
+        }
+        else if (other.gameObject.name == "DashParry") 
+        {
+            ps.dashIsParry = true;
         }
         if (other.name == "End"){
             FindObjectOfType<RandomLevelSpawner>().randomLevel();

@@ -45,7 +45,7 @@ Camera:
   m_GameObject: {fileID: 5870362116403794604}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 9153586848005980911}
   - component: {fileID: 5870362117775602241}
   - component: {fileID: 8371597814610627854}
+  - component: {fileID: 1922359368011367142}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -454,6 +455,7 @@ MonoBehaviour:
   RifleShoot: {fileID: 7576923321265457643}
   PistolMag: {fileID: 4602691350576670131}
   RifleMag: {fileID: 5822078407600032304}
+  reloadTime: 0
   gunPistol: {fileID: 880615257212006387}
   gunRifle: {fileID: 880615257458561894}
   crosshair: {fileID: 0}
@@ -523,6 +525,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c3b20b63995c64fa4bc81ef9ff97b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1922359368011367142
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870362117775602266}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2, z: 1.6}
+  m_Center: {x: 0, y: 0, z: -0.025740415}
 --- !u!1 &5870362117816752897
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +837,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0a78626a42d169542b308e1b7a5c09b1, type: 2}
+    - target: {fileID: 5518330513844204578, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518330513844204578, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8660254
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518330513844204578, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518330513844204578, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518330513844204578, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5911842976705704571, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -849,6 +884,22 @@ PrefabInstance:
     - target: {fileID: 5911842976705704571, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723634374043963379, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723634374043963379, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723634374043963379, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723634374043963379, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4286611584
       objectReference: {fileID: 0}
     - target: {fileID: 6723634374260073386, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
       propertyPath: m_LocalPosition.x

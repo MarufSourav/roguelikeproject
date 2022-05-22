@@ -191,8 +191,7 @@ public class WeaponBehaviour : MonoBehaviour
                 GetComponentInChildren<WeaponSway>().multiplier = 2f;
             }
             //Rifle ADS>>>>>>>>>>>>>>>>>>>>>>>>
-            //Rifle Reload>>>>>>>>>>>>>>>>>>>>>
-           
+            //Rifle Reload>>>>>>>>>>>>>>>>>>>>>           
             if (Reloding)
             {
                 timePressed = 0f;
@@ -221,7 +220,14 @@ public class WeaponBehaviour : MonoBehaviour
                 MainCamera.transform.localRotation = Quaternion.Slerp(MainCamera.transform.localRotation, Quaternion.Euler(0, 0, 0), cameraResetTime * Time.deltaTime);
                 Invoke("Reload", ps.reloadTime);
             }
-            //Rifle Reload>>>>>>>>>>>>>>>>>>>>>  
+            //Rifle Reload>>>>>>>>>>>>>>>>>>>>>
+            //Rifle Parry Animation>>>>>>>>>>>>
+            if (ps.parry)
+            {
+                RifleReload.transform.localPosition = new Vector3(-0.15f, 0f, 0f);
+                RifleReload.transform.Rotate(new Vector3(0f, -10f, 0f));
+            }            
+            //Rifle Parry Animation>>>>>>>>>>>>
             //Rifle Drop>>>>>>>>>>>>>>>>>>>>>>>
             if (Input.GetButtonDown("Drop"))
             {
@@ -288,10 +294,8 @@ public class WeaponBehaviour : MonoBehaviour
             ps.magAmmo = 20;
             reloadTime = 0f;
         }
-            
-
-        AmmoCounterPistol.color = Color.white;
-        AmmoCounterRifle.color = Color.white;
+        AmmoCounterPistol.color = Color.grey;
+        AmmoCounterRifle.color = Color.grey;
         Reloding = false;
     }
 }

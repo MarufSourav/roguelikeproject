@@ -112,6 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileRange: 4
   projectileSpeed: 0.05
+  ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
+  parriedProjectile: 0
 --- !u!54 &2623415713873314681
 Rigidbody:
   m_ObjectHideFlags: 0
