@@ -29,7 +29,7 @@ public class TrainingBots : MonoBehaviour
         else        
         {
             Started = !Started;
-            StartEndText.text = "START";
+            StartEndText.text = "START TRAINING";
             seButton.color = Color.white;            
         }          
     }

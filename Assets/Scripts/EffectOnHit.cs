@@ -75,7 +75,7 @@ public class EffectOnHit : MonoBehaviour{
             }
             else if (hit.transform.name == "StartGame Button") 
             {
-                SceneManager.LoadScene(1);
+                FindObjectOfType<RandomLevelSpawner>().randomLevel();
             }
         }
     }

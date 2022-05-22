@@ -18,10 +18,12 @@ MonoBehaviour:
   numOfJump: 0
   numOfDash: 1
   dashCoolDown: 2
-  dashSpeed: 90
+  dashSpeed: 120
   jumpForce: 10
   moveSpeed: 110
+  adsSpeed: 15
   fireRate: 7
-  reloadTime: 2.1
-  damage: 20
+  reloadTime: 3
   spreadFactor: 0.01
+  recoilAmount: -0.5
+  damage: 20

@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     Vector3 moveDirection;
     bool readyToMove = true;
+    bool moving;
 
     [Header("Drag")]
     public float groundDrag;
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         ps.gunType = " ";
         ps.moveSpeed = 150f;
         ps.jumpForce = 10f;
-        ps.dashSpeed = 90f;
+        ps.dashSpeed = 120f;
         ps.dashCoolDown = 2f;
         ps.numOfJump = 0;
         ps.numOfDash = 1;
@@ -54,8 +55,24 @@ public class PlayerMovement : MonoBehaviour
                 if(nOj != 0)
                     Jump();
         }
-        if ((Mathf.Abs(horizontalMovement) > 0.2 || Mathf.Abs(verticalMovement) > 0.2) && (Input.GetKeyDown(KeyCode.Mouse4) || Input.GetKeyDown(KeyCode.LeftShift)) && nOd > 0)
+        if ((Input.GetKeyDown(KeyCode.Mouse4) || Input.GetKeyDown(KeyCode.LeftShift)) && nOd > 0)
             Dash();
+        if ((Mathf.Abs(horizontalMovement) > 0.0 || Mathf.Abs(verticalMovement) > 0.0))
+        {
+            if (isGrounded && !dashing)            
+            {
+                if (!moving)
+                    FindObjectOfType<AudioManager>().Play("WalkingSound");
+                moving = true;
+            }
+        }
+        else 
+        {
+            if(moving)
+                FindObjectOfType<AudioManager>().Stop("WalkingSound");
+            moving=false;
+        }
+            
         if (dashing && !isGrounded) { rb.drag = groundDrag; }
     }
     void Jump(){
@@ -65,9 +82,7 @@ public class PlayerMovement : MonoBehaviour
     void playerInput(){
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
-        moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
-        Debug.Log(Mathf.Abs(horizontalMovement));
-        Debug.Log(Mathf.Abs(verticalMovement));
+        moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;        
     }
     void controlDrag(){
         if (readyToMove) {
@@ -80,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate(){if(readyToMove)movePlayer();}
     void Dash() 
     {
+        FindObjectOfType<AudioManager>().Stop("WalkingSound");
         dashing = true;
         nOd--;
         Invoke("ResetDash", ps.dashCoolDown);
@@ -90,7 +106,10 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = groundDrag;
         }
         FindObjectOfType<AudioManager>().Play("DashSound");
-        rb.AddForce(moveDirection.normalized * (ps.dashSpeed), ForceMode.Impulse);
+        if ((Mathf.Abs(horizontalMovement) > 0.0 || Mathf.Abs(verticalMovement) > 0.0))
+            rb.AddForce(moveDirection.normalized * (ps.dashSpeed), ForceMode.Impulse);
+        else
+            rb.AddForce(transform.forward * (ps.dashSpeed), ForceMode.Impulse);
     }
     void ResetDash() { nOd++; }
     void ReCalibrateDash() { nOd = ps.numOfDash; }

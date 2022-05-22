@@ -26,10 +26,7 @@ public class MouseLook : MonoBehaviour
     }
     private Vector2 GetInput()
     {
-        Vector2 input = new Vector2(
-            Input.GetAxisRaw("Mouse X"),
-            Input.GetAxisRaw("Mouse Y")
-        );
+        Vector2 input = new Vector2(Input.GetAxisRaw("Mouse X"),Input.GetAxisRaw("Mouse Y"));
         return input;
     }
     private float ClampVerticalAngle(float angle)

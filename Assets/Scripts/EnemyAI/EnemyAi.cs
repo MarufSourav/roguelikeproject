@@ -5,9 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
 {
+    public GameObject head;
     public NavMeshAgent agent;
     public Transform player;
-    public LayerMask whatIsGround, whatIsPlayer;
+    public LayerMask whatIsGround, whatIsPlayer, whatIsWall;
 
     //Patroling
     public Vector3 walkPoint;
@@ -21,7 +22,7 @@ public class EnemyAi : MonoBehaviour
 
     //States
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange, enemyShot;
+    public bool playerInSightRange, playerInAttackRange, enemyShot, playerInSight;
 
     private void Awake()
     {
@@ -36,10 +37,9 @@ public class EnemyAi : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
-        if (enemyShot)
+        if (enemyShot && !playerInAttackRange)
         {
             ChasePlayer();
-            if (playerInAttackRange) AttackPlayer();
             Invoke("EnemyAggresion", 7f);
         }            
     }
@@ -63,7 +63,8 @@ public class EnemyAi : MonoBehaviour
     }
     void ChasePlayer() 
     {
-        agent.SetDestination(player.position);
+        agent.speed = 5f;
+        agent.SetDestination(player.position);        
         transform.LookAt(player);
     }
     void AttackPlayer()
@@ -71,20 +72,32 @@ public class EnemyAi : MonoBehaviour
         transform.LookAt(player);
         if (!alreadyAttacked) 
         {
-            FindObjectOfType<AudioManager>().Play("EnemyRange");
-            Instantiate(projectile, transform.position, Quaternion.identity);
-            alreadyAttacked = true;
-            Invoke("DelayedHit", timeBetweenAttacks);
-            Invoke("ResetAttack", timeBetweenAttacks);
+            alreadyAttacked = false;
+            var ray = new Ray(this.transform.position, this.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100f)) 
+            {
+                if (hit.transform.name != "Player")
+                    ChasePlayer();
+                else
+                {
+                    agent.speed = 15f;
+                    if (!alreadyAttacked) 
+                    {
+                        alreadyAttacked = true;
+                        Invoke("Attack", timeBetweenAttacks);                        
+                    }
+                        
+                    agent.SetDestination(transform.position);
+                }
+            }
         }        
-        agent.SetDestination(transform.position);              
-    }
-    void DelayedHit() {
-        FindObjectOfType<AudioManager>().Play("EnemyMelee");
-        Instantiate(projectile, transform.position, Quaternion.identity);
-    }
-    void ResetAttack() 
+                      
+    }   
+    void Attack() 
     {
+        FindObjectOfType<AudioManager>().Play("EnemyRange");
+        Instantiate(projectile, head.transform.position, Quaternion.identity);
         alreadyAttacked = false;
     }
     void EnemyAggresion() { enemyShot = false; }

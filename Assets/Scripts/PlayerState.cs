@@ -7,16 +7,23 @@ using UnityEngine.UI;
 public class PlayerState : ScriptableObject
 {
     public int AmountToFrag;
+
     public string gunType;
+
     public int magAmmo;
     public int numOfJump;
-    public int numOfDash;    
+    public int numOfDash;
+    
     public float dashCoolDown;
     public float dashSpeed;
     public float jumpForce;
     public float moveSpeed;
+
+    public float adsSpeed;   
     public float fireRate;
     public float reloadTime;
-    public float damage;
-    public float spreadFactor;   
+    public float spreadFactor;
+    public float recoilAmount;
+
+    public float damage;     
 }

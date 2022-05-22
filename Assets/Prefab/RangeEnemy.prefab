@@ -5446,9 +5446,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 1
   m_Speed: 10
-  m_Acceleration: 7
+  m_Acceleration: 30
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 250
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -5535,6 +5535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc5c25c209fd654b89d9c120a1704ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  head: {fileID: 4429882512286436140}
   agent: {fileID: 7841096148367307215}
   player: {fileID: 0}
   whatIsGround:
@@ -5543,15 +5544,19 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 2
   timeBetweenAttacks: 2
   projectile: {fileID: 8911107336887320514, guid: 69c714e0ea720dc4d853505230cb79f1, type: 3}
-  sightRange: 20
-  attackRange: 15
+  sightRange: 85
+  attackRange: 25
   playerInSightRange: 0
   playerInAttackRange: 0
   enemyShot: 0
+  playerInSight: 0
 --- !u!1 &7452243721179420428
 GameObject:
   m_ObjectHideFlags: 0

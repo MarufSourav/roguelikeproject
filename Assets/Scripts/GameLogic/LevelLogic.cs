@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelLogic : MonoBehaviour
 {
-    [Range(1, 20)] public int amountOfSpawn;
-    [Range(1, 6)] public int amountToSpawn;
+    [Range(3, 20)] public int amountOfSpawn;    
+    public int enemyAmount;
     public PlayerState ps;
     public GameObject rangeEnemy;
     public GameObject meleeEnemy;
@@ -28,11 +28,11 @@ public class LevelLogic : MonoBehaviour
     }
     private void Start()
     {
+        enemyAmount = Random.Range(3, amountOfSpawn);
         end.SetActive(false);        
-        ps.AmountToFrag = amountToSpawn;
-        for (int i = 1; i <= amountToSpawn; i++){
-            spawnLocation = GameObject.Find(Random.Range(1, amountOfSpawn).ToString());
-            Debug.Log(spawnLocation.name);
+        ps.AmountToFrag = enemyAmount;
+        for (int i = 1; i <= ps.AmountToFrag; i++){
+            spawnLocation = GameObject.Find(Random.Range(1, amountOfSpawn).ToString());            
             enemyType = spawnLocation.GetComponent<EnemyTypeSpawn>();            
             if (!enemyType.botActive)
                 SpawnBots();
@@ -44,8 +44,7 @@ public class LevelLogic : MonoBehaviour
     {
         if (ps.AmountToFrag == 0) 
         {
-            end.SetActive(true);            
-            Debug.Log("You Finished The Level");
+            end.SetActive(true);
         }
     }
 }

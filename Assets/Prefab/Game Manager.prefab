@@ -538,12 +538,6 @@ MonoBehaviour:
     pitch: 0.68
     loop: 0
     source: {fileID: 0}
-  - name: PistolReloadSound
-    clip: {fileID: 8300000, guid: b4937ac89f7a7b24b9da6acd34540704, type: 3}
-    volume: 0.533
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: HitMarkerSound
     clip: {fileID: 8300000, guid: 437a0b1c883ab4149a0090f7ef74f3d3, type: 3}
     volume: 0.98
@@ -562,12 +556,6 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: RifleReloadSound
-    clip: {fileID: 8300000, guid: dcb537d0424fe9b4e91200afd923ea4f, type: 3}
-    volume: 0.377
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: EnemyRange
     clip: {fileID: 8300000, guid: c5ca37bb3328a3d4ea075d8b9ebaead2, type: 3}
     volume: 0.151
@@ -577,6 +565,12 @@ MonoBehaviour:
   - name: DashSound
     clip: {fileID: 8300000, guid: 5eb016da4aad4c648a6c31fb836ff0c2, type: 3}
     volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WalkingSound
+    clip: {fileID: 8300000, guid: bc66fb407bd51a14c802085b5745c7c5, type: 3}
+    volume: 0.48
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -611,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfSpawn: 1
-  amountToSpawn: 1
+  enemyAmount: 0
   ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
   rangeEnemy: {fileID: 6952829946862012975, guid: 45a216bf02967624f9467596184b4d96, type: 3}
   meleeEnemy: {fileID: 6952829946862012975, guid: 8e4a1b01336e1b445a0ff851c8c55a66, type: 3}

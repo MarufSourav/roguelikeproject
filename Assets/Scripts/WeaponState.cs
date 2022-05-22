@@ -5,9 +5,9 @@ using UnityEngine;
 public class WeaponState : MonoBehaviour
 {
     public PlayerState ps;
-    public int currentWeaponAmmo;    
+    public int defaultAmmo;    
     public void currentAmmo() 
     {        
-        ps.magAmmo = currentWeaponAmmo;
+        ps.magAmmo = defaultAmmo;
     }
 }

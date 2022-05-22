@@ -12,13 +12,11 @@ public class projectileMotion : MonoBehaviour
     {        
         if (other.gameObject.tag == "Player") 
         {
-            Debug.Log("Hit Player");
             destroyProjectile();
             SceneManager.LoadScene(0);
         }
         else if (other.gameObject.tag == "Wall"|| other.gameObject.tag == "Ground")
         {
-            Debug.Log("Hit Obsticle");
             destroyProjectile();
         }
     }
