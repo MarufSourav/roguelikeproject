@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class TrainingBots : MonoBehaviour
 {
+    public PlayerState ps;
     public int frags;
     public bool botActive = false;
     public TextMeshProUGUI countdowntext;
@@ -23,6 +24,7 @@ public class TrainingBots : MonoBehaviour
         if (!Started) 
         {            
             Started = !Started;
+            ps.AmountToFrag = 0;
             frags = 0;
             seButton.color = Color.black;
             StartEndText.text = "END";                       

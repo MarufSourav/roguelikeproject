@@ -7,8 +7,7 @@ public class EffectOnTrigger : MonoBehaviour
 {
     public PlayerState ps;
     public WeaponBehaviour weapon;
-    private void Start()
-    {
+    private void Start(){
         weapon = GetComponent<WeaponBehaviour>();
     }
     private void OnTriggerEnter(Collider other)
@@ -47,6 +46,7 @@ public class EffectOnTrigger : MonoBehaviour
             weapon.adsWeaponPostion.y = -0.038f;
             weapon.adsWeaponPostion.z = 0.39f;
             ps.magAmmo = weapon.gunRifle.GetComponent<WeaponState>().defaultAmmo;
+            ps.maxAmmo = weapon.gunRifle.GetComponent<WeaponState>().maxAmmo;
             ps.recoilAmount = -0.5f;
             ps.gunType = "Rifle";
             ps.adsSpeed = 15f;
@@ -57,12 +57,19 @@ public class EffectOnTrigger : MonoBehaviour
             ps.moveSpeed = 110f;
             Destroy(other.gameObject);
         }
-        else if (other.gameObject.name == "DashParry") 
+        else if (other.gameObject.name == "DashParry")
         {
             ps.dashIsParry = true;
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.name == "MaxAmmoIncrease")
+        {
+            ps.maxAmmo++;
+            ps.magAmmo++;
+            Destroy(other.gameObject);
         }
         if (other.name == "End"){
-            FindObjectOfType<RandomLevelSpawner>().randomLevel();
+            SceneManager.LoadScene(2);
         }
     }    
 }

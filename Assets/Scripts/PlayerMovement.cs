@@ -31,9 +31,9 @@ public class PlayerMovement : MonoBehaviour
         ps.jumpForce = 10f;
         ps.dashSpeed = 120f;
         ps.dashCoolDown = 2f;
-        ps.numOfJump = 0;
-        ps.numOfDash = 2;
-        nOj = ps.numOfJump;
+        ps.numOfExtraJump = 0;
+        ps.numOfDash = 1;
+        nOj = ps.numOfExtraJump;
         nOd = ps.numOfDash;
         ps.parry = false;
         ps.readyToParry = true;
@@ -50,12 +50,7 @@ public class PlayerMovement : MonoBehaviour
         controlDrag();        
         if (Input.GetKeyDown(KeyCode.F) && ps.readyToParry)
             Parry();
-        if (ps.parriedProjectile && nOd != ps.numOfDash){
-            CancelInvoke("ResetDash");
-            ReCalibrateDash();
-        }
-        else
-            ps.parriedProjectile = false;
+        
         if (nOd > ps.numOfDash)
             ReCalibrateDash();
         if (Input.GetButtonDown("Jump")) 
@@ -120,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (ps.dashIsParry)
             Parry();
+
         FindObjectOfType<AudioManager>().Stop("WalkingSound");
         dashing = true;
         nOd--;
@@ -137,14 +133,14 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(transform.forward * (ps.dashSpeed), ForceMode.Impulse);
     }
     void ResetDash() { nOd++; }
-    void ReCalibrateDash() { nOd = ps.numOfDash; }
+    public void ReCalibrateDash() { CancelInvoke("ResetDash"); nOd = ps.numOfDash; }
     void ResetMove() { rb.drag = airDrag; readyToMove = true; dashing = false; }
     void movePlayer()
     {        
         if (isGrounded) 
         {
             rb.AddForce(moveDirection.normalized * ps.moveSpeed);
-            nOj = ps.numOfJump;
+            nOj = ps.numOfExtraJump;
         }            
         else            
             rb.AddForce(moveDirection.normalized * ps.moveSpeed * airMultiplier);            

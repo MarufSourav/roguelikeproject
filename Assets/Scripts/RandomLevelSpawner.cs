@@ -7,7 +7,7 @@ public class RandomLevelSpawner : MonoBehaviour
 {
     int randomVal;
     public void randomLevel() {
-        randomVal = Random.Range(1, 3);
+        randomVal = Random.Range(1, 2);
         SceneManager.LoadScene(randomVal);
     }
 }

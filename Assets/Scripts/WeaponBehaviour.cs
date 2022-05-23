@@ -135,6 +135,11 @@ public class WeaponBehaviour : MonoBehaviour
         else if (ps.gunType == "Rifle")//Rifle ---------------------------------------------------------------- // 
         {
             AmmoCounterRifle.text = ps.magAmmo.ToString();
+            if (ps.magAmmo > 5)
+                AmmoCounterRifle.color = Color.grey;
+            else
+                AmmoCounterRifle.color = Color.red;
+
             //Rifle Fire>>>>>>>>>>>>>>>>>>>>>>>
             if (ps.magAmmo == 0)
             {
@@ -212,7 +217,7 @@ public class WeaponBehaviour : MonoBehaviour
                 RifleReload.transform.localRotation = Quaternion.Slerp(RifleReload.transform.localRotation, Quaternion.Euler(0, 0, 0), (12f / ps.reloadTime) * Time.deltaTime);
             } 
             
-            if (Input.GetButtonDown("Fire3") && ps.magAmmo < 20 && Reloding == false)
+            if (Input.GetButtonDown("Fire3") && ps.magAmmo < ps.maxAmmo && Reloding == false)
             {
                 Reloding = true;
                 cameraResetTime = 15f;
@@ -225,8 +230,8 @@ public class WeaponBehaviour : MonoBehaviour
             if (ps.parry)
             {
                 RifleReload.transform.localPosition = new Vector3(-0.15f, 0f, 0f);
-                RifleReload.transform.Rotate(new Vector3(0f, -10f, 0f));
-            }            
+                RifleReload.transform.Rotate(new Vector3(0f, -6f, 0f));
+            }
             //Rifle Parry Animation>>>>>>>>>>>>
             //Rifle Drop>>>>>>>>>>>>>>>>>>>>>>>
             if (Input.GetButtonDown("Drop"))
@@ -237,6 +242,7 @@ public class WeaponBehaviour : MonoBehaviour
                 WeaponEquip = false;
                 Reloding = false;
                 gunRifle.GetComponent<WeaponState>().defaultAmmo = ps.magAmmo;
+                gunRifle.GetComponent<WeaponState>().maxAmmo = ps.maxAmmo;
                 Instantiate(gunRifle, gunDropSpawn.transform.position, gunDropSpawn.transform.rotation);
                 ps.gunType = " ";                
             }
@@ -280,8 +286,6 @@ public class WeaponBehaviour : MonoBehaviour
                 MainCamera.transform.Rotate(new Vector3(ps.recoilAmount, 0, 0));
             gunRifle.GetComponent<WeaponState>().defaultAmmo = ps.magAmmo;
             FindObjectOfType<AudioManager>().Play("RifleGunSound");
-            if (ps.magAmmo - 5 == 0)
-                AmmoCounterRifle.color = Color.red;
         }
     }
     
@@ -291,11 +295,9 @@ public class WeaponBehaviour : MonoBehaviour
             ps.magAmmo = 8;
         else if (ps.gunType == "Rifle") 
         {
-            ps.magAmmo = 20;
+            ps.magAmmo = ps.maxAmmo;
             reloadTime = 0f;
         }
-        AmmoCounterPistol.color = Color.grey;
-        AmmoCounterRifle.color = Color.grey;
         Reloding = false;
     }
 }

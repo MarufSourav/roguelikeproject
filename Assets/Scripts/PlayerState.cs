@@ -13,7 +13,7 @@ public class PlayerState : ScriptableObject
     public string gunType;
 
     //Movement Stats    
-    public int numOfJump;
+    public int numOfExtraJump;
     public int numOfDash;
     
     //Dash Stats
@@ -24,6 +24,7 @@ public class PlayerState : ScriptableObject
 
     //Weapon Stats
     public int magAmmo;
+    public int maxAmmo;
     public float adsSpeed;   
     public float fireRate;
     public float reloadTime;
@@ -35,7 +36,8 @@ public class PlayerState : ScriptableObject
     public bool parry;
     public bool readyToParry;
     public bool dashIsParry;
-    public bool parriedProjectile;
+    public bool ammoOnParry;
     public float parryWindow;
     public float parryCoolDown;
+    public bool invulnerable;
 }

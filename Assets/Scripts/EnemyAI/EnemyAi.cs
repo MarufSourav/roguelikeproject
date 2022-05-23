@@ -63,7 +63,6 @@ public class EnemyAi : MonoBehaviour
     }
     void ChasePlayer() 
     {
-        agent.speed = 5f;
         agent.SetDestination(player.position);        
         transform.LookAt(player);
     }
@@ -81,7 +80,6 @@ public class EnemyAi : MonoBehaviour
                     ChasePlayer();
                 else
                 {
-                    agent.speed = 15f;
                     if (!alreadyAttacked) 
                     {
                         alreadyAttacked = true;
