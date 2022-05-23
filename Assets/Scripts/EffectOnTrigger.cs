@@ -7,9 +7,7 @@ public class EffectOnTrigger : MonoBehaviour
 {
     public PlayerState ps;
     public WeaponBehaviour weapon;
-    private void Start(){
-        weapon = GetComponent<WeaponBehaviour>();
-    }
+    private void Start(){weapon = GetComponent<WeaponBehaviour>();}
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Pistol" && !weapon.WeaponEquip)

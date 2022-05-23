@@ -6,10 +6,12 @@ using TMPro;
 public class EnemyHP : MonoBehaviour
 {
     public float health = 100f;
-    public ParticleSystem deathEffect;
     public Image healthBar;
     public GameObject botGO;
     public PlayerState ps;
+    private void Start(){
+        botGO.SetActive(true);
+    }
     public void HP(float damage)
     {
         health -= damage;
@@ -27,7 +29,7 @@ public class EnemyHP : MonoBehaviour
         {
             FindObjectOfType<TrainingBots>().frags++;
             FindObjectOfType<TrainingBots>().botActive = false;
-        }        
-        deathEffect.Play();        
+        }
+        Destroy(gameObject);
     }   
 }

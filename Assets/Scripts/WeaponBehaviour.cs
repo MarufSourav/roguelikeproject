@@ -234,6 +234,7 @@ public class WeaponBehaviour : MonoBehaviour
             }
             //Rifle Parry Animation>>>>>>>>>>>>
             //Rifle Drop>>>>>>>>>>>>>>>>>>>>>>>
+            /*
             if (Input.GetButtonDown("Drop"))
             {
                 reloadTime = 0f;
@@ -241,11 +242,16 @@ public class WeaponBehaviour : MonoBehaviour
                 crosshair.SetActive(false);
                 WeaponEquip = false;
                 Reloding = false;
+                RifleShoot.transform.localPosition = new Vector3(0, 0, 0f);
+                RifleShoot.transform.Rotate(new Vector3(0f, 0f, 0f));
+                MainCamera.transform.Rotate(new Vector3(0f, 0f, 0f));
+                gunRifle.transform.localPosition = defaultWeaponPostion;
+                
                 gunRifle.GetComponent<WeaponState>().defaultAmmo = ps.magAmmo;
                 gunRifle.GetComponent<WeaponState>().maxAmmo = ps.maxAmmo;
                 Instantiate(gunRifle, gunDropSpawn.transform.position, gunDropSpawn.transform.rotation);
                 ps.gunType = " ";                
-            }
+            }*/
             //Rifle Drop>>>>>>>>>>>>>>>>>>>>>>>
         }
         else

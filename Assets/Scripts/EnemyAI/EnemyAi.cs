@@ -45,6 +45,7 @@ public class EnemyAi : MonoBehaviour
     }
     void Patroling() 
     {
+        GetComponent<AudioSource>().enabled = true;
         if (!walkPointSet) 
             SearchWalkPoint();
         else if (walkPointSet)
@@ -63,11 +64,13 @@ public class EnemyAi : MonoBehaviour
     }
     void ChasePlayer() 
     {
+        GetComponent<AudioSource>().enabled = true;
         agent.SetDestination(player.position);        
         transform.LookAt(player);
     }
     void AttackPlayer()
     {
+        GetComponent<AudioSource>().enabled = false;
         transform.LookAt(player);
         if (!alreadyAttacked) 
         {

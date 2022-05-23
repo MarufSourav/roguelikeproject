@@ -19,8 +19,10 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private float maxVerticalAngleFromHorizon;
     [SerializeField] private RotationDirection rotationDirections;
     private Vector2 rotation;
+    public PlayerState ps;
     private void Start()
     {
+        sensitivity = ps.sensitivity;        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -49,5 +51,6 @@ public class MouseLook : MonoBehaviour
     {
         sensitivity.x = sens * 10;
         sensitivity.y = -sens * 10;
+        ps.sensitivity = sensitivity;
     }
 }

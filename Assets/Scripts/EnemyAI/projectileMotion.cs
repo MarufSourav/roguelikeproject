@@ -14,7 +14,7 @@ public class projectileMotion : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("ParrySound");
         if (ps.ammoOnParry)
-            ps.magAmmo = 20;        
+            ps.magAmmo = ps.maxAmmo;        
         parriedProjectile = true;
         projectileMove.x = 0;
         projectileMove.y = 0;

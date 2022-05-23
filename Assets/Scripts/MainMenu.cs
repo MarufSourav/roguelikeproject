@@ -15,13 +15,8 @@ public class MainMenu : MonoBehaviour
     public GameObject Player;
     public GameObject Camera;
     bool menuActive = false;
-    
     private void Start()
     {
-        Player.GetComponent<MouseLook>().enabled = true;
-        Player.GetComponent<PlayerMovement>().enabled = true;
-        Player.GetComponent<WeaponBehaviour>().enabled = true;
-        Camera.GetComponent<MouseLook>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         mainMenu.SetActive(false);
@@ -38,21 +33,18 @@ public class MainMenu : MonoBehaviour
             time -= pollingTime;
             frameCount = 0;
         }
-
         inputValue.text = sliderValue.value.ToString();
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            menuPanel();             
-        }
+            menuPanel();
     }
+    public void backToTraining() { SceneManager.LoadScene(0); Time.timeScale = 1f; }
     public void menuPanel() 
     {
         if (!menuActive)
         {
-            Player.GetComponent<MouseLook>().enabled = false;
-            Player.GetComponent<PlayerMovement>().enabled = false;
-            Player.GetComponent<WeaponBehaviour>().enabled = false;
-            Camera.GetComponent<MouseLook>().enabled = false;
+            FindObjectOfType<WeaponBehaviour>().enabled = false;
+            FindObjectOfType<PlayerMovement>().enabled = false;
+            Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             mainMenu.SetActive(true);
@@ -60,10 +52,9 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            Player.GetComponent<MouseLook>().enabled = true;
-            Player.GetComponent<PlayerMovement>().enabled = true;
-            Player.GetComponent<WeaponBehaviour>().enabled = true;
-            Camera.GetComponent<MouseLook>().enabled = true;
+            FindObjectOfType<WeaponBehaviour>().enabled = true;
+            FindObjectOfType<PlayerMovement>().enabled = true;
+            Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             mainMenu.SetActive(false);

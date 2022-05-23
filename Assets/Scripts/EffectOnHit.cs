@@ -9,10 +9,13 @@ public class EffectOnHit : MonoBehaviour{
     public Transform RBSP;
     Transform BulletSpawnPoint;    
     public TrailRenderer BulletTrail;
-    public GameObject hitmarker;
     public PlayerState ps;
-    public TrainingBots StartEndTraining;
-    public WeaponBehaviour IA;    
+    public WeaponBehaviour IA;
+    GameObject hitMarker;
+    private void Start() {
+        hitMarker = GameObject.Find("HitMarker");
+        hitMarker.SetActive(false);
+    }
     private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit hit) 
     {
         float time = 0f;
@@ -43,27 +46,27 @@ public class EffectOnHit : MonoBehaviour{
             EnemyAi EAI = hit.transform.GetComponentInParent<EnemyAi>();
             if (hit.transform.name == "Head")
             {
-                hitmarker.gameObject.SetActive(true);
+                hitMarker.SetActive(true);
                 Invoke("hitmarkerActive", .2f);
                 target.HP(ps.damage * 4);
                 EAI.enemyShot = true;
             }
             else if (hit.transform.name == "Body")
             {
-                hitmarker.gameObject.SetActive(true);
+                hitMarker.SetActive(true);
                 Invoke("hitmarkerActive", .2f);
                 target.HP(ps.damage);
                 EAI.enemyShot = true;
             }
             else if (hit.transform.name == "LegRight" || hit.transform.name == "LegLeft")
             {
-                hitmarker.gameObject.SetActive(true);
+                hitMarker.SetActive(true);
                 Invoke("hitmarkerActive", .2f);
                 target.HP(ps.damage * 0.5f);
                 EAI.enemyShot = true;
             }
             else if (hit.transform.name == "Start/End Button")
-                StartEndTraining.StartEndTraining();
+                FindObjectOfType<TrainingBots>().StartEndTraining();
             else if (hit.transform.name == "InfiniteAmmo Button")
             {
                 IA.infiniteAmmo = !IA.infiniteAmmo;
@@ -73,7 +76,7 @@ public class EffectOnHit : MonoBehaviour{
                 else
                     IAI.color = Color.white;
             }
-            else if (hit.transform.name == "StartGame Button") 
+            else if (hit.transform.name == "StartGame Button")
             {
                 FindObjectOfType<RandomLevelSpawner>().randomLevel();
             }
@@ -81,6 +84,6 @@ public class EffectOnHit : MonoBehaviour{
     }
     void hitmarkerActive() 
     {
-        hitmarker.gameObject.SetActive(false);
+        hitMarker.SetActive(false);
     }
 }

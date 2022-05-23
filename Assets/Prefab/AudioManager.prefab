@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1514394014407984578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1514394014407984580}
+  - component: {fileID: 1514394014407984581}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1514394014407984580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514394014407984578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1514394014407984581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514394014407984578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba9d32ec32b767349b61546b030a60b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PistolGunSound
+    clip: {fileID: 8300000, guid: 10ba24fbc54b2844581ae568a5efca2a, type: 3}
+    volume: 0.377
+    pitch: 0.68
+    loop: 0
+    source: {fileID: 0}
+  - name: HitMarkerSound
+    clip: {fileID: 8300000, guid: 437a0b1c883ab4149a0090f7ef74f3d3, type: 3}
+    volume: 0.98
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: FragSoundEffect
+    clip: {fileID: 8300000, guid: 1f6dba91681a6404c853e69af1b32298, type: 3}
+    volume: 1
+    pitch: 0.33
+    loop: 0
+    source: {fileID: 0}
+  - name: RifleGunSound
+    clip: {fileID: 8300000, guid: 6a41702f9ab5ce047b1398244d215397, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyRange
+    clip: {fileID: 8300000, guid: 10ba24fbc54b2844581ae568a5efca2a, type: 3}
+    volume: 0.36
+    pitch: 0.59
+    loop: 0
+    source: {fileID: 0}
+  - name: DashSound
+    clip: {fileID: 8300000, guid: 5eb016da4aad4c648a6c31fb836ff0c2, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WalkingSound
+    clip: {fileID: 0}
+    volume: 0.48
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ParrySound
+    clip: {fileID: 8300000, guid: 16d8d87af4c2738468d3ad7bd596aa40, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LegendarySpawn
+    clip: {fileID: 8300000, guid: 95b458608aa01d14f8f25e61a8f30b11, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EndIndicatorAnnouncementSound
+    clip: {fileID: 8300000, guid: dc9d269109e916541923905075167f7d, type: 3}
+    volume: 0.32
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

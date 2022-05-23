@@ -113,7 +113,11 @@ public class PlayerMovement : MonoBehaviour
     void ParryReady() { ps.readyToParry = true; }
     void Jump(){
         nOj--;
-        rb.AddForce(transform.up * ps.jumpForce, ForceMode.Impulse);        
+        if (isGrounded) 
+            rb.AddForce(transform.up * ps.jumpForce, ForceMode.Impulse);
+        else
+            rb.AddForce(transform.up * ps.jumpForce * 1.5f, ForceMode.Impulse);
+
     }    
     void playerInput(){
         horizontalMovement = Input.GetAxisRaw("Horizontal");
@@ -140,10 +144,8 @@ public class PlayerMovement : MonoBehaviour
         Invoke("ResetDash", ps.dashCoolDown);
         readyToMove = false;
         Invoke("ResetMove", 0.2f);
-        if (!isGrounded) 
-        {            
+        if (!isGrounded)            
             rb.drag = groundDrag;
-        }
         FindObjectOfType<AudioManager>().Play("DashSound");
         if ((Mathf.Abs(horizontalMovement) > 0.0 || Mathf.Abs(verticalMovement) > 0.0))
             rb.AddForce(moveDirection.normalized * (ps.dashSpeed), ForceMode.Impulse);
