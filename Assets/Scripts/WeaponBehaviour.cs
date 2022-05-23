@@ -269,7 +269,6 @@ public class WeaponBehaviour : MonoBehaviour
         if (ps.gunType == "Pistol")
         {
             MainCamera.transform.Rotate(new Vector3(ps.recoilAmount, 0, 0));
-            gunPistol.GetComponent<WeaponState>().defaultAmmo = ps.magAmmo;
             FindObjectOfType<AudioManager>().Play("PistolGunSound");
             if (ps.magAmmo - 3 == 0)
                 AmmoCounterPistol.color = Color.red;
@@ -284,7 +283,6 @@ public class WeaponBehaviour : MonoBehaviour
                 MainCamera.transform.Rotate(new Vector3(ps.recoilAmount, ps.recoilAmount, 0));
             else
                 MainCamera.transform.Rotate(new Vector3(ps.recoilAmount, 0, 0));
-            gunRifle.GetComponent<WeaponState>().defaultAmmo = ps.magAmmo;
             FindObjectOfType<AudioManager>().Play("RifleGunSound");
         }
     }

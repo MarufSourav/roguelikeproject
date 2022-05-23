@@ -6,47 +6,38 @@ public class LevelLogic : MonoBehaviour
 {
     //public int enemyAmount;
     public PlayerState ps;
-    public GameObject rangeEnemy;
-    public GameObject meleeEnemy;
-    GameObject spawnLocation;
-    EnemyTypeSpawn enemyType;    
     public GameObject end;
     public float rotateSpeed;
-    public int justSpawnedLocation;
-    public float timer;
-    IEnumerator SpawnBots()
-    {    
-        yield return new WaitForSeconds(timer);
-        if(justSpawnedLocation > 8)
-            justSpawnedLocation = 1;
-        spawnLocation = GameObject.Find(justSpawnedLocation.ToString());        
-        justSpawnedLocation++;
-        
-        enemyType = spawnLocation.GetComponent<EnemyTypeSpawn>();
-        if (ps.AmountToFrag <= 7) 
-        {
-            Debug.Log("BotSpawned");
-            if (enemyType.meleeEnemy)
-                Instantiate(meleeEnemy, spawnLocation.transform.position, spawnLocation.transform.rotation);
-            else
-                Instantiate(rangeEnemy, spawnLocation.transform.position, spawnLocation.transform.rotation);
-            ps.AmountToFrag++;
-        }
-    }
+    public int roundEnemy;
+    public int whatIsRound;
     private void Start()
     {
-        justSpawnedLocation = 1;
-        ps.AmountToFrag = 0;
-        timer = 5f;
         end.SetActive(false);
+        whatIsRound = 1;
+        roundEnemy = 5;
+        ps.AmountToFrag = roundEnemy;
+        end.SetActive(false);
+        FindObjectOfType<HordeSpawnLogic>().startSpawner();
     }
     private void Update()
     {
-        StartCoroutine(SpawnBots());
         RenderSettings.skybox.SetFloat("_Rotation", Time.time * rotateSpeed);
-        if (ps.AmountToFrag > 0)
-            end.SetActive(false);
-        else
-            end.SetActive(true);
+        if (ps.AmountToFrag == 0) 
+        {
+            whatIsRound++;
+            Debug.Log("Finished Round");
+            roundEnemy = (int)(roundEnemy * 1.25f);
+            ps.AmountToFrag = roundEnemy;
+            if (whatIsRound >= 20)
+                end.SetActive(true);
+            else 
+            {
+                if (whatIsRound % 1 == 5)
+                    FindObjectOfType<ItemSpawner>().SpawnAbility();
+            }
+            FindObjectOfType<ItemSpawner>().SpawnEnhance();            
+            Invoke("startSpawner", 10f);
+        }        
     }
+    void startSpawner() { FindObjectOfType<HordeSpawnLogic>().startSpawner(); }
 }

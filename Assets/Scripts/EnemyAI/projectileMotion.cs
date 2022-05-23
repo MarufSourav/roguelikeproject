@@ -12,7 +12,6 @@ public class projectileMotion : MonoBehaviour
     public bool parriedProjectile;
     void parryIndicator() 
     {
-        Debug.Log("Successful Parry");
         FindObjectOfType<AudioManager>().Play("ParrySound");
         if (ps.ammoOnParry)
             ps.magAmmo = 20;        

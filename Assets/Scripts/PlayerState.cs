@@ -39,5 +39,11 @@ public class PlayerState : ScriptableObject
     public bool ammoOnParry;
     public float parryWindow;
     public float parryCoolDown;
+
+    //Invulnerability Stats
+    public float invulnerabilityLength;
+    public float invulnerabilityCoolDown;
+    public bool invulnerableReady;
+    public bool invulnerableOnInput;
     public bool invulnerable;
 }

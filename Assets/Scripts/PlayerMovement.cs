@@ -35,10 +35,17 @@ public class PlayerMovement : MonoBehaviour
         ps.numOfDash = 1;
         nOj = ps.numOfExtraJump;
         nOd = ps.numOfDash;
+        ps.dashIsParry = false;
+        ps.ammoOnParry = false;
         ps.parry = false;
         ps.readyToParry = true;
         ps.parryCoolDown = 1.2f;
         ps.parryWindow = 0.1f;
+        ps.invulnerable = false;
+        ps.invulnerableReady = true;
+        ps.invulnerableOnInput = false;
+        ps.invulnerabilityLength = 2f;
+        ps.invulnerabilityCoolDown = 30f;
         GetComponent<BoxCollider>().enabled = false;
         Physics.gravity = new Vector3(0f, -30f, 0f);
         rb = GetComponent<Rigidbody>();
@@ -50,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
         controlDrag();        
         if (Input.GetKeyDown(KeyCode.F) && ps.readyToParry)
             Parry();
+        if (Input.GetKeyDown(KeyCode.E) && ps.invulnerableOnInput && ps.invulnerableReady)
+            ActivateInvulnerability();
         
         if (nOd > ps.numOfDash)
             ReCalibrateDash();
@@ -83,6 +92,15 @@ public class PlayerMovement : MonoBehaviour
         }
         if (dashing && !isGrounded) { rb.drag = groundDrag; }
     }
+    void ActivateInvulnerability() 
+    {
+        ps.invulnerable = true;
+        ps.invulnerableReady = false;
+        Invoke("ResetInvulnerability", ps.invulnerabilityLength);
+        Invoke("ResetInvulnerabilityCoolDown", ps.invulnerabilityCoolDown);
+    }
+    void ResetInvulnerability() { ps.invulnerable = false; }
+    void ResetInvulnerabilityCoolDown() { ps.invulnerableReady = false; }
     void Parry() 
     {
         ps.readyToParry = false;

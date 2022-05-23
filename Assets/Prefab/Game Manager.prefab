@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 999767047514247804}
   - component: {fileID: 5693651893152306143}
   - component: {fileID: 8965087437531603057}
+  - component: {fileID: 8459269347916481284}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -557,9 +558,9 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: EnemyRange
-    clip: {fileID: 8300000, guid: c5ca37bb3328a3d4ea075d8b9ebaead2, type: 3}
-    volume: 0.05
-    pitch: 0.4
+    clip: {fileID: 8300000, guid: 10ba24fbc54b2844581ae568a5efca2a, type: 3}
+    volume: 0.36
+    pitch: 0.59
     loop: 0
     source: {fileID: 0}
   - name: DashSound
@@ -611,12 +612,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
-  rangeEnemy: {fileID: 6952829946862012975, guid: 45a216bf02967624f9467596184b4d96, type: 3}
-  meleeEnemy: {fileID: 6952829946862012975, guid: 8e4a1b01336e1b445a0ff851c8c55a66, type: 3}
   end: {fileID: 0}
-  rotateSpeed: 4
-  justSpawnedLocation: 0
-  timer: 0
+  rotateSpeed: 3
+  roundEnemy: 0
+  whatIsRound: 0
 --- !u!114 &8965087437531603057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,6 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7583d2ff530520444866cfe2ae2a7afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps: {fileID: 0}
   frags: 0
   botActive: 0
   countdowntext: {fileID: 0}
@@ -637,7 +637,28 @@ MonoBehaviour:
   botPrefab: {fileID: 6952829946862012975, guid: ede7cab6f1aeee2408dd57a05ec3fd4a, type: 3}
   seButton: {fileID: 0}
   Started: 0
-  rotateSpeed: 8
+  rotateSpeed: 3
+--- !u!114 &8459269347916481284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999767047514247807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e48b91e3f611324eb2eec43f46f656a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
+  spawnenhance: 0
+  spawnability: 0
+  MaxAmmoIncrease: {fileID: 2820018965793208577, guid: 312c13a7f7f11874cb6450d2ce9b5d67, type: 3}
+  MaxDashIncrease: {fileID: 2820018965793208577, guid: ce151f5d9bc48d94988d0129eb5f6ab9, type: 3}
+  MaxJumpIncrease: {fileID: 2820018965793208577, guid: 1a6a0374ab963c44ebc7067eafd7066a, type: 3}
+  EnableDashParry: {fileID: 2820018965793208577, guid: e3298db63132e5f48a49ee2dffea8fd3, type: 3}
+  EnableAmmoOnParry: {fileID: 2820018965793208577, guid: 1aadd813a5204c6439f23f3ba0647b37, type: 3}
+  EnableLimitedInvulnerable: {fileID: 2820018965793208577, guid: 4db85bfddf881e345b03c01513ecb025, type: 3}
 --- !u!1 &999767047595128996
 GameObject:
   m_ObjectHideFlags: 0

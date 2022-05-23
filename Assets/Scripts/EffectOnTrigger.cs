@@ -57,19 +57,46 @@ public class EffectOnTrigger : MonoBehaviour
             ps.moveSpeed = 110f;
             Destroy(other.gameObject);
         }
-        else if (other.gameObject.name == "DashParry")
+        else if (other.gameObject.name == "MaxAmmoIncrease(Clone)")
         {
-            ps.dashIsParry = true;
             Destroy(other.gameObject);
-        }
-        else if (other.gameObject.name == "MaxAmmoIncrease")
-        {
+            Debug.Log("Ammo + 1");
             ps.maxAmmo++;
             ps.magAmmo++;
+        }
+        else if (other.gameObject.name == "MaxDashIncrease(Clone)")
+        {
             Destroy(other.gameObject);
+            Debug.Log("Dash + 1");
+            ps.numOfDash++;
+            FindObjectOfType<PlayerMovement>().ReCalibrateDash();
+        }
+        else if (other.gameObject.name == "MaxJumpIncrease(Clone)")
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Jump + 1");
+            ps.numOfExtraJump++;
+        }
+        else if (other.gameObject.name == "EnableDashParry(Clone)")
+        {
+            Destroy(other.gameObject);
+            Debug.Log("DashParry Active");
+            ps.dashIsParry = true;
+        }
+        else if (other.gameObject.name == "EnableAmmoOnParry(Clone)")
+        {
+            Destroy(other.gameObject);
+            Debug.Log("AmmoParry On Active");
+            ps.ammoOnParry = true;
+        }
+        else if (other.gameObject.name == "EnableLimitedInvulnerable(Clone)")
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Invulnerability Active");
+            ps.invulnerableOnInput = true;
         }
         if (other.name == "End"){
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(0);
         }
     }    
 }
