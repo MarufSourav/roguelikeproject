@@ -52,7 +52,7 @@ public class EffectOnTrigger : MonoBehaviour
             ps.reloadTime = 1.5f;
             ps.damage = 20f;
             ps.spreadFactor = 0.02f;
-            ps.moveSpeed = 110f;
+            ps.moveSpeed = 150f;
             Destroy(other.gameObject);
         }
         else if (other.gameObject.name == "MaxAmmoIncrease(Clone)")

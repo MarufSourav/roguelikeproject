@@ -192,7 +192,7 @@ public class WeaponBehaviour : MonoBehaviour
                 gunRifle.transform.localPosition = Vector3.Lerp(gunRifle.transform.localPosition, defaultWeaponPostion, ps.adsSpeed * Time.deltaTime);
                 crosshair.SetActive(true);
                 ps.spreadFactor = 0.01f;
-                ps.moveSpeed = 110f;
+                ps.moveSpeed = 150f;
                 GetComponentInChildren<WeaponSway>().multiplier = 2f;
             }
             //Rifle ADS>>>>>>>>>>>>>>>>>>>>>>>>

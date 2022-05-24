@@ -133,8 +133,9 @@ public class PlayerMovement : MonoBehaviour
         }        
     }
     private void FixedUpdate(){if(readyToMove)movePlayer();}
-    void Dash() 
+    void Dash()
     {
+        CancelInvoke("ResetMove");
         if (ps.dashIsParry)
             Parry();
 
@@ -143,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         nOd--;
         Invoke("ResetDash", ps.dashCoolDown);
         readyToMove = false;
-        Invoke("ResetMove", 0.2f);
+        Invoke("ResetMove", 0.3f);
         if (!isGrounded)            
             rb.drag = groundDrag;
         FindObjectOfType<AudioManager>().Play("DashSound");
