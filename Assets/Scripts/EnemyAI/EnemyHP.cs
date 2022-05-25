@@ -23,7 +23,6 @@ public class EnemyHP : MonoBehaviour
     public void Die()
     {
         ps.AmountToFrag--;
-        botGO.SetActive(false);
         FindObjectOfType<AudioManager>().Play("FragSoundEffect");
         if (FindObjectOfType<TrainingBots>() != null) 
         {
@@ -31,5 +30,5 @@ public class EnemyHP : MonoBehaviour
             FindObjectOfType<TrainingBots>().botActive = false;
         }
         Destroy(gameObject);
-    }   
+    }
 }

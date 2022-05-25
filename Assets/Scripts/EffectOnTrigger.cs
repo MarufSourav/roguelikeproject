@@ -55,43 +55,29 @@ public class EffectOnTrigger : MonoBehaviour
             ps.moveSpeed = 150f;
             Destroy(other.gameObject);
         }
-        else if (other.gameObject.name == "MaxAmmoIncrease(Clone)")
+        else if (other.gameObject.tag == "Item") 
         {
+            ps.numOfExtraJump += other.GetComponent<ItemState>().numOfExtraJump;
+            ps.numOfDash += other.GetComponent<ItemState>().numOfDash;
+            ps.dashCoolDown += other.GetComponent<ItemState>().dashCoolDown;
+            ps.moveSpeed += other.GetComponent<ItemState>().moveSpeed;
+            ps.magAmmo += other.GetComponent<ItemState>().magAmmo;
+            ps.maxAmmo += other.GetComponent<ItemState>().maxAmmo;
+            ps.fireRate += other.GetComponent<ItemState>().fireRate;
+            ps.reloadTime += other.GetComponent<ItemState>().reloadTime;
+            ps.spreadFactor += other.GetComponent<ItemState>().spreadFactor;
+            ps.recoilAmount -= other.GetComponent<ItemState>().recoilAmount;
+            ps.damage += other.GetComponent<ItemState>().damage;
+            ps.dashIsParry = other.GetComponent<ItemState>().dashIsParry;
+            ps.ammoOnParry = other.GetComponent<ItemState>().ammoOnParry;
+            ps.invulnerableOnInput = other.GetComponent<ItemState>().invulnerableOnInput;
+            ps.parryCoolDown += other.GetComponent<ItemState>().parryCoolDown;
+            ps.invulnerabilityLength += other.GetComponent<ItemState>().invulnerabilityLength;
+            ps.invulnerabilityCoolDown += other.GetComponent<ItemState>().invulnerabilityCoolDown;
+            other.GetComponent<ItemState>().checkstats();
+            GetComponent<PlayerMovement>().ReCalibrateDash();
+            GetComponent<WeaponBehaviour>().ReCalibrateSpreadFactor();
             Destroy(other.gameObject);
-            Debug.Log("Ammo + 1");
-            ps.maxAmmo++;
-            ps.magAmmo++;
-        }
-        else if (other.gameObject.name == "MaxDashIncrease(Clone)")
-        {
-            Destroy(other.gameObject);
-            Debug.Log("Dash + 1");
-            ps.numOfDash++;
-            FindObjectOfType<PlayerMovement>().ReCalibrateDash();
-        }
-        else if (other.gameObject.name == "MaxJumpIncrease(Clone)")
-        {
-            Destroy(other.gameObject);
-            Debug.Log("Jump + 1");
-            ps.numOfExtraJump++;
-        }
-        else if (other.gameObject.name == "EnableDashParry(Clone)")
-        {
-            Destroy(other.gameObject);
-            Debug.Log("DashParry Active");
-            ps.dashIsParry = true;
-        }
-        else if (other.gameObject.name == "EnableAmmoOnParry(Clone)")
-        {
-            Destroy(other.gameObject);
-            Debug.Log("AmmoParry On Active");
-            ps.ammoOnParry = true;
-        }
-        else if (other.gameObject.name == "EnableLimitedInvulnerable(Clone)")
-        {
-            Destroy(other.gameObject);
-            Debug.Log("Invulnerability Active");
-            ps.invulnerableOnInput = true;
         }
         if (other.name == "End"){
             SceneManager.LoadScene(0);

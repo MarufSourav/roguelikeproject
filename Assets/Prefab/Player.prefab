@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059effb517281044b8a92c8d50cdf0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 4
+  smooth: 2
   multiplier: 2
 --- !u!1 &5870362118070552476
 GameObject:

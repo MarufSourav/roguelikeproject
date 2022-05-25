@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.014612929, g: 0.06479142, b: 0.12845314, a: 1}
+  m_IndirectSpecularColor: {r: 0.055769183, g: 0.10977832, b: 0.17210439, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -314,51 +314,6 @@ MonoBehaviour:
   rangeEnemy: 0
   meleeEnemy: 1
   botActive: 0
---- !u!1 &142554287
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 142554291}
-  - component: {fileID: 142554288}
-  m_Layer: 0
-  m_Name: enhanceSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &142554288
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142554287}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &142554291
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142554287}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 1.53, z: 2.25}
-  m_LocalScale: {x: 1, y: 0.05, z: 1}
-  m_Children:
-  - {fileID: 2129977683}
-  m_Father: {fileID: 324352147}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180464780
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,8 +903,6 @@ Transform:
   - {fileID: 1549807610}
   - {fileID: 207243361}
   - {fileID: 2043491156}
-  - {fileID: 142554291}
-  - {fileID: 683452955}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1492,7 +1445,7 @@ GameObject:
   - component: {fileID: 683452955}
   - component: {fileID: 683452952}
   m_Layer: 0
-  m_Name: abilitySpawner
+  m_Name: enhanceSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1519,12 +1472,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683452951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 1.53, z: -2.25}
+  m_LocalPosition: {x: 0, y: 1.53, z: 0}
   m_LocalScale: {x: 1, y: 0.05, z: 1}
   m_Children:
   - {fileID: 2132328619}
-  m_Father: {fileID: 324352147}
-  m_RootOrder: 16
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &691042886
 PrefabInstance:
@@ -2208,15 +2161,127 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e48b91e3f611324eb2eec43f46f656a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
-  spawnenhance: 0
-  spawnability: 0
-  MaxAmmoIncrease: {fileID: 2820018965793208577, guid: 312c13a7f7f11874cb6450d2ce9b5d67, type: 3}
-  MaxDashIncrease: {fileID: 2820018965793208577, guid: ce151f5d9bc48d94988d0129eb5f6ab9, type: 3}
-  MaxJumpIncrease: {fileID: 2820018965793208577, guid: 1a6a0374ab963c44ebc7067eafd7066a, type: 3}
-  EnableDashParry: {fileID: 2820018965793208577, guid: e3298db63132e5f48a49ee2dffea8fd3, type: 3}
-  EnableAmmoOnParry: {fileID: 2820018965793208577, guid: 1aadd813a5204c6439f23f3ba0647b37, type: 3}
-  EnableLimitedInvulnerable: {fileID: 2820018965793208577, guid: 4db85bfddf881e345b03c01513ecb025, type: 3}
+  items:
+  - Name: MaxAmmoIncrease
+    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: b5ec0810610786d49b679c2f3eaa360d, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 0
+    dashCoolDown: 0
+    moveSpeed: 0
+    magAmmo: 1
+    maxAmmo: 1
+    fireRate: 0
+    reloadTime: 0
+    spreadFactor: 0
+    recoilAmount: 0
+    damage: 0
+    dashIsParry: 0
+    ammoOnParry: 0
+    invulnerableOnInput: 0
+    parryCoolDown: 0
+    invulnerabilityLength: 0
+    invulnerabilityCoolDown: 0
+  - Name: MaxDashIncrease
+    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 66c1bede86bcff34d80f36c1feedd4ed, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 1
+    dashCoolDown: 0
+    moveSpeed: 0
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 0
+    reloadTime: 0
+    spreadFactor: 0
+    recoilAmount: 0
+    damage: 0
+    dashIsParry: 0
+    ammoOnParry: 0
+    invulnerableOnInput: 0
+    parryCoolDown: 0
+    invulnerabilityLength: 0
+    invulnerabilityCoolDown: 0
+  - Name: MaxJumpIncrease
+    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 31eba3c9e8525804d8d12b0bd676f867, type: 3}
+    numOfExtraJump: 1
+    numOfDash: 0
+    dashCoolDown: 0
+    moveSpeed: 0
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 0
+    reloadTime: 0
+    spreadFactor: 0
+    recoilAmount: 0
+    damage: 0
+    dashIsParry: 0
+    ammoOnParry: 0
+    invulnerableOnInput: 0
+    parryCoolDown: 0
+    invulnerabilityLength: 0
+    invulnerabilityCoolDown: 0
+  - Name: Parry Dash
+    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 78cdda00ff9c48844ab433d507c9250c, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 0
+    dashCoolDown: 0
+    moveSpeed: 0
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 0
+    reloadTime: 0
+    spreadFactor: 0
+    recoilAmount: 0
+    damage: 0
+    dashIsParry: 1
+    ammoOnParry: 0
+    invulnerableOnInput: 0
+    parryCoolDown: 0
+    invulnerabilityLength: 0
+    invulnerabilityCoolDown: 0
+  - Name: Ammo On Parry
+    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 61fe93a926b1903468c1087c3c65b968, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 0
+    dashCoolDown: 0
+    moveSpeed: 0
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 0
+    reloadTime: 0
+    spreadFactor: 0
+    recoilAmount: 0
+    damage: 0
+    dashIsParry: 0
+    ammoOnParry: 1
+    invulnerableOnInput: 0
+    parryCoolDown: 0
+    invulnerabilityLength: 0
+    invulnerabilityCoolDown: 0
+  - Name: Invulnerability
+    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 1f4c7f7d2011c0d40b09a610e2a59ca5, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 0
+    dashCoolDown: 0
+    moveSpeed: 0
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 0
+    reloadTime: 0
+    spreadFactor: 0
+    recoilAmount: 0
+    damage: 0
+    dashIsParry: 0
+    ammoOnParry: 0
+    invulnerableOnInput: 1
+    parryCoolDown: 0
+    invulnerabilityLength: 0
+    invulnerabilityCoolDown: 0
 --- !u!1 &919400300
 GameObject:
   m_ObjectHideFlags: 0
@@ -4230,101 +4295,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5699566885779427597, guid: 8ae97b37812b06b40b7a413a96b17581, type: 3}
   m_PrefabInstance: {fileID: 1470918941}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2129977682
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2129977683}
-  - component: {fileID: 2129977686}
-  - component: {fileID: 2129977685}
-  - component: {fileID: 2129977684}
-  m_Layer: 0
-  m_Name: mesh
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2129977683
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129977682}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -11, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 142554291}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2129977684
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129977682}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &2129977685
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129977682}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: aa9490e2c4e168543a0ddba79b2ce2cb, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &2129977686
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129977682}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2132328618
 GameObject:
   m_ObjectHideFlags: 0
@@ -4457,7 +4427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5899633739183586787, guid: 94272a89350355c4f9b278ae54d1429d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.38
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5899633739183586787, guid: 94272a89350355c4f9b278ae54d1429d, type: 3}
       propertyPath: m_LocalPosition.z

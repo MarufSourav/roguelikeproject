@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     public float airMultiplier = 0.4f;
-    float verticalMovement;
-    float horizontalMovement;
+    public float verticalMovement;
+    public float horizontalMovement;
     Rigidbody rb;
     Vector3 moveDirection;
     bool readyToMove = true;
@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump")]    
     public bool isGrounded;
+
+    public bool parryCoolDown;
 
     private void Start(){
         ps.dashSpeed = ps.moveSpeed;
@@ -39,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         ps.ammoOnParry = false;
         ps.parry = false;
         ps.readyToParry = true;
-        ps.parryCoolDown = 1.2f;
+        parryCoolDown = false;
         ps.parryWindow = 0.1f;
         ps.invulnerable = false;
         ps.invulnerableReady = true;
@@ -53,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1 + 0.1f);
+       
         playerInput();
         controlDrag();        
         if (Input.GetKeyDown(KeyCode.F) && ps.readyToParry)
@@ -105,12 +108,18 @@ public class PlayerMovement : MonoBehaviour
     {
         ps.readyToParry = false;
         ps.parry = true;
+        parryCoolDown = true;
         GetComponent<BoxCollider>().enabled = true;
         Invoke("ParryEnd", ps.parryWindow);
-        Invoke("ParryReady", ps.parryCoolDown);
+        Invoke("ParryCoolDownReset", ps.parryCoolDown);
+    }
+    void ParryCoolDownReset() { ps.readyToParry = true; parryCoolDown = false; }
+    void DashParry() 
+    {
+        ps.parry = true;
+        Invoke("ParryEnd", ps.parryWindow);
     }
     void ParryEnd(){GetComponent<BoxCollider>().enabled = false; ps.parry = false; }
-    void ParryReady() { ps.readyToParry = true; }
     void Jump(){
         nOj--;
         if (isGrounded) 
@@ -136,9 +145,9 @@ public class PlayerMovement : MonoBehaviour
     void Dash()
     {
         CancelInvoke("ResetMove");
+        ps.readyToParry = false;
         if (ps.dashIsParry)
-            Parry();
-
+            DashParry();
         FindObjectOfType<AudioManager>().Stop("WalkingSound");
         dashing = true;
         nOd--;
@@ -154,8 +163,17 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(transform.forward * (ps.dashSpeed), ForceMode.Impulse);
     }
     void ResetDash() { nOd++; }
-    public void ReCalibrateDash() { CancelInvoke("ResetDash"); nOd = ps.numOfDash; }
-    void ResetMove() { rb.drag = airDrag; readyToMove = true; dashing = false; }
+    public void ReCalibrateDash() { 
+        CancelInvoke("ResetDash"); 
+        nOd = ps.numOfDash;
+    }
+    void ResetMove() {
+        rb.drag = airDrag;
+        readyToMove = true;
+        dashing = false;
+        if (!parryCoolDown)
+            ps.readyToParry = true;
+    }
     void movePlayer()
     {        
         if (isGrounded) 

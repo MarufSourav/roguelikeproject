@@ -38,15 +38,6 @@ public class LevelLogic : MonoBehaviour
                 end.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("EndIndicatorAnnouncementSound");
             }
-                
-            else 
-            {
-                if (whatIsRound % 3 == 0) 
-                {
-                    FindObjectOfType<ItemSpawner>().SpawnAbility();
-                    FindObjectOfType<AudioManager>().Play("LegendarySpawn");
-                }                    
-            }
             FindObjectOfType<ItemSpawner>().SpawnEnhance();
             Invoke("startSpawner", 10f);
         }        

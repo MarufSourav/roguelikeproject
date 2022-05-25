@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6116547e5f0064588b4a8c83ec5727, type: 3}
   m_Name: Player State
   m_EditorClassIdentifier: 
-  AmountToFrag: 4
+  AmountToFrag: 6
   gunType: Rifle
   numOfExtraJump: 0
   numOfDash: 1
@@ -21,12 +21,12 @@ MonoBehaviour:
   dashSpeed: 120
   jumpForce: 10
   moveSpeed: 150
-  magAmmo: 16
+  magAmmo: 20
   maxAmmo: 20
   adsSpeed: 15
   fireRate: 7
   reloadTime: 1.5
-  spreadFactor: 0.01
+  spreadFactor: 0.02
   recoilAmount: -0.5
   damage: 20
   parry: 0

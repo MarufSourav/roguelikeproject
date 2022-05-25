@@ -37,8 +37,8 @@ public class EffectOnHit : MonoBehaviour{
             BulletSpawnPoint = RBSP;
         RaycastHit hit;
         Vector3 shootDirection = gunMuzzle.transform.forward;
-        shootDirection.x += Random.Range(-ps.spreadFactor, ps.spreadFactor);
-        shootDirection.y += Random.Range(-ps.spreadFactor, ps.spreadFactor);
+        shootDirection.x += Random.Range(-GetComponent<WeaponBehaviour>().spreadFactor, GetComponent<WeaponBehaviour>().spreadFactor);
+        shootDirection.y += Random.Range(-GetComponent<WeaponBehaviour>().spreadFactor, GetComponent<WeaponBehaviour>().spreadFactor);
         if (Physics.Raycast(gunMuzzle.transform.position, shootDirection, out hit)){
             TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, Quaternion.identity);
             StartCoroutine(SpawnTrail(trail, hit));
