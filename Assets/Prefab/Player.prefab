@@ -181,7 +181,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5870362116886723446}
-  - component: {fileID: 5870362116886723447}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -204,23 +203,6 @@ Transform:
   m_Father: {fileID: 5870362117775602270}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5870362116886723447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5870362116886723445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e15f4428f3049274c8219acfea02025e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sliderValue: {fileID: 0}
-  sensitivity: {x: 130, y: -130}
-  maxVerticalAngleFromHorizon: 90
-  rotationDirections: 2
-  ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
 --- !u!1 &5870362117775602266
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,9 +309,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliderValue: {fileID: 0}
-  sensitivity: {x: 130, y: -130}
+  playerCamera: {fileID: 5870362116886723446}
+  sensitivity: 0
   maxVerticalAngleFromHorizon: 90
-  rotationDirections: 1
   ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
 --- !u!54 &5870362117775602271
 Rigidbody:
@@ -364,9 +346,12 @@ MonoBehaviour:
   nOd: 0
   dashing: 0
   airMultiplier: 0.01
+  verticalMovement: 0
+  horizontalMovement: 0
   groundDrag: 17
   airDrag: 0.01
   isGrounded: 0
+  parryCoolDown: 0
 --- !u!114 &5870362117775602242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,11 +367,13 @@ MonoBehaviour:
   Reloding: 0
   WeaponEquip: 0
   infiniteAmmo: 0
+  rifleGunShotAmmount: 0
+  spreadFactor: 0
   MainCamera: {fileID: 5870362116403794604}
   ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
   StartEndTraining: {fileID: 0}
   Effect: {fileID: 5870362117775602243}
-  mlsCamera: {fileID: 5870362116886723447}
+  mlsCamera: {fileID: 0}
   mlsPlayer: {fileID: 5870362117775602240}
   defaultWeaponPostion: {x: 0, y: 0, z: 0}
   adsWeaponPostion: {x: 0, y: 0, z: 0}

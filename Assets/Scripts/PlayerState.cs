@@ -15,7 +15,7 @@ public class PlayerState : ScriptableObject
     //Movement Stats    
     public int numOfExtraJump;
     public int numOfDash;
-    public Vector2 sensitivity;
+    public float sensitivity;
 
     //Dash Stats
     public float dashCoolDown;

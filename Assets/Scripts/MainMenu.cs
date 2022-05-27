@@ -44,6 +44,7 @@ public class MainMenu : MonoBehaviour
         {
             FindObjectOfType<WeaponBehaviour>().enabled = false;
             FindObjectOfType<PlayerMovement>().enabled = false;
+            FindObjectOfType<MouseLook>().enabled = false;
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -54,6 +55,7 @@ public class MainMenu : MonoBehaviour
         {
             FindObjectOfType<WeaponBehaviour>().enabled = true;
             FindObjectOfType<PlayerMovement>().enabled = true;
+            FindObjectOfType<MouseLook>().enabled = true;
             Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -61,8 +63,7 @@ public class MainMenu : MonoBehaviour
             menuActive = !menuActive;
         }
     }
-    public void exit() 
-    {
+    public void exit(){
         Application.Quit();
     }
 }
