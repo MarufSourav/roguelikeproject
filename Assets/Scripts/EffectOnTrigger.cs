@@ -10,29 +10,7 @@ public class EffectOnTrigger : MonoBehaviour
     private void Start(){weapon = GetComponent<WeaponBehaviour>();}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pistol" && !weapon.WeaponEquip)
-        {
-            weapon.gunPistol.SetActive(true);
-            weapon.gunRifle.SetActive(false);
-            if (ps.magAmmo - 3 == 0)
-                weapon.AmmoCounterPistol.color = Color.red;
-            weapon.WeaponEquip = true;
-            weapon.defaultWeaponPostion = weapon.gunPistol.transform.localPosition;
-            weapon.adsWeaponPostion.x = 0.0023f;
-            weapon.adsWeaponPostion.y = -0.027f;
-            weapon.adsWeaponPostion.z = 0.607f;
-            ps.magAmmo = weapon.gunPistol.GetComponent<WeaponState>().defaultAmmo;
-            ps.recoilAmount = -2f;
-            ps.gunType = "Pistol";
-            ps.adsSpeed = 10f;
-            ps.fireRate = 3f;
-            ps.reloadTime = 2f;
-            ps.damage = 30f;
-            ps.spreadFactor = 0.05f;
-            ps.moveSpeed = 140f;
-            Destroy(other.gameObject);
-        }
-        else if (other.tag == "Rifle" && !weapon.WeaponEquip)
+        if (other.tag == "Rifle" && !weapon.WeaponEquip)
         {
             weapon.gunPistol.SetActive(false);
             weapon.gunRifle.SetActive(true);

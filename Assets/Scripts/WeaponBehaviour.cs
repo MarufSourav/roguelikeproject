@@ -16,8 +16,6 @@ public class WeaponBehaviour : MonoBehaviour
     [Header("Scripts")]    
     public TrainingBots StartEndTraining;
     public EffectOnHit Effect;
-    public MouseLook mlsCamera;
-    public MouseLook mlsPlayer;
 
     [Header("Animation")]
     public Vector3 defaultWeaponPostion;
@@ -46,100 +44,13 @@ public class WeaponBehaviour : MonoBehaviour
     public TextMeshProUGUI AmmoCounterRifle;
 
     private float nextTimeToFire = 0f;
-    private void Start()
-    {
+    private void Start(){
         spreadFactor = ps.spreadFactor;
     }
     public void ReCalibrateSpreadFactor() { spreadFactor = ps.spreadFactor; }
     void Update()
     {
-        if (ps.gunType == "Pistol")//Pistol ---------------------------------------------------------------- //
-        {
-            AmmoCounterPistol.text = ps.magAmmo.ToString();
-            //Pistol Fire>>>>>>>>>>>>>>>>>>>>>>>                      
-            if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && Reloding == false)
-            {
-                if (ps.magAmmo == 0)
-                {
-                    Reloding = true;
-                    Invoke("Reload", ps.reloadTime);
-                }
-                else
-                {
-                    PistolShoot.transform.localPosition = new Vector3(0, 0, -0.07f);
-                    PistolShoot.transform.Rotate(new Vector3(-5f, 0, 0)); 
-                    nextTimeToFire = Time.time + 1f / ps.fireRate;
-                    gunShot();
-                }
-            }
-            else 
-            {
-                cameraResetTime = 8f;
-                PistolShoot.transform.localPosition = Vector3.Lerp(PistolShoot.transform.localPosition, new Vector3(0, -0.01f, -0.1f), recoilReset * Time.deltaTime);
-                PistolShoot.transform.localRotation = Quaternion.Slerp(PistolShoot.transform.localRotation, Quaternion.Euler(0, 0, 0), recoilReset * Time.deltaTime);
-                MainCamera.transform.localRotation = Quaternion.Slerp(MainCamera.transform.localRotation,Quaternion.Euler(0, 0, 0), cameraResetTime * Time.deltaTime);
-            }
-            //Pistol Fire>>>>>>>>>>>>>>>>>>>>>>>
-            //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>>
-            if (Input.GetButton("Fire2") && Reloding == false)
-            {
-                GetComponentInChildren<WeaponSway>().multiplier = 0f;
-                gunPistol.transform.localPosition = Vector3.Lerp(gunPistol.transform.localPosition, adsWeaponPostion, ps.adsSpeed * Time.deltaTime);
-                crosshair.SetActive(false);
-                if (ps.spreadFactor > 0.0f) 
-                {
-                    ps.spreadFactor -= 0.01f * ps.adsSpeed * Time.deltaTime * 2f;
-                    if (ps.spreadFactor < 0)
-                        ps.spreadFactor = 0f;
-                }
-                ps.moveSpeed = 80f;
-            }
-            else
-            {
-                GetComponentInChildren<WeaponSway>().multiplier = 2f;
-                gunPistol.transform.localPosition = Vector3.Lerp(gunPistol.transform.localPosition, defaultWeaponPostion, ps.adsSpeed * Time.deltaTime);
-                crosshair.SetActive(true);
-                if (ps.spreadFactor < 0.05f)
-                {
-                    ps.spreadFactor += 0.01f * ps.adsSpeed * Time.deltaTime * 2;
-                    if (ps.spreadFactor > 0.05f)ps.spreadFactor = 0.05f;
-                }
-                ps.moveSpeed = 140f;
-            }
-            //Pistol ADS>>>>>>>>>>>>>>>>>>>>>>>>
-            //Pistol Reload>>>>>>>>>>>>>>>>>>>>>
-            if (Reloding)
-            {
-                reloadTime += 1f * Time.deltaTime;
-                PistolReload.transform.localPosition = Vector3.Lerp(PistolReload.transform.localPosition, new Vector3(0.15f, 0f, 0f), (12f / ps.reloadTime) * Time.deltaTime);
-                PistolReload.transform.localRotation = Quaternion.Slerp(PistolReload.transform.localRotation, Quaternion.Euler(0f, 0f, -50f), (12f / ps.reloadTime) * Time.deltaTime);
-            }
-            else
-            {
-                PistolReload.transform.localPosition = Vector3.Lerp(PistolReload.transform.localPosition, Vector3.zero, (12f / ps.reloadTime) * Time.deltaTime);
-                PistolReload.transform.localRotation = Quaternion.Slerp(PistolReload.transform.localRotation, Quaternion.Euler(0, 0, 0), (12f / ps.reloadTime) * Time.deltaTime);
-            }
-            if (Input.GetButtonDown("Fire3") && ps.magAmmo < 8 && Reloding == false)
-            {
-                Reloding = true;
-                Invoke("Reload", ps.reloadTime);
-            }
-            //Pistol Reload>>>>>>>>>>>>>>>>>>>>>  
-            //Pistol Drop>>>>>>>>>>>>>>>>>>>>>>>
-            if (Input.GetButtonDown("Drop"))
-            {
-                reloadTime = 0f;
-                CancelInvoke("Reload");
-                crosshair.SetActive(false);
-                WeaponEquip = false;
-                Reloding = false;
-                gunPistol.GetComponent<WeaponState>().defaultAmmo = ps.magAmmo;
-                Instantiate(gunPistol, gunDropSpawn.transform.position, gunPistol.transform.rotation);
-                ps.gunType = " ";
-            }
-            //Pistol Drop>>>>>>>>>>>>>>>>>>>>>>>
-        }
-        else if (ps.gunType == "Rifle")//Rifle ---------------------------------------------------------------- // 
+        if (ps.gunType == "Rifle")//Rifle ---------------------------------------------------------------- // 
         {
             AmmoCounterRifle.text = ps.magAmmo.ToString();
             if (ps.magAmmo > 5)
@@ -269,13 +180,11 @@ public class WeaponBehaviour : MonoBehaviour
             ps.moveSpeed = 150f;
         }            
     }    
-    public void SpreadMath()
-    {        
+    public void SpreadMath(){        
         if (timePressed > 0.5f)
             spreadFactor *= timePressed * 4f;
     }
-    private void gunShot()
-    {
+    private void gunShot(){
         rifleGunShotAmmount++;
         if (!infiniteAmmo)
             ps.magAmmo--;        
@@ -301,8 +210,7 @@ public class WeaponBehaviour : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("RifleGunSound");
         }
     }
-    private void Reload()
-    {
+    private void Reload(){
         if (ps.gunType == "Pistol")
             ps.magAmmo = 8;
         else if (ps.gunType == "Rifle") 

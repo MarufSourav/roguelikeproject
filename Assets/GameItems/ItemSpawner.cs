@@ -5,19 +5,8 @@ public class ItemSpawner : MonoBehaviour
 {
     int spawnenhance;
     GameObject enhanceSpawner;
-    /*
-    public GameObject MaxAmmoIncrease;
-    public GameObject MaxDashIncrease;
-    public GameObject MaxJumpIncrease;
-    
-    public GameObject EnableDashParry;
-    public GameObject EnableAmmoOnParry;
-    public GameObject EnableLimitedInvulnerable;
-
-    */
     public ItemStruct[] items;
-    private void Start()
-    {
+    private void Start(){
         enhanceSpawner = GameObject.Find("enhanceSpawner");
     }
     public void SpawnEnhance() 

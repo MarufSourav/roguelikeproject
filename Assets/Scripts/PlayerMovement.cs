@@ -55,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1 + 0.1f);
-       
         playerInput();
         controlDrag();        
         if (Input.GetKeyDown(KeyCode.F) && ps.readyToParry)
@@ -87,8 +86,7 @@ public class PlayerMovement : MonoBehaviour
                 moving = true;
             }
         }
-        else 
-        {
+        else{
             if(moving)
                 FindObjectOfType<AudioManager>().Stop("WalkingSound");
             moving=false;
