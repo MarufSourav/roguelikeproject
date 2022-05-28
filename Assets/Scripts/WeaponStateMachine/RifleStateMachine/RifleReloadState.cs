@@ -3,6 +3,7 @@ using UnityEngine;
 public class RifleReloadState : RifleBaseState
 {
     public override void EnterState(RifleStateManager rifle){
+        rifle.crosshair.SetActive(true);
         rifle.cameraResetTime = 15f;
         rifle.rifleGunShotAmmount = 0;
         rifle.timePressed = 0f;

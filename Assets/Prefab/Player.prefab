@@ -583,7 +583,8 @@ PrefabInstance:
       propertyPath: MainCamera
       value: 
       objectReference: {fileID: 5870362116403794607}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6723634375654165787, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e8d3e2fecb68a2b41b594682d55b3bcd, type: 3}
 --- !u!1 &2890709537431732008 stripped
 GameObject:
