@@ -104,3 +104,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: RifleReloadP1
+    clip: {fileID: 8300000, guid: 098bef029c42e0948a5c9af191ed64fa, type: 3}
+    volume: 0.32
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RifleReloadP2
+    clip: {fileID: 8300000, guid: 73fec3b8abfa42d4daf36d835ccdf9a5, type: 3}
+    volume: 0.32
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
