@@ -89,7 +89,7 @@ public class RifleActiveState : RifleBaseState
                 rifle.MainCamera.Rotate(new Vector3(rifle.ps.recoilAmount, rifle.ps.recoilAmount, 0));
             else
                 rifle.MainCamera.Rotate(new Vector3(rifle.ps.recoilAmount, 0, 0));
-            rifle.audio.Play("RifleGunSound");
+            rifle.audioSystem.Play("RifleGunSound");
         }
     }
 }

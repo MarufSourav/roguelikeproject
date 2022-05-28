@@ -30,7 +30,6 @@ public class LevelLogic : MonoBehaviour
             FindObjectOfType<HordeSpawnLogic>().stopSpawner();
             roundNumber.color = Color.black;
             whatIsRound++;
-            Debug.Log("Finished Round");
             roundEnemy = (int)(roundEnemy * 1.25f);
             ps.AmountToFrag = roundEnemy;
             if (whatIsRound == 12) 

@@ -13,6 +13,13 @@ public class projectileMotion : MonoBehaviour
     void parryIndicator() 
     {
         FindObjectOfType<AudioManager>().Play("ParrySound");
+        if (ps.slowOnParry)
+        {
+            Invoker.InvokeDelayed(ResetTime, 1f);
+            //FindObjectOfType<RifleStateManager>().enabled = false;
+            Time.timeScale = 0.5f;
+        }
+        
         if (ps.ammoOnParry)
             ps.magAmmo = ps.maxAmmo;        
         parriedProjectile = true;
@@ -45,6 +52,10 @@ public class projectileMotion : MonoBehaviour
             other.gameObject.GetComponentInParent<EnemyHP>().Die();            
             destroyProjectile();
         }
+    }
+    void ResetTime() {
+        //FindObjectOfType<RifleStateManager>().enabled = true;
+        Time.timeScale = 1f;
     }
     private void Start()
     {

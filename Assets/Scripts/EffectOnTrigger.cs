@@ -43,13 +43,17 @@ public class EffectOnTrigger : MonoBehaviour
             ps.spreadFactor += other.GetComponent<ItemState>().spreadFactor;
             ps.recoilAmount -= other.GetComponent<ItemState>().recoilAmount;
             ps.damage += other.GetComponent<ItemState>().damage;
-            ps.dashIsParry = other.GetComponent<ItemState>().dashIsParry;
-            ps.ammoOnParry = other.GetComponent<ItemState>().ammoOnParry;
-            ps.invulnerableOnInput = other.GetComponent<ItemState>().invulnerableOnInput;
+            if(!ps.dashIsParry)
+                ps.dashIsParry = other.GetComponent<ItemState>().dashIsParry;
+            if(!ps.ammoOnParry)
+                ps.ammoOnParry = other.GetComponent<ItemState>().ammoOnParry;
+            if (!ps.slowOnParry)
+                ps.slowOnParry = other.GetComponent<ItemState>().slowOnParry;
+            if (!ps.invulnerableOnInput)
+                ps.invulnerableOnInput = other.GetComponent<ItemState>().invulnerableOnInput;
             ps.parryCoolDown += other.GetComponent<ItemState>().parryCoolDown;
             ps.invulnerabilityLength += other.GetComponent<ItemState>().invulnerabilityLength;
             ps.invulnerabilityCoolDown += other.GetComponent<ItemState>().invulnerabilityCoolDown;
-            other.GetComponent<ItemState>().checkstats();
             GetComponent<PlayerMovement>().ReCalibrateDash();
             GetComponentInChildren<RifleStateManager>().ReCalibrateSpreadFactor();
             Destroy(other.gameObject);

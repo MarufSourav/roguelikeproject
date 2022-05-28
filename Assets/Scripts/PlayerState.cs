@@ -38,6 +38,7 @@ public class PlayerState : ScriptableObject
     public bool readyToParry;
     public bool dashIsParry;
     public bool ammoOnParry;
+    public bool slowOnParry;
     public float parryWindow;
     public float parryCoolDown;
 

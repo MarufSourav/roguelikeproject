@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Audio;
 using UnityEngine;
 using TMPro;
 public class RifleStateManager : MonoBehaviour
@@ -11,7 +10,7 @@ public class RifleStateManager : MonoBehaviour
     public RifleActiveState rifleActive = new RifleActiveState();
     public RifleReloadState rifleReload = new RifleReloadState();
     [Header("Audio")]
-    public AudioManager audio;
+    public AudioManager audioSystem;
     [Header("Scripts")]
     public EffectOnHit Effect;
     [Header("PlayerState Scriptable Object")]
@@ -33,7 +32,7 @@ public class RifleStateManager : MonoBehaviour
     public GameObject crosshair;
     // Start is called before the first frame update
     void Start(){
-        audio = FindObjectOfType<AudioManager>();
+        audioSystem = FindObjectOfType<AudioManager>();
         Effect = GetComponent<EffectOnHit>();
         AmmoCounterRifle.text = ps.magAmmo.ToString();
         currentState = rifleActive;

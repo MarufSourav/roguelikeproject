@@ -18,6 +18,7 @@ public class ItemStruct
     public float damage;
     public bool dashIsParry;
     public bool ammoOnParry;
+    public bool slowOnParry;
     public bool invulnerableOnInput;
     public float parryCoolDown;
     public float invulnerabilityLength;

@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         ps.readyToParry = true;
         parryCoolDown = false;
         ps.parryWindow = 0.1f;
+        ps.slowOnParry = false;
         ps.invulnerable = false;
         ps.invulnerableReady = true;
         ps.invulnerableOnInput = false;

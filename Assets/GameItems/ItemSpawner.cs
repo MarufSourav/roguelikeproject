@@ -26,6 +26,7 @@ public class ItemSpawner : MonoBehaviour
         items[spawnenhance].item.GetComponent<ItemState>().damage = items[spawnenhance].damage;
         items[spawnenhance].item.GetComponent<ItemState>().dashIsParry = items[spawnenhance].dashIsParry;
         items[spawnenhance].item.GetComponent<ItemState>().ammoOnParry = items[spawnenhance].ammoOnParry;
+        items[spawnenhance].item.GetComponent<ItemState>().slowOnParry = items[spawnenhance].slowOnParry;
         items[spawnenhance].item.GetComponent<ItemState>().invulnerableOnInput = items[spawnenhance].invulnerableOnInput;
         items[spawnenhance].item.GetComponent<ItemState>().parryCoolDown = items[spawnenhance].parryCoolDown;
         items[spawnenhance].item.GetComponent<ItemState>().invulnerabilityLength = items[spawnenhance].invulnerabilityLength;

@@ -28,7 +28,7 @@ public class RifleReloadState : RifleBaseState
         if (rifle.reloadTime > 0.3f && rifle.reloadTime < rifle.ps.reloadTime * 0.75f)
         {
             if (!alreadyPlayedP2) {
-                rifle.audio.Play("RifleReloadP2");
+                rifle.audioSystem.Play("RifleReloadP2");
                 alreadyPlayedP2 = true;
             }                
             rifle.RifleMag.transform.localPosition = Vector3.LerpUnclamped(rifle.RifleMag.transform.localPosition, new Vector3(0, -0.2f, -0.045f), (12f / rifle.ps.reloadTime) * Time.deltaTime);
@@ -38,7 +38,7 @@ public class RifleReloadState : RifleBaseState
 
         if (rifle.reloadTime >= rifle.ps.reloadTime * 0.85f && !alreadyPlayedP1)
         {
-            rifle.audio.Play("RifleReloadP1");
+            rifle.audioSystem.Play("RifleReloadP1");
             alreadyPlayedP1 = true;
         }
         if (rifle.reloadTime >= rifle.ps.reloadTime)

@@ -18,22 +18,9 @@ public class ItemState : MonoBehaviour
     public float damage;
     public bool dashIsParry;
     public bool ammoOnParry;
+    public bool slowOnParry;
     public bool invulnerableOnInput;
     public float parryCoolDown;
     public float invulnerabilityLength;
     public float invulnerabilityCoolDown;
-    public void checkstats() {
-        if (ps.ammoOnParry){
-            ps.maxAmmo++;
-            ps.magAmmo++;
-        }
-        if (ps.dashIsParry)
-            ps.numOfDash++;
-        if (ps.invulnerableOnInput) {
-            ps.numOfDash++;
-            ps.maxAmmo++;
-            ps.magAmmo++;
-            ps.numOfExtraJump++;
-        }
-    }
 }
