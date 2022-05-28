@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-public class EffectOnHit : MonoBehaviour{
+public class EffectOnHit : MonoBehaviour
+{
     public Transform gunMuzzle;
-    public Transform PBSP;
     public Transform RBSP;
     Transform BulletSpawnPoint;    
     public TrailRenderer BulletTrail;
     public PlayerState ps;
-    public WeaponBehaviour IA;
+    public RifleStateManager RSM;
     GameObject hitMarker;
     private void Start() {
         hitMarker = GameObject.Find("HitMarker");
@@ -31,14 +31,12 @@ public class EffectOnHit : MonoBehaviour{
     }
     public void Effect() 
     {
-        if (ps.gunType == "Pistol")
-            BulletSpawnPoint = PBSP;
-        else if (ps.gunType == "Rifle")
+        if (ps.gunType == "Rifle")
             BulletSpawnPoint = RBSP;
         RaycastHit hit;
         Vector3 shootDirection = gunMuzzle.transform.forward;
-        shootDirection.x += Random.Range(-GetComponent<WeaponBehaviour>().spreadFactor, GetComponent<WeaponBehaviour>().spreadFactor);
-        shootDirection.y += Random.Range(-GetComponent<WeaponBehaviour>().spreadFactor, GetComponent<WeaponBehaviour>().spreadFactor);
+        shootDirection.x += Random.Range(-GetComponent<RifleStateManager>().spreadFactor, GetComponent<RifleStateManager>().spreadFactor);
+        shootDirection.y += Random.Range(-GetComponent<RifleStateManager>().spreadFactor, GetComponent<RifleStateManager>().spreadFactor);
         if (Physics.Raycast(gunMuzzle.transform.position, shootDirection, out hit)){
             TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, Quaternion.identity);
             StartCoroutine(SpawnTrail(trail, hit));
@@ -69,9 +67,9 @@ public class EffectOnHit : MonoBehaviour{
                 FindObjectOfType<TrainingBots>().StartEndTraining();
             else if (hit.transform.name == "InfiniteAmmo Button")
             {
-                IA.infiniteAmmo = !IA.infiniteAmmo;
+                RSM.infiniteAmmo = !RSM.infiniteAmmo;
                 Image IAI = hit.transform.GetComponent<Image>();
-                if (IA.infiniteAmmo)
+                if (RSM.infiniteAmmo)
                     IAI.color = Color.black;
                 else
                     IAI.color = Color.white;
@@ -82,8 +80,7 @@ public class EffectOnHit : MonoBehaviour{
             }
         }
     }
-    void hitmarkerActive() 
-    {
+    void hitmarkerActive(){
         hitMarker.SetActive(false);
     }
 }

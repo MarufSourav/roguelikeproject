@@ -1,30 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
 public class EffectOnTrigger : MonoBehaviour
 {
     public PlayerState ps;
-    public WeaponBehaviour weapon;
-    private void Start(){weapon = GetComponent<WeaponBehaviour>();}
+    public GameObject WeaponRifle;
+    private void Start(){
+        WeaponRifle.SetActive(false);
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Rifle" && !weapon.WeaponEquip)
+        if (other.tag == "Rifle")
         {
-            weapon.gunPistol.SetActive(false);
-            weapon.gunRifle.SetActive(true);
-            if (ps.magAmmo - 5 == 0)
-                weapon.AmmoCounterPistol.color = Color.red;
-            weapon.WeaponEquip = true;
-            weapon.defaultWeaponPostion = weapon.gunRifle.transform.localPosition;
-            weapon.adsWeaponPostion.x = 0f;
-            weapon.adsWeaponPostion.y = -0.038f;
-            weapon.adsWeaponPostion.z = 0.39f;
-            ps.magAmmo = weapon.gunRifle.GetComponent<WeaponState>().defaultAmmo;
-            ps.maxAmmo = weapon.gunRifle.GetComponent<WeaponState>().maxAmmo;
-            ps.recoilAmount = -0.5f;
+            WeaponRifle.SetActive(true);
+            if (other.GetComponent<WeaponState>().defaultAmmo <= other.GetComponent<WeaponState>().maxAmmo * 0.25f)
+                WeaponRifle.GetComponent<RifleStateManager>().AmmoCounterRifle.color = Color.red;
+            else
+                WeaponRifle.GetComponent<RifleStateManager>().AmmoCounterRifle.color = Color.grey;
+            ps.magAmmo = other.GetComponent<WeaponState>().defaultAmmo;
+            ps.maxAmmo = other.GetComponent<WeaponState>().maxAmmo;
             ps.gunType = "Rifle";
+            ps.recoilAmount = -0.5f;            
             ps.adsSpeed = 15f;
             ps.fireRate = 7f;
             ps.reloadTime = 1.5f;
@@ -54,7 +51,7 @@ public class EffectOnTrigger : MonoBehaviour
             ps.invulnerabilityCoolDown += other.GetComponent<ItemState>().invulnerabilityCoolDown;
             other.GetComponent<ItemState>().checkstats();
             GetComponent<PlayerMovement>().ReCalibrateDash();
-            GetComponent<WeaponBehaviour>().ReCalibrateSpreadFactor();
+            GetComponentInChildren<RifleStateManager>().ReCalibrateSpreadFactor();
             Destroy(other.gameObject);
         }
         if (other.name == "End"){

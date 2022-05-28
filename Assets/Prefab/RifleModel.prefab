@@ -860,7 +860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.0074}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.05, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &6723634374043963380
@@ -2162,11 +2162,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6723634375654165786}
+  - component: {fileID: 2643382971172985145}
   - component: {fileID: 6723634375654165787}
-  - component: {fileID: 7112940380862039617}
-  - component: {fileID: 4175581263668012613}
+  - component: {fileID: 1174714636037447033}
   m_Layer: 7
-  m_Name: Rifle
+  m_Name: RifleModel
   m_TagString: Rifle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2179,7 +2179,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6723634375654165785}
-  m_LocalRotation: {x: 0.008726558, y: 0, z: 0, w: 0.999962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2187,6 +2187,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2643382971172985145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6723634375654165785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138b26921b7a5a44baa38fd06012e601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
+  defaultAmmo: 20
+  maxAmmo: 20
 --- !u!65 &6723634375654165787
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2200,7 +2215,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.057419293, y: 0.19945298, z: 0.52221596}
   m_Center: {x: 0.00029035285, y: -0.0525463, z: -0.055862367}
---- !u!114 &7112940380862039617
+--- !u!114 &1174714636037447033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2209,41 +2224,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6723634375654165785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d8b9371d1ff1745b27e2ba7ce3a135, type: 3}
+  m_Script: {fileID: 11500000, guid: 105e4f692d7629a4286a673b02e3afd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infiniteAmmo: 0
-  Effect: {fileID: 0}
-  ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
-  rifleGunShotAmmount: 0
-  spreadFactor: 0
-  timePressed: 0
-  cameraResetTime: 0
-  recoilReset: 0
-  reloadTime: 0
-  RifleReload: {fileID: 1080695622431257728}
-  RifleShoot: {fileID: 4058047432142165908}
-  RifleMag: {fileID: 124863054610125903}
-  MainCamera: {fileID: 0}
-  AmmoCounterRifle: {fileID: 6723634374043963379}
-  crosshair: {fileID: 0}
---- !u!114 &4175581263668012613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6723634375654165785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af78f6f08b5aa284a8e3265db1850f67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunMuzzle: {fileID: 0}
-  RBSP: {fileID: 1784639068334668473}
-  BulletTrail: {fileID: 4420349896277749935, guid: e0d0948d0117b43428202dac35f292c6, type: 3}
-  ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
-  RSM: {fileID: 7112940380862039617}
 --- !u!1 &6723634375757169807
 GameObject:
   m_ObjectHideFlags: 0

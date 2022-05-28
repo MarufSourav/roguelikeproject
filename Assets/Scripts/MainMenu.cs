@@ -42,7 +42,8 @@ public class MainMenu : MonoBehaviour
     {
         if (!menuActive)
         {
-            FindObjectOfType<WeaponBehaviour>().enabled = false;
+            if(FindObjectOfType<RifleStateManager>() != null)
+                FindObjectOfType<RifleStateManager>().enabled = false;
             FindObjectOfType<PlayerMovement>().enabled = false;
             FindObjectOfType<MouseLook>().enabled = false;
             Time.timeScale = 0f;
@@ -53,7 +54,8 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            FindObjectOfType<WeaponBehaviour>().enabled = true;
+            if (FindObjectOfType<RifleStateManager>() != null)
+                FindObjectOfType<RifleStateManager>().enabled = true;
             FindObjectOfType<PlayerMovement>().enabled = true;
             FindObjectOfType<MouseLook>().enabled = true;
             Time.timeScale = 1f;
