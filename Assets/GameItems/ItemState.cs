@@ -7,8 +7,8 @@ public class ItemState : MonoBehaviour
     public PlayerState ps;
     public int numOfExtraJump;
     public int numOfDash;
-    public float dashCoolDown;
-    public float moveSpeed;
+    public bool invulnerableOnDash;
+    public float normalMoveSpeed;
     public int magAmmo;
     public int maxAmmo;
     public float fireRate;
@@ -19,8 +19,4 @@ public class ItemState : MonoBehaviour
     public bool dashIsParry;
     public bool ammoOnParry;
     public bool slowOnParry;
-    public bool invulnerableOnInput;
-    public float parryCoolDown;
-    public float invulnerabilityLength;
-    public float invulnerabilityCoolDown;
 }

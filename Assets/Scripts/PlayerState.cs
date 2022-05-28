@@ -16,12 +16,14 @@ public class PlayerState : ScriptableObject
     public int numOfExtraJump;
     public int numOfDash;
     public float sensitivity;
+    public float moveSpeed;
+    public float adsMoveSpeed;
+    public float normalMoveSpeed;
 
     //Dash Stats
     public float dashCoolDown;
     public float dashSpeed;
-    public float jumpForce;
-    public float moveSpeed;
+    public float jumpForce;    
 
     //Weapon Stats
     public int magAmmo;
@@ -43,9 +45,6 @@ public class PlayerState : ScriptableObject
     public float parryCoolDown;
 
     //Invulnerability Stats
-    public float invulnerabilityLength;
-    public float invulnerabilityCoolDown;
-    public bool invulnerableReady;
-    public bool invulnerableOnInput;
     public bool invulnerable;
+    public bool invulnerableOnDash;
 }

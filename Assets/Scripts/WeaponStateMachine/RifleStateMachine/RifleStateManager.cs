@@ -39,7 +39,7 @@ public class RifleStateManager : MonoBehaviour
         currentState.EnterState(this);
         infiniteAmmo = false;
         rifleGunShotAmmount = 0;
-        spreadFactor = ps.spreadFactor;
+        spreadFactor = 0.02f;
         timePressed = 0f;
         cameraResetTime = 15f;
         recoilReset = 8f;        
@@ -58,4 +58,7 @@ public class RifleStateManager : MonoBehaviour
         rifle.EnterState(this);
     }    
     public void ReCalibrateSpreadFactor() { spreadFactor = ps.spreadFactor; }
+    public void ReCalibrateMoveSpeed() {
+        ps.adsMoveSpeed = ps.normalMoveSpeed / 3f;
+    }
 }

@@ -13,6 +13,7 @@ public class EffectOnTrigger : MonoBehaviour
     {
         if (other.tag == "Rifle")
         {
+            WeaponRifle.transform.position = other.transform.position;
             WeaponRifle.SetActive(true);
             if (other.GetComponent<WeaponState>().defaultAmmo <= other.GetComponent<WeaponState>().maxAmmo * 0.25f)
                 WeaponRifle.GetComponent<RifleStateManager>().AmmoCounterRifle.color = Color.red;
@@ -28,14 +29,17 @@ public class EffectOnTrigger : MonoBehaviour
             ps.damage = 20f;
             ps.spreadFactor = 0.02f;
             ps.moveSpeed = 150f;
+            ps.normalMoveSpeed = ps.moveSpeed;
+            GetComponentInChildren<RifleStateManager>().ReCalibrateMoveSpeed();
             Destroy(other.gameObject);
         }
         else if (other.gameObject.tag == "Item") 
         {
             ps.numOfExtraJump += other.GetComponent<ItemState>().numOfExtraJump;
             ps.numOfDash += other.GetComponent<ItemState>().numOfDash;
-            ps.dashCoolDown += other.GetComponent<ItemState>().dashCoolDown;
-            ps.moveSpeed += other.GetComponent<ItemState>().moveSpeed;
+            if(!ps.invulnerableOnDash)
+                ps.invulnerableOnDash = other.GetComponent<ItemState>().invulnerableOnDash;
+            ps.normalMoveSpeed += other.GetComponent<ItemState>().normalMoveSpeed;
             ps.magAmmo += other.GetComponent<ItemState>().magAmmo;
             ps.maxAmmo += other.GetComponent<ItemState>().maxAmmo;
             ps.fireRate += other.GetComponent<ItemState>().fireRate;
@@ -49,17 +53,13 @@ public class EffectOnTrigger : MonoBehaviour
                 ps.ammoOnParry = other.GetComponent<ItemState>().ammoOnParry;
             if (!ps.slowOnParry)
                 ps.slowOnParry = other.GetComponent<ItemState>().slowOnParry;
-            if (!ps.invulnerableOnInput)
-                ps.invulnerableOnInput = other.GetComponent<ItemState>().invulnerableOnInput;
-            ps.parryCoolDown += other.GetComponent<ItemState>().parryCoolDown;
-            ps.invulnerabilityLength += other.GetComponent<ItemState>().invulnerabilityLength;
-            ps.invulnerabilityCoolDown += other.GetComponent<ItemState>().invulnerabilityCoolDown;
             GetComponent<PlayerMovement>().ReCalibrateDash();
             GetComponentInChildren<RifleStateManager>().ReCalibrateSpreadFactor();
+            GetComponentInChildren<RifleStateManager>().ReCalibrateMoveSpeed();
             Destroy(other.gameObject);
         }
         if (other.name == "End"){
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
     }    
 }

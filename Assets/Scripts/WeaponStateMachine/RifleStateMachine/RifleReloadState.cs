@@ -7,11 +7,11 @@ public class RifleReloadState : RifleBaseState
     public override void EnterState(RifleStateManager rifle){
         alreadyPlayedP1 = false;
         alreadyPlayedP2 = false;
+        rifle.ps.moveSpeed = rifle.ps.normalMoveSpeed;
         rifle.crosshair.SetActive(true);
         rifle.cameraResetTime = 15f;
         rifle.rifleGunShotAmmount = 0;
         rifle.timePressed = 0f;
-        rifle.ps.moveSpeed = 150f;
     }
     public override void UpdateState(RifleStateManager rifle)
     {

@@ -20,7 +20,6 @@ public class LevelLogic : MonoBehaviour
         ps.AmountToFrag = roundEnemy;
         end.SetActive(false);
         FindObjectOfType<HordeSpawnLogic>().startSpawner();
-
     }
     private void Update()
     {
@@ -32,12 +31,12 @@ public class LevelLogic : MonoBehaviour
             whatIsRound++;
             roundEnemy = (int)(roundEnemy * 1.25f);
             ps.AmountToFrag = roundEnemy;
-            if (whatIsRound == 12) 
+            if (whatIsRound == 6)
             {
                 end.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("EndIndicatorAnnouncementSound");
             }
-            FindObjectOfType<ItemSpawner>().SpawnEnhance();
+            FindObjectOfType<ItemSpawner>().SpawnItem();
             Invoke("startSpawner", 10f);
         }        
     }

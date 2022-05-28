@@ -57,7 +57,7 @@ public class RifleActiveState : RifleBaseState
             rifle.transform.localPosition = Vector3.Lerp(rifle.transform.localPosition, adsWeaponPostion, rifle.ps.adsSpeed * Time.deltaTime);
             rifle.crosshair.SetActive(false);
             rifle.spreadFactor = 0f;
-            rifle.ps.moveSpeed = 50f;
+            rifle.ps.moveSpeed = rifle.ps.adsMoveSpeed;
             rifle.GetComponentInParent<WeaponSway>().multiplier = 0f;
         }
         else
@@ -65,7 +65,7 @@ public class RifleActiveState : RifleBaseState
             rifle.transform.localPosition = Vector3.Lerp(rifle.transform.localPosition, defaultWeaponPostion, rifle.ps.adsSpeed * Time.deltaTime);
             rifle.crosshair.SetActive(true);
             rifle.spreadFactor = rifle.ps.spreadFactor;
-            rifle.ps.moveSpeed = 150f;
+            rifle.ps.moveSpeed = rifle.ps.normalMoveSpeed;
             rifle.GetComponentInParent<WeaponSway>().multiplier = 2f;
         }
         //Rifle ADS>>>>>>>>>>>>>>>>>>>>>>>>
@@ -77,7 +77,7 @@ public class RifleActiveState : RifleBaseState
         if (!rifle.infiniteAmmo)
             rifle.ps.magAmmo--; 
         if (rifle.timePressed > 0.5f)
-            rifle.spreadFactor *= rifle.timePressed * 4f;
+            rifle.spreadFactor *= rifle.timePressed * 1.25f;
         rifle.Effect.Effect();
         if (rifle.ps.gunType == "Rifle")
         {

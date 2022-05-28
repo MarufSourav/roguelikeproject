@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.062909864, g: 0.124394976, b: 0.19115582, a: 1}
+  m_IndirectSpecularColor: {r: 0.014969138, g: 0.06548535, b: 0.12934342, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -211,7 +211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1753315329223533538, guid: e4d8a9ddca45dc34ab77ae1d4eef254c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1753315329223533538, guid: e4d8a9ddca45dc34ab77ae1d4eef254c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -874,7 +874,7 @@ RectTransform:
   - {fileID: 1091033009}
   - {fileID: 1766303343}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1492,7 +1492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683452951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.53, z: 0}
+  m_LocalPosition: {x: 0, y: 1.9, z: 0}
   m_LocalScale: {x: 1, y: 0.05, z: 1}
   m_Children:
   - {fileID: 2132328619}
@@ -2167,7 +2167,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &919305214
 MonoBehaviour:
@@ -2183,12 +2183,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - Name: MaxAmmoIncrease
-    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
-    itemSprite: {fileID: 21300000, guid: b5ec0810610786d49b679c2f3eaa360d, type: 3}
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 0820444daf3a2a342b36eb6f4e247e28, type: 3}
     numOfExtraJump: 0
     numOfDash: 0
-    dashCoolDown: 0
-    moveSpeed: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
     magAmmo: 1
     maxAmmo: 1
     fireRate: 0
@@ -2199,17 +2199,13 @@ MonoBehaviour:
     dashIsParry: 0
     ammoOnParry: 0
     slowOnParry: 0
-    invulnerableOnInput: 0
-    parryCoolDown: 0
-    invulnerabilityLength: 0
-    invulnerabilityCoolDown: 0
   - Name: MaxDashIncrease
-    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
-    itemSprite: {fileID: 21300000, guid: 66c1bede86bcff34d80f36c1feedd4ed, type: 3}
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: f7d5db9711220aa49b2c3f9b53cb55ee, type: 3}
     numOfExtraJump: 0
     numOfDash: 1
-    dashCoolDown: 0
-    moveSpeed: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
     magAmmo: 0
     maxAmmo: 0
     fireRate: 0
@@ -2220,17 +2216,13 @@ MonoBehaviour:
     dashIsParry: 0
     ammoOnParry: 0
     slowOnParry: 0
-    invulnerableOnInput: 0
-    parryCoolDown: 0
-    invulnerabilityLength: 0
-    invulnerabilityCoolDown: 0
   - Name: MaxJumpIncrease
-    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
-    itemSprite: {fileID: 21300000, guid: 31eba3c9e8525804d8d12b0bd676f867, type: 3}
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 798956d70d1607848b0fbc43acc5fb97, type: 3}
     numOfExtraJump: 1
     numOfDash: 0
-    dashCoolDown: 0
-    moveSpeed: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
     magAmmo: 0
     maxAmmo: 0
     fireRate: 0
@@ -2241,17 +2233,13 @@ MonoBehaviour:
     dashIsParry: 0
     ammoOnParry: 0
     slowOnParry: 0
-    invulnerableOnInput: 0
-    parryCoolDown: 0
-    invulnerabilityLength: 0
-    invulnerabilityCoolDown: 0
-  - Name: Parry Dash
-    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
-    itemSprite: {fileID: 21300000, guid: 78cdda00ff9c48844ab433d507c9250c, type: 3}
+  - Name: Dash Parry
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 9867a63d0349ddb4088f670dba2f7d88, type: 3}
     numOfExtraJump: 0
     numOfDash: 0
-    dashCoolDown: 0
-    moveSpeed: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
     magAmmo: 0
     maxAmmo: 0
     fireRate: 0
@@ -2262,17 +2250,13 @@ MonoBehaviour:
     dashIsParry: 1
     ammoOnParry: 0
     slowOnParry: 0
-    invulnerableOnInput: 0
-    parryCoolDown: 0
-    invulnerabilityLength: 0
-    invulnerabilityCoolDown: 0
   - Name: Ammo On Parry
-    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
-    itemSprite: {fileID: 21300000, guid: 61fe93a926b1903468c1087c3c65b968, type: 3}
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: de019c7bf100c3541b2f19795ca7ad26, type: 3}
     numOfExtraJump: 0
     numOfDash: 0
-    dashCoolDown: 0
-    moveSpeed: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
     magAmmo: 0
     maxAmmo: 0
     fireRate: 0
@@ -2283,17 +2267,13 @@ MonoBehaviour:
     dashIsParry: 0
     ammoOnParry: 1
     slowOnParry: 0
-    invulnerableOnInput: 0
-    parryCoolDown: 0
-    invulnerabilityLength: 0
-    invulnerabilityCoolDown: 0
-  - Name: Invulnerability
-    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
-    itemSprite: {fileID: 21300000, guid: 1f4c7f7d2011c0d40b09a610e2a59ca5, type: 3}
+  - Name: Invulnerability On Dash
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 27b2c94c50318354b8cb5c059bdde5c8, type: 3}
     numOfExtraJump: 0
     numOfDash: 0
-    dashCoolDown: 0
-    moveSpeed: 0
+    invulnerableOnDash: 1
+    normalMoveSpeed: 0
     magAmmo: 0
     maxAmmo: 0
     fireRate: 0
@@ -2304,17 +2284,13 @@ MonoBehaviour:
     dashIsParry: 0
     ammoOnParry: 0
     slowOnParry: 0
-    invulnerableOnInput: 1
-    parryCoolDown: 0
-    invulnerabilityLength: 0
-    invulnerabilityCoolDown: 0
   - Name: Slow On Parry
-    item: {fileID: 2820018965793208577, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
-    itemSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: b0ffabac517a64c4090a6970caebf622, type: 3}
     numOfExtraJump: 0
     numOfDash: 0
-    dashCoolDown: 0
-    moveSpeed: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
     magAmmo: 0
     maxAmmo: 0
     fireRate: 0
@@ -2325,10 +2301,108 @@ MonoBehaviour:
     dashIsParry: 0
     ammoOnParry: 0
     slowOnParry: 1
-    invulnerableOnInput: 0
-    parryCoolDown: 0
-    invulnerabilityLength: 0
-    invulnerabilityCoolDown: 0
+  - Name: Smaller Recoil
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: c4fa09fb8aa6e7e43a337f702d44932a, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 0
+    reloadTime: 0
+    spreadFactor: 0
+    recoilAmount: -0.02
+    damage: 0
+    dashIsParry: 0
+    ammoOnParry: 0
+    slowOnParry: 0
+  - Name: Smaller Spread
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: da312af6df120fd479500a812d1ae5cb, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 0
+    reloadTime: 0
+    spreadFactor: -0.002
+    recoilAmount: 0
+    damage: 0
+    dashIsParry: 0
+    ammoOnParry: 0
+    slowOnParry: 0
+  - Name: MaxDamageIncrease
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 9774bdc524d04a84286adcb753aa1413, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 0
+    reloadTime: 0
+    spreadFactor: 0
+    recoilAmount: 0
+    damage: 5
+    dashIsParry: 0
+    ammoOnParry: 0
+    slowOnParry: 0
+  - Name: MaxFireRateIncrease
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: 4732a2eb1b322334dbee3e85867c8487, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 1
+    reloadTime: 0
+    spreadFactor: 0
+    recoilAmount: 0
+    damage: 0
+    dashIsParry: 0
+    ammoOnParry: 0
+    slowOnParry: 0
+  - Name: MaxMovementIncrease
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: f93965239bf90ff438f7fe3a1910f98d, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 5
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 0
+    reloadTime: 0
+    spreadFactor: 0
+    recoilAmount: 0
+    damage: 0
+    dashIsParry: 0
+    ammoOnParry: 0
+    slowOnParry: 0
+  - Name: Lower Reload Time
+    item: {fileID: 4632520332479120000, guid: 081aeca836bbb9849b861a45cfa39b55, type: 3}
+    itemSprite: {fileID: 21300000, guid: fee8c19977910bd4fbc1c2e3bbea78ee, type: 3}
+    numOfExtraJump: 0
+    numOfDash: 0
+    invulnerableOnDash: 0
+    normalMoveSpeed: 0
+    magAmmo: 0
+    maxAmmo: 0
+    fireRate: 0
+    reloadTime: -0.15
+    spreadFactor: 0
+    recoilAmount: 0
+    damage: 0
+    dashIsParry: 0
+    ammoOnParry: 0
+    slowOnParry: 0
 --- !u!1 &919400300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,7 +2843,7 @@ Transform:
   - {fileID: 643559405}
   - {fileID: 135391749}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1470566328
 MonoBehaviour:
@@ -3204,7 +3278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1247590268562040748, guid: 258ed721948dfd247b24b60c4c3ffd25, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1247590268562040748, guid: 258ed721948dfd247b24b60c4c3ffd25, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4349,7 +4423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132328618}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -11, z: 0}
+  m_LocalPosition: {x: 0, y: -18.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 683452955}
@@ -4434,7 +4508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5899633739183586787, guid: 94272a89350355c4f9b278ae54d1429d, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5899633739183586787, guid: 94272a89350355c4f9b278ae54d1429d, type: 3}
       propertyPath: m_LocalScale.x

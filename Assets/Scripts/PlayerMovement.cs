@@ -45,10 +45,7 @@ public class PlayerMovement : MonoBehaviour
         ps.parryWindow = 0.1f;
         ps.slowOnParry = false;
         ps.invulnerable = false;
-        ps.invulnerableReady = true;
-        ps.invulnerableOnInput = false;
-        ps.invulnerabilityLength = 2f;
-        ps.invulnerabilityCoolDown = 30f;
+        ps.invulnerableOnDash = false;
         GetComponent<BoxCollider>().enabled = false;
         Physics.gravity = new Vector3(0f, -30f, 0f);
         rb = GetComponent<Rigidbody>();
@@ -60,8 +57,6 @@ public class PlayerMovement : MonoBehaviour
         controlDrag();        
         if (Input.GetKeyDown(KeyCode.F) && ps.readyToParry)
             Parry();
-        if (Input.GetKeyDown(KeyCode.E) && ps.invulnerableOnInput && ps.invulnerableReady)
-            ActivateInvulnerability();
         
         if (nOd > ps.numOfDash)
             ReCalibrateDash();
@@ -94,21 +89,14 @@ public class PlayerMovement : MonoBehaviour
         }
         if (dashing && !isGrounded) { rb.drag = groundDrag; }
     }
-    void ActivateInvulnerability() 
-    {
-        ps.invulnerable = true;
-        ps.invulnerableReady = false;
-        Invoke("ResetInvulnerability", ps.invulnerabilityLength);
-        Invoke("ResetInvulnerabilityCoolDown", ps.invulnerabilityCoolDown);
-    }
-    void ResetInvulnerability() { ps.invulnerable = false; }
-    void ResetInvulnerabilityCoolDown() { ps.invulnerableReady = false; }
     void Parry() 
     {
         ps.readyToParry = false;
         ps.parry = true;
         parryCoolDown = true;
         GetComponent<BoxCollider>().enabled = true;
+        if (ps.invulnerableOnDash)
+            ps.invulnerable = true;
         Invoke("ParryEnd", ps.parryWindow);
         Invoke("ParryCoolDownReset", ps.parryCoolDown);
     }
@@ -116,9 +104,16 @@ public class PlayerMovement : MonoBehaviour
     void DashParry() 
     {
         ps.parry = true;
+        if (ps.invulnerableOnDash)
+            ps.invulnerable = true;
         Invoke("ParryEnd", ps.parryWindow);
     }
-    void ParryEnd(){GetComponent<BoxCollider>().enabled = false; ps.parry = false; }
+    void ParryEnd(){
+        GetComponent<BoxCollider>().enabled = false; 
+        ps.parry = false; 
+        if(ps.invulnerable)
+            ps.invulnerable = false;
+    }
     void Jump(){
         nOj--;
         if (isGrounded) 

@@ -2213,7 +2213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infiniteAmmo: 0
-  audio: {fileID: 0}
+  audioSystem: {fileID: 0}
   Effect: {fileID: 0}
   ps: {fileID: 11400000, guid: 9ce05100ce91ad5498495ddd01c18b1e, type: 2}
   rifleGunShotAmmount: 0
