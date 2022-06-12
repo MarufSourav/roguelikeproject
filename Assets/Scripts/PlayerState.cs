@@ -23,9 +23,10 @@ public class PlayerState : ScriptableObject
     //Dash Stats
     public float dashCoolDown;
     public float dashSpeed;
-    public float jumpForce;    
+    public float jumpForce;
 
     //Weapon Stats
+    public bool riflePickedUp;
     public int magAmmo;
     public int maxAmmo;
     public float adsSpeed;   

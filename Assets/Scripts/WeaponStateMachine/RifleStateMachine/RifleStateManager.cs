@@ -39,7 +39,7 @@ public class RifleStateManager : MonoBehaviour
         currentState.EnterState(this);
         infiniteAmmo = false;
         rifleGunShotAmmount = 0;
-        spreadFactor = 0.02f;
+        spreadFactor = ps.spreadFactor;
         timePressed = 0f;
         cameraResetTime = 15f;
         recoilReset = 8f;        
@@ -51,14 +51,16 @@ public class RifleStateManager : MonoBehaviour
             RifleReload.transform.localPosition = new Vector3(-0.15f, 0f, 0f);
             RifleReload.transform.Rotate(new Vector3(0f, -6f, 0f));
         }
-        currentState.UpdateState(this);
+        currentState.UpdateState(this);        
     }
     public void SwitchState(RifleBaseState rifle){
         currentState = rifle;
         rifle.EnterState(this);
     }    
-    public void ReCalibrateSpreadFactor() { spreadFactor = ps.spreadFactor; }
+    public void ReCalibrateSpreadFactor() { 
+        spreadFactor = ps.spreadFactor;
+    }
     public void ReCalibrateMoveSpeed() {
-        ps.adsMoveSpeed = ps.normalMoveSpeed / 3f;
+        ps.adsMoveSpeed = ps.normalMoveSpeed / 1.5f;
     }
 }

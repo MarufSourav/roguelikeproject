@@ -31,7 +31,7 @@ public class LevelLogic : MonoBehaviour
             whatIsRound++;
             roundEnemy = (int)(roundEnemy * 1.25f);
             ps.AmountToFrag = roundEnemy;
-            if (whatIsRound == 6)
+            if (whatIsRound == 12)
             {
                 end.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("EndIndicatorAnnouncementSound");

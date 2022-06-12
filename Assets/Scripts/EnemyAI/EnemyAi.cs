@@ -11,9 +11,9 @@ public class EnemyAi : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer, whatIsWall;
 
     //Patroling
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
+    //public Vector3 walkPoint;
+    //bool walkPointSet;
+    //public float walkPointRange;
 
     //Attacking
     public float timeBetweenAttacks;
@@ -22,27 +22,23 @@ public class EnemyAi : MonoBehaviour
 
     //States
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange, enemyShot, playerInSight;
+    //public bool playerInSightRange;
+    public bool playerInAttackRange;
 
     private void Awake()
     {        
         player = GameObject.Find("Player").transform;        
         agent = GetComponent<NavMeshAgent>();
-        enemyShot = false;
     }
     private void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
-        if (enemyShot && !playerInAttackRange)
-        {
-            ChasePlayer();
-            Invoke("EnemyAggresion", 7f);
-        }            
+        //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        //if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (!playerInAttackRange) ChasePlayer();
+        if (playerInAttackRange) AttackPlayer();           
     }
+    /*
     void Patroling() 
     {
         GetComponent<AudioSource>().enabled = true;
@@ -61,23 +57,23 @@ public class EnemyAi : MonoBehaviour
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround)) 
             walkPointSet = true;
-    }
+    }*/
     void ChasePlayer() 
     {
         GetComponent<AudioSource>().enabled = true;
-        agent.SetDestination(player.position);        
+        agent.SetDestination(player.position);
         transform.LookAt(player);
+        head.transform.LookAt(player);
     }
     void AttackPlayer()
     {
         GetComponent<AudioSource>().enabled = false;
-        transform.LookAt(player);
+        head.transform.LookAt(player);
         if (!alreadyAttacked) 
         {
-            alreadyAttacked = false;
-            var ray = new Ray(head.transform.position, head.transform.forward);
+            var ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100f)) 
+            if (Physics.Raycast(ray, out hit)) 
             {
                 if (hit.transform.name != "Player")
                     ChasePlayer();
@@ -88,12 +84,10 @@ public class EnemyAi : MonoBehaviour
                         alreadyAttacked = true;
                         Invoke("Attack", timeBetweenAttacks);                        
                     }
-                        
                     agent.SetDestination(transform.position);
                 }
             }
-        }        
-                      
+        }
     }   
     void Attack() 
     {
@@ -101,14 +95,13 @@ public class EnemyAi : MonoBehaviour
         Instantiate(projectile, head.transform.position, Quaternion.identity);
         alreadyAttacked = false;
     }
-    void EnemyAggresion() { enemyShot = false; }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position, walkPoint);
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawWireSphere(transform.position, sightRange);
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawRay(transform.position, walkPoint);
     }
 }

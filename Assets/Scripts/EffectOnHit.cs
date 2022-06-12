@@ -47,21 +47,18 @@ public class EffectOnHit : MonoBehaviour
                 hitMarker.SetActive(true);
                 Invoke("hitmarkerActive", .2f);
                 target.HP(ps.damage * 4);
-                EAI.enemyShot = true;
             }
             else if (hit.transform.name == "Body")
             {
                 hitMarker.SetActive(true);
                 Invoke("hitmarkerActive", .2f);
                 target.HP(ps.damage);
-                EAI.enemyShot = true;
             }
             else if (hit.transform.name == "LegRight" || hit.transform.name == "LegLeft")
             {
                 hitMarker.SetActive(true);
                 Invoke("hitmarkerActive", .2f);
                 target.HP(ps.damage * 0.5f);
-                EAI.enemyShot = true;
             }
             else if (hit.transform.name == "Start/End Button")
                 FindObjectOfType<TrainingBots>().StartEndTraining();

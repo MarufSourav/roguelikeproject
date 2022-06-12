@@ -23,29 +23,11 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump")]    
     public bool isGrounded;
-
     public bool parryCoolDown;
 
     private void Start(){
-        ps.dashSpeed = ps.moveSpeed;
-        ps.gunType = " ";
-        ps.moveSpeed = 150f;
-        ps.jumpForce = 10f;
-        ps.dashSpeed = 120f;
-        ps.dashCoolDown = 2f;
-        ps.numOfExtraJump = 0;
-        ps.numOfDash = 1;
         nOj = ps.numOfExtraJump;
         nOd = ps.numOfDash;
-        ps.dashIsParry = false;
-        ps.ammoOnParry = false;
-        ps.parry = false;
-        ps.readyToParry = true;
-        parryCoolDown = false;
-        ps.parryWindow = 0.1f;
-        ps.slowOnParry = false;
-        ps.invulnerable = false;
-        ps.invulnerableOnDash = false;
         GetComponent<BoxCollider>().enabled = false;
         Physics.gravity = new Vector3(0f, -30f, 0f);
         rb = GetComponent<Rigidbody>();
@@ -95,8 +77,6 @@ public class PlayerMovement : MonoBehaviour
         ps.parry = true;
         parryCoolDown = true;
         GetComponent<BoxCollider>().enabled = true;
-        if (ps.invulnerableOnDash)
-            ps.invulnerable = true;
         Invoke("ParryEnd", ps.parryWindow);
         Invoke("ParryCoolDownReset", ps.parryCoolDown);
     }
@@ -104,15 +84,11 @@ public class PlayerMovement : MonoBehaviour
     void DashParry() 
     {
         ps.parry = true;
-        if (ps.invulnerableOnDash)
-            ps.invulnerable = true;
         Invoke("ParryEnd", ps.parryWindow);
     }
     void ParryEnd(){
         GetComponent<BoxCollider>().enabled = false; 
-        ps.parry = false; 
-        if(ps.invulnerable)
-            ps.invulnerable = false;
+        ps.parry = false;
     }
     void Jump(){
         nOj--;
@@ -139,6 +115,8 @@ public class PlayerMovement : MonoBehaviour
     void Dash()
     {
         CancelInvoke("ResetMove");
+        if (ps.invulnerableOnDash)
+            ps.invulnerable = true;
         ps.readyToParry = false;
         if (ps.dashIsParry)
             DashParry();
@@ -167,6 +145,8 @@ public class PlayerMovement : MonoBehaviour
         dashing = false;
         if (!parryCoolDown)
             ps.readyToParry = true;
+        if (ps.invulnerable)
+            ps.invulnerable = false;
     }
     void movePlayer()
     {        

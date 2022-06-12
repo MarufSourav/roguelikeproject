@@ -64,4 +64,34 @@ public class TrainingBots : MonoBehaviour
         if (ct <= 0f) 
             StartEndTraining();            
     }
+    private void Start()
+    {
+        ps.gunType = " ";
+        ps.riflePickedUp = false;
+        ps.numOfExtraJump = 0;
+        ps.numOfDash = 1;
+        ps.moveSpeed = 150f;
+        ps.normalMoveSpeed = ps.moveSpeed;
+        ps.adsMoveSpeed = ps.normalMoveSpeed / 1.5f;
+        ps.dashCoolDown = 2f;
+        ps.dashSpeed = 120f;
+        ps.jumpForce = 10f;
+        ps.magAmmo = 0;
+        ps.maxAmmo = 0;
+        ps.adsSpeed = 0f;
+        ps.fireRate = 0f;
+        ps.reloadTime = 0f;
+        ps.spreadFactor = 0f;
+        ps.recoilAmount = 0f;
+        ps.damage = 0f;
+        ps.parry = false;
+        ps.readyToParry = true;
+        ps.dashIsParry = false;
+        ps.ammoOnParry = false;
+        ps.slowOnParry = false;
+        ps.parryWindow = 0.1f;
+        ps.parryCoolDown = 1.2f;
+        ps.invulnerable = false;
+        ps.invulnerableOnDash = false;
+    }
 }

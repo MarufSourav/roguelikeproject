@@ -5,16 +5,17 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    public Text inputValue;
     public Text FPSText;
     float pollingTime = 1f;
     float time;
     int frameCount;
+    public Text inputValue;
     public Slider sliderValue;
     public GameObject mainMenu;
     public GameObject Player;
     public GameObject Camera;
     bool menuActive = false;
+    
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -24,16 +25,16 @@ public class MainMenu : MonoBehaviour
     }
     private void Update()
     {
+        inputValue.text = sliderValue.value.ToString();
         time += Time.deltaTime;
         frameCount++;
-        if (time >= pollingTime) 
+        if (time >= pollingTime)
         {
             int frameRate = Mathf.RoundToInt(frameCount / time);
             FPSText.text = frameCount.ToString() + " FPS";
             time -= pollingTime;
             frameCount = 0;
         }
-        inputValue.text = sliderValue.value.ToString();
         if (Input.GetKeyDown(KeyCode.Escape))
             menuPanel();
     }
@@ -65,6 +66,7 @@ public class MainMenu : MonoBehaviour
             menuActive = !menuActive;
         }
     }
+    
     public void exit(){
         Application.Quit();
     }
